@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\ServicesController;
 
 /*
@@ -37,4 +38,13 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-service/{id}', [ServicesController::class, 'editService']);
    Route::post('/update-service/{id}', [ServicesController::class, 'updateService']);
    Route::get('/delete-service/{id}', [ServicesController::class, 'deleteService']);
+
+
+   // Services Routes
+   Route::get('/places', [PlacesController::class, 'index']);
+   Route::get('/add-place', [PlacesController::class, 'addPlace']);
+   Route::post('/save-place', [PlacesController::class, 'savePlace']);
+   Route::get('/edit-place/{id}', [PlacesController::class, 'editPlace']);
+   Route::post('/update-place/{id}', [PlacesController::class, 'updatePlace']);
+   Route::get('/delete-place/{id}', [PlacesController::class, 'deletePlace']);
 });
