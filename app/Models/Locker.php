@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Place extends Model
+class Locker extends Model
 {
     use HasFactory;
 
-    protected $table = 'places';
+    protected $table = 'lockers';
 
     protected $fillable = [
-        'place_name',
-        'place_description',
-        'place_status',
+        'locker_name',
+        'locker_size',
+        'locker_description',
+        'locker_status',
     ];
 }

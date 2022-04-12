@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PlacesController;
+use App\Http\Controllers\Admin\LockersController;
 use App\Http\Controllers\Admin\ServicesController;
 
 /*
@@ -40,11 +41,19 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/delete-service/{id}', [ServicesController::class, 'deleteService']);
 
 
-   // Services Routes
+   // Places Routes
    Route::get('/places', [PlacesController::class, 'index']);
    Route::get('/add-place', [PlacesController::class, 'addPlace']);
    Route::post('/save-place', [PlacesController::class, 'savePlace']);
    Route::get('/edit-place/{id}', [PlacesController::class, 'editPlace']);
    Route::post('/update-place/{id}', [PlacesController::class, 'updatePlace']);
    Route::get('/delete-place/{id}', [PlacesController::class, 'deletePlace']);
+
+   // Lockers Routes
+   Route::get('/lockers', [LockersController::class, 'index']);
+   Route::get('/add-locker', [LockersController::class, 'addLocker']);
+   Route::post('/save-locker', [LockersController::class, 'saveLocker']);
+   Route::get('/edit-locker/{id}', [LockersController::class, 'editLocker']);
+   Route::post('/update-locker/{id}', [LockersController::class, 'updateLocker']);
+   Route::get('/delete-locker/{id}', [LockersController::class, 'deleteLocker']);
 });

@@ -92,6 +92,7 @@
     <script>
         CKEDITOR.replace( 'service_description' );
         CKEDITOR.replace( 'place_description' );
+        CKEDITOR.replace( 'locker_description' );
     </script>
 
     <script src="{{asset('admin/js/app-style-switcher.js')}}"></script>
