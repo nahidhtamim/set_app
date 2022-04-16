@@ -38,7 +38,7 @@
                             <form class="form-horizontal form-material" method="POST" action="{{url('/update-place/'.$place->id)}}">
                                 @csrf
                                 <div class="form-group mb-4">
-                                    <label class="col-md-12 p-0">Place Name <span class="text-danger">*</span></label>
+                                    <label class="col-md-12 p-0"><b>Place Name <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="text" value="{{$place->place_name}}"
                                             class="form-control p-0 border-0" name="place_name" required> 
@@ -46,7 +46,7 @@
                                 </div>
 
                                 <div class="form-group mb-4">
-                                    <label class="col-md-12 p-0">Place Description <span class="text-danger">*</span></label>
+                                    <label class="col-md-12 p-0"><b>Place Description <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <textarea rows="5" class="form-control p-0 border-0" name="place_description" required>
                                             {{$place->place_description}}
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label class="col-sm-12">Place Status <span class="text-danger">*</span></label>
+                                    <label class="col-sm-12"><b>Place Status <span class="text-danger">*</span></b></label>
 
                                     <div class="col-sm-12 border-bottom">
                                         <select class="form-select shadow-none p-0 border-0 form-control-line" name="place_status" required>

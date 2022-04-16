@@ -38,21 +38,21 @@
                             <form class="form-horizontal form-material" method="POST" action="{{url('/update-locker/'.$locker->id)}}">
                                 @csrf
                                 <div class="form-group mb-4">
-                                    <label class="col-md-12 p-0">Locker Name <span class="text-danger">*</span></label>
+                                    <label class="col-md-12 p-0"><b>Locker Name <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="text" value="{{$locker->locker_name}}"
                                             class="form-control p-0 border-0" name="locker_name" required> 
                                         </div>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label class="col-md-12 p-0">Locker Size <span class="text-danger">*</span></label>
+                                    <label class="col-md-12 p-0"><b>Locker Size <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="text" value="{{$locker->locker_size}}"
                                             class="form-control p-0 border-0" name="locker_size" required> 
                                         </div>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label class="col-md-12 p-0">Locker Description <span class="text-danger">*</span></label>
+                                    <label class="col-md-12 p-0"><b>Locker Description <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <textarea rows="5" class="form-control p-0 border-0" name="locker_description" required>
                                             {{$locker->locker_description}}
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label class="col-sm-12">Locker Status <span class="text-danger">*</span></label>
+                                    <label class="col-sm-12"><b>Locker Status <span class="text-danger">*</span></b></label>
 
                                     <div class="col-sm-12 border-bottom">
                                         <select class="form-select shadow-none p-0 border-0 form-control-line" name="locker_status" required>

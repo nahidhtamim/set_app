@@ -51,7 +51,7 @@
                             @endif
 
                             <div class="table-responsive">
-                                <table class="table text-nowrap">
+                                <table class="table text-nowrap table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">#</th>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
+
 
 class ServicesController extends Controller
 {
@@ -21,10 +23,18 @@ class ServicesController extends Controller
         $service = new Service();
         $service->service_name = $request->input('service_name');
         $service->service_price = $request->input('service_price');
-        $service->service_description = $request->input('service_description');
+        $service->short_desc = $request->input('short_desc');
+        $service->long_desc = $request->input('long_desc');
         $service->service_status = $request->input('service_status');
-        $service->save();
+        if($request->hasFile('service_image')){
+            $service_image = $request->file('service_image');
+            $fileName = time(). '.' .$service_image->getClientOriginalExtension();
+            Image::make($service_image)->resize(370, 215)->save(public_path('/uploads/services/'.$fileName));
+            $service->service_image = $fileName;
+            $service->save();
+        };
         return redirect('/services')->with('status', 'Service Added Successfully');
+        
     }
 
     public function editService($id){
@@ -36,9 +46,16 @@ class ServicesController extends Controller
         $service = Service::find($id);
         $service->service_name = $request->input('service_name');
         $service->service_price = $request->input('service_price');
-        $service->service_description = $request->input('service_description');
+        $service->short_desc = $request->input('short_desc');
+        $service->long_desc = $request->input('long_desc');
         $service->service_status = $request->input('service_status');
-        $service->update();
+        if($request->hasFile('service_image')){
+            $service_image = $request->file('service_image');
+            $fileName = time(). '.' .$service_image->getClientOriginalExtension();
+            Image::make($service_image)->resize(370, 215)->save(public_path('/uploads/services/'.$fileName));
+            $service->service_image = $fileName;
+            $service->update();
+        };
         return redirect('/services')->with('status', 'Service Updated Successfully');
     }
 

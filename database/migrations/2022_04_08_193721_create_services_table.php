@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('service_name');
             $table->integer('service_price');
-            $table->text('service_description');
+            $table->string('service_image')->default('default.jpg');
+            $table->string('short_desc');
+            $table->text('long_desc');
             $table->tinyInteger('service_status')->default('0');
             $table->timestamps();
         });

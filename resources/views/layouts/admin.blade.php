@@ -90,7 +90,7 @@
 
     <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace( 'service_description' );
+        CKEDITOR.replace( 'long_desc' );
         CKEDITOR.replace( 'place_description' );
         CKEDITOR.replace( 'locker_description' );
     </script>

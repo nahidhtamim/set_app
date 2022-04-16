@@ -1399,3 +1399,21 @@ responsive
   }
 
 }
+
+
+/* 
+---------------------------------------------
+About Page
+--------------------------------------------- 
+*/
+.about-area{
+  width: 100%;
+}
+.about-area-content {
+  text-align: center;
+  /* background-color: rgba(250,250,250,0.15); */
+  background-color: #7c7b7b;
+  border-radius: 20px;
+  padding: 25px 30px 35px 30px;
+  margin: 15px 0px;
+}

@@ -51,13 +51,15 @@
                             @endif
 
                             <div class="table-responsive">
-                                <table class="table text-nowrap">
+                                <table class="table text-nowrap table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">#</th>
                                             <th class="border-top-0">Service Name</th>
-                                            <th class="border-top-0">Description</th>
-                                            <th class="border-top-0">Price</th>
+                                            <th class="border-top-0">Service Price</th>
+                                            <th class="border-top-0">Service Image</th>
+                                            <th class="border-top-0">Short Description</th>
+                                            <th class="border-top-0">Long Description</th>
                                             <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
@@ -68,7 +70,9 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$service->service_name}}</td>
                                             <td>{{$service->service_price}}</td>
-                                            <td>{!!$service->service_description!!}</td>
+                                            <td><img src="/uploads/services/{{$service->service_image}}" alt="" width="100px"></td>
+                                            <td>{{$service->short_desc}}</td>
+                                            <td>{!!$service->long_desc!!}</td>
                                             <td>
                                                 @if($service->service_status == 1)
                                                 Active

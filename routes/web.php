@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\LockersController;
 use App\Http\Controllers\Admin\ServicesController;
@@ -17,11 +19,19 @@ use App\Http\Controllers\Admin\ServicesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/services', [ServicesController::class, 'index']);
+
+Route::get('/', [FrontendController::class, 'index']);
+Route::get('/about', [FrontendController::class, 'about']);
+Route::get('/service/{id}', [FrontendController::class, 'service']);
+
 
 Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

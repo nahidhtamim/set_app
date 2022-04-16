@@ -21,31 +21,39 @@
                 </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/services')}}"
-                        aria-expanded="false">
-                        <i class="fa fa-table" aria-hidden="true"></i>
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Services">
+                        <i class="fa fa-tasks" aria-hidden="true"></i>
                         <span class="hide-menu">Services</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/places')}}"
-                        aria-expanded="false">
-                        <i class="fa fa-table" aria-hidden="true"></i>
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Places">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
                         <span class="hide-menu">Places</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/lockers')}}"
-                        aria-expanded="false">
-                        <i class="fa fa-table" aria-hidden="true"></i>
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Lockers">
+                        <i class="fa fa-archive" aria-hidden="true"></i>
                         <span class="hide-menu">Lockers</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Logout"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        <i class="fa fa-sign" aria-hidden="true"></i>
+                        <span class="hide-menu">Logout</span>
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+                <li class="sidebar-item">
+
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
