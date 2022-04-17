@@ -28,11 +28,11 @@ use App\Http\Controllers\Admin\ServicesController;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/about', [FrontendController::class, 'about']);
 Route::get('/service/{id}', [FrontendController::class, 'service']);
-
+Route::get('/order-form/{id}', [FrontendController::class, 'service']);
 
 Auth::routes();
 
-
+Route::get('/order-form/{id}', [HomeController::class, 'orderForm']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

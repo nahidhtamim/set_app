@@ -24,7 +24,7 @@
               <div class="meeting-single-item">
                 <div class="thumb">
                   <div class="price">
-                    <span>$14.00</span>
+                    <span>${{$service->service_price}}.00</span>
                   </div>
                   {{-- <div class="date">
                     <h6>Nov <span>12</span></h6>
@@ -33,15 +33,22 @@
                 </div>
                 <div class="down-content">
                   <h4>{{$service->service_name}}</h4>
+                  <p>${{$service->service_price}}.00</p>
+                  <br>
                   <p>{{$service->short_desc}}</p>
                   <hr>
                   {{-- <p class="description"> --}}
                   <p class="">
                     {!!$service->long_desc!!}
                   </p>
+                  <br>
+                  @if(Auth::user())
                   <div class="main-button-red">
-                    <a href="#">Order</a>
+                    <a href="{{url('/order-form/'.$service->id)}}">Order</a>
                   </div>
+                  @else
+                  <div class="alert alert-warning text-center">Please login or register to order this service!!!</div>
+                  @endif
                 </div>
               </div>
             </div>
@@ -54,10 +61,11 @@
         </div>
       </div>
     </div>
-    <div class="footer">
-      <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved. 
-          <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a></p>
-    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </section>
-
+  
 @endsection
