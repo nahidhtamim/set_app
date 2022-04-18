@@ -1,6 +1,6 @@
 @extends('layouts.admin')
  @section('title')
- Places - SET Admin Panel
+ Sports - SET Admin Panel
  @endsection
 @section('contents')
             
@@ -15,10 +15,10 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="{{url('/places')}}" class="fw-normal">Places</a></li>
+                                <li><a href="{{url('/sports')}}" class="fw-normal">Sports</a></li>
                             </ol>
-                            <a href="{{url('/add-place')}}" target="_blank"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Places
+                            <a href="{{url('/add-sport')}}" target="_blank"
+                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Sports
                                 </a>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Places Table</h3>
+                            <h3 class="box-title">Sports Table</h3>
 
                             @if(session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -55,30 +55,30 @@
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">#</th>
-                                            <th class="border-top-0">Place Name</th>
+                                            <th class="border-top-0">Sport Name</th>
                                             <th class="border-top-0">Description</th>
                                             <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($places as $place)
+                                        @foreach($sports as $sport)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$place->place_name}}</td>
-                                            <td>{!!$place->place_description!!}</td>
+                                            <td>{{$sport->sport_name}}</td>
+                                            <td>{!!$sport->sport_description!!}</td>
                                             <td>
-                                                @if($place->place_status == 1)
+                                                @if($sport->sport_status == 1)
                                                 Active
-                                                @elseif($place->place_status == 0)
+                                                @elseif($sport->sport_status == 0)
                                                 Deactive
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{url('/edit-place/'.$place->id)}}" target="_blank"
+                                                <a href="{{url('/edit-sport/'.$sport->id)}}" target="_blank"
                                                 class="btn btn-info text-white">Edit
                                                 </a>
-                                                <a href="{{url('/delete-place/'.$place->id)}}"
+                                                <a href="{{url('/delete-sport/'.$sport->id)}}"
                                                 class="btn btn-danger text-white">Delete
                                                 </a>
                                             </td>

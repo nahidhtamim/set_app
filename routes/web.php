@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\PlacesController;
+use App\Http\Controllers\Admin\SportsController;
 use App\Http\Controllers\Admin\LockersController;
 use App\Http\Controllers\Admin\ServicesController;
 
@@ -66,4 +67,12 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-locker/{id}', [LockersController::class, 'editLocker']);
    Route::post('/update-locker/{id}', [LockersController::class, 'updateLocker']);
    Route::get('/delete-locker/{id}', [LockersController::class, 'deleteLocker']);
+
+   // Sports Routes
+   Route::get('/sports', [SportsController::class, 'index']);
+   Route::get('/add-sport', [SportsController::class, 'addSport']);
+   Route::post('/save-sport', [SportsController::class, 'saveSport']);
+   Route::get('/edit-sport/{id}', [SportsController::class, 'editSport']);
+   Route::post('/update-sport/{id}', [SportsController::class, 'updateSport']);
+   Route::get('/delete-sport/{id}', [SportsController::class, 'deleteSport']);
 });

@@ -93,6 +93,7 @@
         CKEDITOR.replace( 'long_desc' );
         CKEDITOR.replace( 'place_description' );
         CKEDITOR.replace( 'locker_description' );
+        CKEDITOR.replace( 'sport_description' );
     </script>
 
     <script src="{{asset('admin/js/app-style-switcher.js')}}"></script>

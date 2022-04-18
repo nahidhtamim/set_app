@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Locker;
 use App\Models\Place;
+use App\Models\Sport;
+use App\Models\Locker;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,7 @@ class HomeController extends Controller
         $service = Service::find($id);
         $places = Place::all();
         $lockers = Locker::all();
-        return view('frontend.order-form', compact('service', 'places', 'lockers'));
+        $sports = Sport::all();
+        return view('frontend.order-form', compact('service', 'places', 'lockers', 'sports'));
     }
 }

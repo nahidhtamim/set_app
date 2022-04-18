@@ -158,7 +158,7 @@ body {
 .main-button-red a {
   font-size: 13px;
   color: #fff;
-  background-color: #7c7b7b;
+  background-color: #252525;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 22px;
@@ -499,7 +499,7 @@ section.upcoming-meetings .categories ul li a {
 }
 
 section.upcoming-meetings .categories ul li a:hover {
-  color: #7c7b7b;
+  color: #252525;
 }
 
 section.upcoming-meetings .categories .main-button-red {
@@ -559,7 +559,7 @@ section.upcoming-meetings .categories .main-button-red a {
   font-size: 13px;
   text-transform: uppercase;
   font-weight: 600;
-  color: #7c7b7b;
+  color: #252525;
 }
 
 .meeting-item .down-content .date span {
@@ -712,7 +712,7 @@ section.our-courses {
 }
 
 .our-courses .item .down-content .info span {
-  color: #7c7b7b;
+  color: #252525;
   font-size: 15px;
   font-weight: 600;
   text-align: right;
@@ -844,7 +844,7 @@ section.our-facts h2 {
 .count-area-content {
   text-align: center;
   /* background-color: rgba(250,250,250,0.15); */
-  background-color: #7c7b7b;
+  background-color: #252525;
   border-radius: 20px;
   padding: 25px 30px 35px 30px;
   margin: 15px 0px;
@@ -929,7 +929,7 @@ section.contact-us #contact input {
   box-shadow: none;
   font-size: 13px;
   font-weight: 500;
-  color: #7a7a7a;
+  color: #252525;
   padding: 0px 15px;
   margin-bottom: 30px;
 }
@@ -945,7 +945,7 @@ section.contact-us #contact textarea {
   box-shadow: none;
   font-size: 13px;
   font-weight: 500;
-  color: #7a7a7a;
+  color: #252525;
   padding: 15px;
   margin-bottom: 30px;
 }
@@ -953,7 +953,7 @@ section.contact-us #contact textarea {
 section.contact-us #contact button {
   font-size: 13px;
   color: #fff;
-  background-color: #7c7b7b;
+  background-color: #252525;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 22px;
@@ -969,7 +969,7 @@ section.contact-us #contact button:hover {
 }
 
 section.contact-us .right-info {
-  background-color: #7c7b7b;
+  background-color: #252525;
   border-radius: 20px;
   padding: 40px;
 }
@@ -1077,7 +1077,7 @@ section.meetings-page .filters {
 
 section.meetings-page .filters li {
   font-size: 13px;
-  color: #7c7b7b;
+  color: #252525;
   background-color: #fff;
   padding: 11px 30px;
   display: inline-block;
@@ -1091,7 +1091,7 @@ section.meetings-page .filters li {
 
 section.meetings-page .filters ul li.active,
 section.meetings-page .filters ul li:hover {
-  background-color: #7c7b7b;
+  background-color: #252525;
   color: #fff;
 }
 
@@ -1132,7 +1132,7 @@ section.meetings-page .main-button-red a {
 
 section.meetings-page .pagination ul li.active a,
 section.meetings-page .pagination ul li a:hover {
-  background-color: #7c7b7b;
+  background-color: #252525;
   color: #fff;
 }
 
@@ -1183,7 +1183,7 @@ section.meetings-page .pagination ul li a:hover {
   font-size: 13px;
   text-transform: uppercase;
   font-weight: 600;
-  color: #7c7b7b;
+  color: #252525;
 }
 
 .meeting-single-item .thumb .date span {
@@ -1412,7 +1412,7 @@ About Page
 .about-area-content {
   text-align: center;
   /* background-color: rgba(250,250,250,0.15); */
-  background-color: #7c7b7b;
+  background-color: #252525;
   border-radius: 20px;
   padding: 25px 30px 35px 30px;
   margin: 15px 0px;
@@ -1457,7 +1457,7 @@ section.order-form {
   box-shadow: none;
   font-size: 13px;
   font-weight: 500;
-  color: #7a7a7a;
+  color: #252525;
   padding: 0px 15px;
   margin-bottom: 30px;
 }
@@ -1473,7 +1473,7 @@ section.order-form {
   box-shadow: none;
   font-size: 13px;
   font-weight: 500;
-  color: #7a7a7a;
+  color: #252525;
   padding: 15px;
   margin-bottom: 30px;
 }
@@ -1481,7 +1481,7 @@ section.order-form {
 .order-form #order-form button {
   font-size: 13px;
   color: #fff;
-  background-color: #7c7b7b;
+  background-color: #252525;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 22px;
@@ -1497,7 +1497,7 @@ section.order-form {
 }
 
 .order-form .right-info {
-  background-color: #7c7b7b;
+  background-color: #252525;
   border-radius: 20px;
   padding: 40px;
 }

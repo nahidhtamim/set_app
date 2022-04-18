@@ -22,7 +22,7 @@ Home | SET - A Premium Laundry Service
                                     <div class="col-lg-12">
                                         <h2>Shipping Details</h2>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <fieldset>
                                             <select name="place" id="place">
                                                 <option>Select A Place</option>
@@ -32,12 +32,22 @@ Home | SET - A Premium Laundry Service
                                             </select>
                                         </fieldset>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <fieldset>
                                             <select name="locker" id="locker">
-                                                <option>Select A Place</option>
+                                                <option>Select A Locker</option>
                                                 @foreach ($lockers as $locker)
                                                     <option value="{{$locker->id}}">{{$locker->locker_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <fieldset>
+                                            <select name="sport" id="sport">
+                                                <option>Select A Sports</option>
+                                                @foreach ($sports as $sport)
+                                                    <option value="{{$sport->id}}">{{$sport->sport_name}}</option>
                                                 @endforeach
                                             </select>
                                         </fieldset>

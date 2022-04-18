@@ -41,6 +41,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/sports')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Lockers">
+                        <i class="fa fa-futbol" aria-hidden="true"></i>
+                        <span class="hide-menu">Sports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('logout') }}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Logout"
                         onclick="event.preventDefault();
