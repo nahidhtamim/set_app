@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2022 at 08:59 PM
+-- Generation Time: Apr 23, 2022 at 09:40 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -58,8 +58,8 @@ CREATE TABLE `lockers` (
 --
 
 INSERT INTO `lockers` (`id`, `locker_name`, `locker_size`, `locker_description`, `locker_status`, `created_at`, `updated_at`) VALUES
-(1, 'A1', '1 Feet', '<p>&nbsp;SET <strong>Locker</strong> Description</p>\r\n\r\n<p>&nbsp;</p>', 1, '2022-04-12 17:04:58', '2022-04-12 17:04:58'),
-(2, 'A2', '1Feet', '<p>SET Locker Description</p>', 1, '2022-04-16 14:11:35', '2022-04-16 14:11:44');
+(1, 'Pro', '3 Feet', '<p>&nbsp;SET <strong>Locker</strong> Description</p>\r\n\r\n<p>&nbsp;</p>', 1, '2022-04-12 17:04:58', '2022-04-23 11:58:29'),
+(2, 'Basic', '1 Feet', '<p>SET Locker Description</p>', 1, '2022-04-16 14:11:35', '2022-04-23 11:58:55');
 
 -- --------------------------------------------------------
 
@@ -84,7 +84,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (7, '2022_04_08_193721_create_services_table', 2),
 (9, '2022_04_11_193737_create_places_table', 3),
-(10, '2022_04_12_225658_create_lockers_table', 4);
+(10, '2022_04_12_225658_create_lockers_table', 4),
+(11, '2022_04_18_180815_create_sports_table', 5),
+(12, '2022_04_23_181931_create_place_lockers_table', 6);
 
 -- --------------------------------------------------------
 
@@ -143,6 +145,33 @@ INSERT INTO `places` (`id`, `place_name`, `place_description`, `place_status`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `place_lockers`
+--
+
+CREATE TABLE `place_lockers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `place_id` tinyint(4) NOT NULL,
+  `service_id` tinyint(4) NOT NULL,
+  `locker_id` tinyint(4) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `place_lockers`
+--
+
+INSERT INTO `place_lockers` (`id`, `place_id`, `service_id`, `locker_id`, `name`, `code`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2, 'Basic1', 'SBB1', 1, NULL, NULL),
+(2, 1, 1, 2, 'Basic2', 'SBB2', 1, NULL, NULL),
+(3, 1, 1, 2, 'Basic3', 'SBB3', 1, NULL, '2022-04-23 13:34:26');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `services`
 --
 
@@ -166,6 +195,29 @@ INSERT INTO `services` (`id`, `service_name`, `service_price`, `service_image`, 
 (1, 'SET Basic', 20, '1650129299.jpg', 'IT is a basic level service', '<p>IT is a basic level service</p>', 1, '2022-04-08 13:46:26', '2022-04-16 11:14:59'),
 (2, 'Demo', 50, '1650130390.jpg', 'IT is a demo level service', '<p><em>Demo</em><strong> Description</strong></p>', 1, '2022-04-08 14:05:45', '2022-04-16 11:33:10'),
 (3, 'Dummy', 50, '1650130411.jpg', 'IT is a Dummy level service', '<p><strong>SET Service Description</strong></p>', 1, '2022-04-11 12:45:51', '2022-04-16 11:33:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sports`
+--
+
+CREATE TABLE `sports` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `sport_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sport_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sport_status` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sports`
+--
+
+INSERT INTO `sports` (`id`, `sport_name`, `sport_description`, `sport_status`, `created_at`, `updated_at`) VALUES
+(1, 'Football', '<p><strong>Football</strong></p>', 1, '2022-04-18 12:16:34', '2022-04-18 12:16:34'),
+(2, 'Boxing', '<p><strong>Boxing</strong></p>', 1, '2022-04-18 12:16:52', '2022-04-18 12:16:52');
 
 -- --------------------------------------------------------
 
@@ -237,9 +289,21 @@ ALTER TABLE `places`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `place_lockers`
+--
+ALTER TABLE `place_lockers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `services`
 --
 ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sports`
+--
+ALTER TABLE `sports`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -269,7 +333,7 @@ ALTER TABLE `lockers`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -284,10 +348,22 @@ ALTER TABLE `places`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `place_lockers`
+--
+ALTER TABLE `place_lockers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `sports`
+--
+ALTER TABLE `sports`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

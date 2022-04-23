@@ -19,6 +19,7 @@
     <link href="{{asset('admin/plugins/bower_components/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link rel="stylesheet"
         href="{{asset('admin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <!-- Custom CSS -->
     <link href="{{asset('admin/css/style.min.css')}}" rel="stylesheet">
 </head>
@@ -84,7 +85,10 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('admin/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <script src="https:////cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('admin/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 
@@ -105,12 +109,47 @@
     <!--Custom JavaScript -->
     <script src="{{asset('admin/js/custom.js')}}"></script>
     <!--This page JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.9/sweetalert2.min.js"></script>
     <!--chartis chart-->
     <script src="{{asset('admin/plugins/bower_components/chartist/dist/chartist.min.js')}}"></script>
     <script
         src="{{asset('admin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}">
     </script>
     <script src="{{asset('admin/js/pages/dashboards/dashboard1.js')}}"></script>
+    <script>
+        $(document).ready( function () {
+            $('#table').DataTable();
+        } );
+    </script>
+    <script> 
+        $(document).ready(function(){
+          let row_number = 1;
+          $("#add_row").click(function(e){
+          e.preventDefault();
+          let new_row_number = row_number - 1;
+          $('#locker_row' + row_number).html($('#locker_row' + new_row_number).html()).find('td:first-child');
+          $('#influencer_table').append('<tr id="locker_row' + (row_number + 1) + '"></tr>');
+          row_number++;
+        });
+      
+          $(".delete_row").click(function(e){
+            e.preventDefault();
+            if(row_number > 1){
+              $("#locker_row" + (row_number - 1)).html('');
+              row_number--;
+            }
+          });
+        });
+      </script> 
+      @if(session('status'))
+      <script>
+        swal("{{session('status')}}")
+      </script>
+      @elseif(session('warning'))
+      <script>
+        swal("{{session('warning')}}")
+      </script>
+    @endif
 </body>
 
 </html>

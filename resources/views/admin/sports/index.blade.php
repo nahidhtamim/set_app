@@ -17,7 +17,7 @@
                             <ol class="breadcrumb ms-auto">
                                 <li><a href="{{url('/sports')}}" class="fw-normal">Sports</a></li>
                             </ol>
-                            <a href="{{url('/add-sport')}}" target="_blank"
+                            <a href="{{url('/add-sport')}}"
                                 class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Sports
                                 </a>
                         </div>
@@ -75,7 +75,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{url('/edit-sport/'.$sport->id)}}" target="_blank"
+                                                <a href="{{url('/edit-sport/'.$sport->id)}}"
                                                 class="btn btn-info text-white">Edit
                                                 </a>
                                                 <a href="{{url('/delete-sport/'.$sport->id)}}"

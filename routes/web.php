@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\SportsController;
 use App\Http\Controllers\Admin\LockersController;
 use App\Http\Controllers\Admin\ServicesController;
+use App\Http\Controllers\Admin\PlaceLockersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,4 +76,15 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-sport/{id}', [SportsController::class, 'editSport']);
    Route::post('/update-sport/{id}', [SportsController::class, 'updateSport']);
    Route::get('/delete-sport/{id}', [SportsController::class, 'deleteSport']);
+
+
+   // Place Lockers Routes
+   Route::get('/place-lockers', [PlaceLockersController::class, 'index']);
+   Route::get('/add-place-locker', [PlaceLockersController::class, 'addPlaceLocker']);
+   Route::post('/save-place-locker', [PlaceLockersController::class, 'savePlaceLocker']);
+   Route::get('/edit-place-locker/{id}', [PlaceLockersController::class, 'editPlaceLocker']);
+   Route::post('/update-place-locker/{id}', [PlaceLockersController::class, 'updatePlaceLocker']);
+   Route::get('/delete-place-locker/{id}', [PlaceLockersController::class, 'deletePlaceLocker']);
+
+
 });

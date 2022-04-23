@@ -17,9 +17,7 @@
                             <ol class="breadcrumb ms-auto">
                                 <li><a href="{{url('/places')}}" class="fw-normal">Places</a></li>
                             </ol>
-                            <a href="{{url('/add-place')}}" target="_blank"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Places
-                                </a>
+                            <a href="{{url('/add-place')}}"class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Places</a>
                         </div>
                     </div>
                 </div>
@@ -75,7 +73,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{url('/edit-place/'.$place->id)}}" target="_blank"
+                                                <a href="{{url('/edit-place/'.$place->id)}}"
                                                 class="btn btn-info text-white">Edit
                                                 </a>
                                                 <a href="{{url('/delete-place/'.$place->id)}}"

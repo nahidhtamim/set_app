@@ -1,6 +1,6 @@
 @extends('layouts.admin')
  @section('title')
- Services - SET Admin Panel
+ Place Lockers - SET Admin Panel
  @endsection
 @section('contents')
             
@@ -15,10 +15,10 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="{{url('/services')}}" class="fw-normal">Services</a></li>
+                                <li><a href="{{url('/place-lockers')}}" class="fw-normal">Place Lockers</a></li>
                             </ol>
-                            <a href="{{url('/add-service')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Services
+                            <a href="{{url('/add-place-locker')}}"
+                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place Lockers
                                 </a>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Services Table</h3>
+                            <h3 class="box-title">Place Lockers Table</h3>
 
                             @if(session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -51,40 +51,40 @@
                             @endif
 
                             <div class="table-responsive">
-                                <table class="table text-nowrap table-bordered table-striped">
+                                <table class="table text-nowrap table-bordered table-striped" id="table">
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">#</th>
-                                            <th class="border-top-0">Service Name</th>
-                                            <th class="border-top-0">Service Price</th>
-                                            <th class="border-top-0">Service Image</th>
-                                            <th class="border-top-0">Short Description</th>
-                                            <th class="border-top-0">Long Description</th>
+                                            <th class="border-top-0">Place</th>
+                                            <th class="border-top-0">Service</th>
+                                            <th class="border-top-0">Locker</th>
+                                            <th class="border-top-0">Name</th>
+                                            <th class="border-top-0">Code</th>
                                             <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($services as $service)
+                                        @foreach($placeLockers as $placeLocker)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$service->service_name}}</td>
-                                            <td>{{$service->service_price}}</td>
-                                            <td><img src="/uploads/services/{{$service->service_image}}" alt="" width="100px"></td>
-                                            <td>{{$service->short_desc}}</td>
-                                            <td>{!!$service->long_desc!!}</td>
+                                            <td>{{$placeLocker->place_info->place_name}}</td>
+                                            <td>{{$placeLocker->service_info->service_name}}</td>
+                                            <td>{{$placeLocker->locker_info->locker_name}}</td>
+                                            <td>{{$placeLocker->name}}</td>
+                                            <td>{{$placeLocker->code}}</td>
                                             <td>
-                                                @if($service->service_status == 1)
+                                                @if($placeLocker->status == 1)
                                                 Active
-                                                @elseif($service->service_status == 0)
+                                                @elseif($placeLocker->status == 0)
                                                 Deactive
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{url('/edit-service/'.$service->id)}}"
+                                                <a href="{{url('/edit-place-locker/'.$placeLocker->id)}}"
                                                 class="btn btn-info text-white">Edit
                                                 </a>
-                                                <a href="{{url('/delete-service/'.$service->id)}}"
+                                                <a href="{{url('/delete-place-locker/'.$placeLocker->id)}}"
                                                 class="btn btn-danger text-white">Delete
                                                 </a>
                                             </td>

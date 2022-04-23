@@ -42,9 +42,16 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/sports')}}"
-                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Lockers">
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Sports">
                         <i class="fa fa-futbol" aria-hidden="true"></i>
                         <span class="hide-menu">Sports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/place-lockers')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Place Lockers">
+                        <i class="fa fa-stop" aria-hidden="true"></i>
+                        <span class="hide-menu">Place Lockers</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -52,7 +59,7 @@
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Logout"
                         onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
-                        <i class="fa fa-sign" aria-hidden="true"></i>
+                        <i class="fa fa-times" aria-hidden="true"></i>
                         <span class="hide-menu">Logout</span>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
