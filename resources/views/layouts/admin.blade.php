@@ -141,7 +141,7 @@
           });
         });
       </script> 
-      @if(session('status'))
+      {{-- @if(session('status'))
       <script>
         swal("{{session('status')}}")
       </script>
@@ -149,7 +149,32 @@
       <script>
         swal("{{session('warning')}}")
       </script>
-    @endif
+      
+    @endif --}}
+      <script type="text/javascript">
+        $('#place_id').on('change', function () {
+            get_service_by_place();
+        });
+
+        function get_service_by_place() {
+            var place_id = $('#place_id').val();
+            $.post('{{ route('getPlaceServices') }}', {
+                    _token: '{{ csrf_token() }}',
+                    place_id: place_id
+                },
+                function (data) {
+                    $('#service_id').html(null);
+                    $('#service_id').append($('<option value="">SET Service</option>', {}));
+                    for (var i = 0; i < data.length; i++) {
+                        $('#service_id').append($('<option>', {
+                            value: data[i].id,
+                            text: data[i].name
+                        }));
+                    }
+                });
+        }
+    </script>
+    
 </body>
 
 </html>

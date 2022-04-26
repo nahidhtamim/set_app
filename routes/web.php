@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SportsController;
 use App\Http\Controllers\Admin\LockersController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\PlaceLockersController;
+use App\Http\Controllers\Admin\PlaceServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +31,14 @@ use App\Http\Controllers\Admin\PlaceLockersController;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/about', [FrontendController::class, 'about']);
 Route::get('/service/{id}', [FrontendController::class, 'service']);
-Route::get('/order-form/{id}', [FrontendController::class, 'service']);
+Route::get('/order-form', [FrontendController::class, 'orderForm']);
 
 Auth::routes();
 
 Route::get('/order-form/{id}', [HomeController::class, 'orderForm']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::post('getServices',[HomeController::class,'getServices'])->name('getServices');
+Route::post('getLockers',[HomeController::class,'getLockers'])->name('getLockers');
 
 Route::group(['middleware' => ['auth','isAdmin']], function () {
 
@@ -77,6 +79,13 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::post('/update-sport/{id}', [SportsController::class, 'updateSport']);
    Route::get('/delete-sport/{id}', [SportsController::class, 'deleteSport']);
 
+   // Place Lockers Routes
+   Route::get('/place-services', [PlaceServicesController::class, 'index']);
+   Route::get('/add-place-service', [PlaceServicesController::class, 'addPlaceService']);
+   Route::post('/save-place-service', [PlaceServicesController::class, 'savePlaceService']);
+   Route::get('/edit-place-service/{id}', [PlaceServicesController::class, 'editPlaceService']);
+   Route::post('/update-place-service/{id}', [PlaceServicesController::class, 'updatePlaceService']);
+   Route::get('/delete-place-service/{id}', [PlaceServicesController::class, 'deletePlaceService']);
 
    // Place Lockers Routes
    Route::get('/place-lockers', [PlaceLockersController::class, 'index']);
@@ -85,6 +94,7 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-place-locker/{id}', [PlaceLockersController::class, 'editPlaceLocker']);
    Route::post('/update-place-locker/{id}', [PlaceLockersController::class, 'updatePlaceLocker']);
    Route::get('/delete-place-locker/{id}', [PlaceLockersController::class, 'deletePlaceLocker']);
+   Route::post('getPlaceServices',[PlaceLockersController::class,'getPlaceServices'])->name('getPlaceServices');
 
 
 });

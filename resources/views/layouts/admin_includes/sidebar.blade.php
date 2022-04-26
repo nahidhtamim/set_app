@@ -48,6 +48,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/place-services')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Place Services">
+                        <i class="fa fa-stop" aria-hidden="true"></i>
+                        <span class="hide-menu">Place Services</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/place-lockers')}}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Place Lockers">
                         <i class="fa fa-stop" aria-hidden="true"></i>

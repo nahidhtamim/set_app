@@ -6,6 +6,7 @@ use App\Models\Place;
 use App\Models\Locker;
 use App\Models\Service;
 use App\Models\PlaceLocker;
+use App\Models\PlaceService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -22,7 +23,7 @@ class PlaceLockersController extends Controller
 
     public function addPlaceLocker(){
         $places = Place::all();
-        $services = Service::all();
+        $services = PlaceService::all();
         $lockers = Locker::all();
         return view('admin.placeLocker.add-place-locker', compact('places', 'services', 'lockers'));
     }
@@ -57,7 +58,7 @@ class PlaceLockersController extends Controller
     public function editPlaceLocker($id){
         $placeLocker = PlaceLocker::find($id);
         $places = Place::all();
-        $services = Service::all();
+        $services = PlaceService::all();
         $lockers = Locker::all();
         return view('admin.placeLocker.edit-place-locker', compact('placeLocker', 'places', 'services', 'lockers'));
     }
@@ -78,5 +79,12 @@ class PlaceLockersController extends Controller
         $placeLocker = PlaceLocker::find($id);
         $placeLocker->delete();
         return redirect('/place-lockers')->with('warning', 'Place Locker Deleted Successfully');
+    }
+
+
+    public function getPlaceServices(Request $request)
+    {
+        $placeService=PlaceService::where('place_id', $request->place_id)->orderBy('name')->get();
+        return $placeService;
     }
 }

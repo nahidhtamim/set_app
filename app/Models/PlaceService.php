@@ -2,22 +2,18 @@
 
 namespace App\Models;
 
-use App\Models\Place;
-use App\Models\Locker;
-use App\Models\PlaceService;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class PlaceLocker extends Model
+class PlaceService extends Model
 {
     use HasFactory;
 
-    protected $table = 'place_lockers';
+    protected $table = 'place_services';
 
     protected $fillable = [
         'place_id',
         'service_id',
-        'locker_id',
         'name',
         'code',
         'status',
@@ -31,11 +27,7 @@ class PlaceLocker extends Model
 
     public function service_info()
     {
-        return $this->belongsTo(PlaceService::class,'service_id','id');
+        return $this->belongsTo(Service::class,'service_id','id');
     }
 
-    public function locker_info()
-    {
-        return $this->belongsTo(Locker::class,'locker_id','id');
-    }
 }

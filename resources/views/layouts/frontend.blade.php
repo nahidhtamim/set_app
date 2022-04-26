@@ -145,7 +145,54 @@
   });  
 })(jQuery);
     </script>
-</body>
+
+<script type="text/javascript">
+  $('#place_id').on('change', function () {
+      get_service_by_place();
+  });
+
+  function get_service_by_place() {
+      var place_id = $('#place_id').val();
+      $.post('{{ route('getServices') }}', {
+              _token: '{{ csrf_token() }}',
+              place_id: place_id
+          },
+          function (data) {
+              $('#service_id').html(null);
+              $('#service_id').append($('<option value="">Select A Package</option>', {}));
+              for (var i = 0; i < data.length; i++) {
+                  $('#service_id').append($('<option>', {
+                      value: data[i].id,
+                      text: data[i].name
+                  }));
+              }
+          });
+  }
+</script>
+
+<script type="text/javascript">
+  $('#service_id').on('change', function () {
+      get_locker_by_service();
+  });
+
+  function get_locker_by_service() {
+      var service_id = $('#service_id').val();
+      $.post('{{ route('getLockers') }}', {
+              _token: '{{ csrf_token() }}',
+              service_id: service_id
+          },
+          function (data) {
+              $('#locker_id').html(null);
+              $('#locker_id').append($('<option value="">Select A Locker</option>', {}));
+              for (var i = 0; i < data.length; i++) {
+                  $('#locker_id').append($('<option>', {
+                      value: data[i].id,
+                      text: data[i].name
+                  }));
+              }
+          });
+  }
+</script>
 
 </body>
 </html>

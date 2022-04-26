@@ -1,6 +1,6 @@
 @extends('layouts.admin')
  @section('title')
- Add Sport - SET Admin Panel
+ Add Place Service - SET Admin Panel
  @endsection
 @section('contents')
             
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Sports</h4>
+                        <h4 class="page-title">Place Services</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="{{url('/add-sport')}}" class="fw-normal">Add Sport</a></li>
+                                <li><a href="{{url('/add-place-service')}}" class="fw-normal">Add Place Services</a></li>
                             </ol>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                 <!-- Three charts -->
                 <!-- ============================================================== -->
                 <div class="col-lg-12 col-xlg-12 col-md-12">
-                    <form class="form-horizontal form-material" method="POST" action="{{url('/save-place-locker')}}">
+                    <form class="form-horizontal form-material" method="POST" action="{{url('/save-place-service')}}">
                         @csrf
                     <div class="card">
                         <div class="card-body">
@@ -45,7 +45,6 @@
                                     <tr>
                                         <th><label class=""><b>Place <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Service <span class="text-danger">*</span></b></label></th>
-                                        <th><label class=""><b>Locker <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Name <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Code <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Status <span class="text-danger">*</span></b></label></th>
@@ -54,7 +53,7 @@
                                 <tbody id="data_row">
                                     <tr id="locker_row0">
                                         <td>
-                                            <select id="place_id" class="form-select shadow-none p-0 border-0 " name="place_id[]" required>
+                                            <select id="inputState" class="form-select shadow-none p-0 border-0 " name="place_id[]" required>
                                                 <option>SET Place</option>
                                                 @foreach($places as $place)
                                                     <option value="{{ $place->id }}">{{ $place->place_name }}</option>
@@ -62,18 +61,10 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select id="service_id" class="form-select shadow-none p-0 border-0 " name="service_id[]" required>
-                                                <option selected>SET Service</option>
-                                                {{-- @foreach($services as $service)
-                                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
-                                                @endforeach --}}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select id="inputState" class="form-select shadow-none p-0 border-0 " name="locker_id[]" required>
-                                                <option>SET Locker</option>
-                                                @foreach($lockers as $locker)
-                                                    <option value="{{ $locker->id }}">{{ $locker->locker_name }}</option>
+                                            <select id="inputState" class="form-select shadow-none p-0 border-0 " name="service_id[]" required>
+                                                <option>SET Service</option>
+                                                @foreach($services as $service)
+                                                    <option value="{{ $service->id }}">{{ $service->service_name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
