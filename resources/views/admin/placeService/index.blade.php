@@ -58,6 +58,7 @@
                                             <th class="border-top-0">Place</th>
                                             <th class="border-top-0">Service</th>
                                             <th class="border-top-0">Name</th>
+                                            <th class="border-top-0">Price</th>
                                             <th class="border-top-0">Code</th>
                                             <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Action</th>
@@ -70,6 +71,7 @@
                                             <td>{{$placeservice->place_info->place_name}}</td>
                                             <td>{{$placeservice->service_info->service_name}}</td>
                                             <td>{{$placeservice->name}}</td>
+                                            <td>{{$placeservice->service_info->service_price}}.00</td>
                                             <td>{{$placeservice->code}}</td>
                                             <td>
                                                 @if($placeservice->status == 1)

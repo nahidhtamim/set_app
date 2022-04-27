@@ -43,7 +43,6 @@ class placeServicesController extends Controller
             ];
             DB::table('place_services')->insert($datasave);
         }
-
         return redirect('/place-services')->with('status', 'Data has been submitted Successfully');
 
     }

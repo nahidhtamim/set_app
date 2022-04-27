@@ -46,6 +46,19 @@ class HomeController extends Controller
     }
 
 
+    public function saveOrder(Request $request)
+    {
+        $order = new Order();
+        $order->place_id = $request->input('place_id');
+        $order->place_id = $request->input('place_id');
+        $order->locker_size = $request->input('locker_size');
+        $order->locker_description = $request->input('locker_description');
+        $order->locker_status = $request->input('locker_status');
+        $order->save();
+        return redirect('/lockers')->with('status', 'locker Added Successfully');
+    }
+
+
     public function getServices(Request $request)
     {
         $placeService=PlaceService::where('place_id', $request->place_id)->orderBy('name')->get();

@@ -12,7 +12,7 @@ Home | SET - A Premium Laundry Service
                 <div class="order-form" id="order-form">
                     <div class="align-self-center">
                         <div class="row">
-                            <form id="order-form" action="" method="post">
+                            <form id="order-form" action="{{url('/save-order')}}" method="post">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h2>Shipping Details</h2>
@@ -78,7 +78,7 @@ Home | SET - A Premium Laundry Service
                                     <div class="col-lg-6">
                                         <fieldset>
                                             <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*"
-                                                placeholder="Email Address*" required="">
+                                                value="{{Auth::user()->email}}" required="">
                                         </fieldset>
                                     </div>
                                     <br>

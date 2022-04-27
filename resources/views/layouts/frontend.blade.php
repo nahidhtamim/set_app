@@ -163,7 +163,7 @@
               for (var i = 0; i < data.length; i++) {
                   $('#service_id').append($('<option>', {
                       value: data[i].id,
-                      text: data[i].name
+                      text: data[i].name,
                   }));
               }
           });

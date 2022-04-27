@@ -31,11 +31,12 @@ use App\Http\Controllers\Admin\PlaceServicesController;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/about', [FrontendController::class, 'about']);
 Route::get('/service/{id}', [FrontendController::class, 'service']);
-Route::get('/order-form', [FrontendController::class, 'orderForm']);
+// Route::get('/order-form', [FrontendController::class, 'orderForm']);
 
 Auth::routes();
 
-Route::get('/order-form/{id}', [HomeController::class, 'orderForm']);
+Route::get('/order-form', [HomeController::class, 'orderForm']);
+Route::post('/save-order', [HomeController::class, 'saveOrder']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('getServices',[HomeController::class,'getServices'])->name('getServices');
 Route::post('getLockers',[HomeController::class,'getLockers'])->name('getLockers');
