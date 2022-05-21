@@ -52,7 +52,7 @@
               </li>
               <li>
                 <h6>Street Address</h6>
-                <span>Germany</span>
+                <span>Stuttgart, Germany</span>
               </li>
               <li>
                 <h6>Website URL</h6>
@@ -64,6 +64,6 @@
       </div>
     </div>
     <div class="footer">
-      <p class="text-dark">Copyright © 2022 SET., Ltd. All Rights Reserved</p>
+      <p class="text-dark">Copyright © 2022 SET.com. All Rights Reserved</p>
     </div>
   </section>

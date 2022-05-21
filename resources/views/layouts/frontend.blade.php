@@ -163,8 +163,9 @@
               for (var i = 0; i < data.length; i++) {
                   $('#service_id').append($('<option>', {
                       value: data[i].id,
-                      text: data[i].name,
+                      text: data[i].name +' - '+ data[i].service_price +'€',
                   }));
+                  
               }
           });
   }
@@ -188,6 +189,31 @@
                   $('#locker_id').append($('<option>', {
                       value: data[i].id,
                       text: data[i].name
+                  }));
+              }
+          });
+  }
+</script>
+
+
+<script type="text/javascript">
+  $('#locker_id').on('change', function () {
+      get_info();
+  });
+
+  function get_info() {
+      var locker_id = $('#locker_id').val();
+      $.post('{{ route('getInfo') }}', {
+              _token: '{{ csrf_token() }}',
+              locker_id: locker_id
+          },
+          function (data) {
+              $('#info').html(null);
+              $('#info').append($('<p>Your Choice Of Service</p> <hr>', {}));
+              for (var i = 0; i < data.length; i++) {
+                  $('#info').append($('<p>', {
+                      value: data[i].id,
+                      text: '<b>Service Name:</b> '+ data[i].name + '<br><b>Locker Name:</b> ' + data[i].name +'<br><b>Service Price:</b> '+ data[i].service_price,
                   }));
               }
           });

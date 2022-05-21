@@ -44,7 +44,7 @@
                   <br>
                   @if(Auth::user())
                   <div class="main-button-red">
-                    <a href="{{url('/order-form/'.$service->id)}}">Order</a>
+                    <a href="{{url('/order-form')}}">Order</a>
                   </div>
                   @else
                   <div class="alert alert-warning text-center">Please login or register to order this service!!!</div>

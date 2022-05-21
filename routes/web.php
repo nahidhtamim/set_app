@@ -37,9 +37,10 @@ Auth::routes();
 
 Route::get('/order-form', [HomeController::class, 'orderForm']);
 Route::post('/save-order', [HomeController::class, 'saveOrder']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('getServices',[HomeController::class,'getServices'])->name('getServices');
 Route::post('getLockers',[HomeController::class,'getLockers'])->name('getLockers');
+Route::post('getInfo',[HomeController::class,'getInfo'])->name('getInfo');
 
 Route::group(['middleware' => ['auth','isAdmin']], function () {
 

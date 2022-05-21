@@ -11,12 +11,23 @@ Home | SET - A Premium Laundry Service
             <div class="col-lg-12">
                 <div class="order-form" id="order-form">
                     <div class="align-self-center">
+
+                        
+
                         <div class="row">
                             <form id="order-form" action="{{url('/save-order')}}" method="post">
                                 <div class="row">
+
+                                    <div id="info text-center">
+                                        <p></p>
+                                    </div>
+
                                     <div class="col-lg-12">
                                         <h2>Shipping Details</h2>
                                     </div>
+                                    {{-- <div id="orders">
+                                        <p></p>
+                                    </div> --}}
                                     <div class="col-lg-3 text-center">
                                         <fieldset>
                                             <select name="sport_id" id="sport_id">

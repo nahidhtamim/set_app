@@ -61,13 +61,37 @@ class HomeController extends Controller
 
     public function getServices(Request $request)
     {
-        $placeService=PlaceService::where('place_id', $request->place_id)->orderBy('name')->get();
+        //$placeService=PlaceService::where('place_id', $request->place_id)->orderBy('name')->get();
+        $placeService=PlaceService::where('place_id', $request->place_id)
+                        ->join('services', 'place_services.service_id', '=', 'services.id')
+                        ->orderBy('name')->get(['place_services.*', 'services.*']);
+
+        // users = User::join('posts', 'users.id', '=', 'posts.user_id')
+        //        ->get(['users.*', 'posts.descrption']);
+
         return $placeService;
     }
 
     public function getLockers(Request $request)
     {
-        $serviceLocker=PlaceLocker::where('service_id', $request->service_id)->orderBy('name')->get();
+        //$serviceLocker=PlaceLocker::where('service_id', $request->service_id)->orderBy('name')->get();
+
+        $serviceLocker=PlaceLocker::where('service_id', $request->service_id)
+        ->join('services', 'place_lockers.service_id', '=', 'services.id')
+        ->orderBy('name')->get(['place_lockers.*', 'services.*']);
+
+
         return $serviceLocker;
+    }
+
+    public function getInfo(Request $request)
+    {
+        //$serviceLocker=PlaceLocker::where('service_id', $request->service_id)->orderBy('name')->get();
+
+        $info=PlaceLocker::where('id', $request->locker_id)
+        ->join('services', 'place_lockers.service_id', '=', 'services.id')
+        ->orderBy('name')->get(['place_lockers.*', 'services.*']);
+
+        return $info;
     }
 }
