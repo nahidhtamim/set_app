@@ -14,7 +14,7 @@
     </div>    
 @endif
 
-<section class="our-facts">
+{{-- <section class="our-facts">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -44,6 +44,6 @@
       </div>
     </div>
   </div>
-</section>
+</section> --}}
 
 @endsection

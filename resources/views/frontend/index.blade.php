@@ -4,6 +4,16 @@
  @endsection
 @section('contents')
 
+@if (session('status'))
+    <div class="alert alert-success" role="alert">
+         {{ session('status') }}
+    </div>
+@elseif (session('warning'))
+    <div class="alert alert-danger" role="alert">
+         {{ session('warning') }}
+    </div>    
+@endif
+
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
     <video autoplay muted loop id="bg-video">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Place;
 use App\Models\Sport;
 use App\Models\Locker;
@@ -9,6 +10,7 @@ use App\Models\Service;
 use App\Models\PlaceLocker;
 use App\Models\PlaceService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -34,6 +36,15 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function myProfile()
+    {
+        return view('frontend.profile');
+    }
+
+    public function myOrder()
+    {
+        return view('frontend.order');
+    }
 
     public function orderForm()
     {
@@ -45,17 +56,26 @@ class HomeController extends Controller
         //return view('frontend.order-form', compact('services', 'places', 'lockers', 'sports'));
     }
 
-
     public function saveOrder(Request $request)
     {
         $order = new Order();
+        $order->customer_id = Auth::user()->id;
+        $order->sport_id = $request->input('sport_id');
         $order->place_id = $request->input('place_id');
-        $order->place_id = $request->input('place_id');
-        $order->locker_size = $request->input('locker_size');
-        $order->locker_description = $request->input('locker_description');
-        $order->locker_status = $request->input('locker_status');
+        $order->service_id = $request->input('service_id');
+        $order->locker_id = $request->input('locker_id');
+        $order->shipping_name = $request->input('shipping_name');
+        $order->shipping_address = $request->input('shipping_address');
+        $order->shipping_phone = $request->input('shipping_phone');
+        $order->shipping_email = $request->input('shipping_email');
+        $order->billing_name = $request->input('billing_name');
+        $order->billing_address = $request->input('billing_address');
+        $order->billing_phone = $request->input('billing_phone');
+        $order->billing_email = $request->input('billing_email');
+        $order->message = $request->input('message');
+        $order->order_status = '1';
         $order->save();
-        return redirect('/lockers')->with('status', 'locker Added Successfully');
+        return redirect()->back()->with('status', 'Order Has Been Saved Successfully');
     }
 
 

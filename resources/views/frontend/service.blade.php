@@ -1,8 +1,18 @@
 @extends('layouts.frontend')
  @section('title')
- Home | SET - A Premium Laundry Service
+ Service | SET - A Premium Laundry Service
  @endsection
 @section('contents')
+
+@if (session('status'))
+    <div class="alert alert-success" role="alert">
+         {{ session('status') }}
+    </div>
+@elseif (session('warning'))
+    <div class="alert alert-danger" role="alert">
+         {{ session('warning') }}
+    </div>    
+@endif
 
 <section class="heading-page header-text" id="top">
     <div class="container">

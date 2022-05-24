@@ -35,9 +35,13 @@ Route::get('/service/{id}', [FrontendController::class, 'service']);
 
 Auth::routes();
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/my-profile', [HomeController::class, 'myProfile'])->name('my-profile');
+Route::get('/my-order', [HomeController::class, 'myOrder'])->name('my-order');
+
 Route::get('/order-form', [HomeController::class, 'orderForm']);
 Route::post('/save-order', [HomeController::class, 'saveOrder']);
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::post('getServices',[HomeController::class,'getServices'])->name('getServices');
 Route::post('getLockers',[HomeController::class,'getLockers'])->name('getLockers');
 Route::post('getInfo',[HomeController::class,'getInfo'])->name('getInfo');
