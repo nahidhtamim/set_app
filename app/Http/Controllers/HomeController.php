@@ -41,11 +41,6 @@ class HomeController extends Controller
         return view('frontend.profile');
     }
 
-    public function myOrder()
-    {
-        return view('frontend.order');
-    }
-
     public function orderForm()
     {
         // $services = PlaceService::all();
@@ -54,6 +49,12 @@ class HomeController extends Controller
         $sports = Sport::all();
         return view('frontend.order-form', compact('places', 'sports'));
         //return view('frontend.order-form', compact('services', 'places', 'lockers', 'sports'));
+    }
+
+    public function myOrders()
+    {
+        $orders = Order::get()->where('customer_id', Auth::user()->id);
+        return view('frontend.order', compact('orders'));
     }
 
     public function saveOrder(Request $request)

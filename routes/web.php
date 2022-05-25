@@ -37,7 +37,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/my-profile', [HomeController::class, 'myProfile'])->name('my-profile');
-Route::get('/my-order', [HomeController::class, 'myOrder'])->name('my-order');
+Route::get('/my-orders', [HomeController::class, 'myOrders'])->name('my-orders');
 
 Route::get('/order-form', [HomeController::class, 'orderForm']);
 Route::post('/save-order', [HomeController::class, 'saveOrder']);

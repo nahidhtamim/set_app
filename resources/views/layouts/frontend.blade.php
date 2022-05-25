@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/owl.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/lightbox.css')}}">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
     <script src="{{asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
     {{-- <script src="{{asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -81,6 +82,7 @@
     <script src="{{asset('frontend/assets/js/tabs.js')}}"></script>
     <script src="{{asset('frontend/assets/js/video.js')}}"></script>
     <script src="{{asset('frontend/assets/js/slick-slider.js')}}"></script>
+    <script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script src="{{asset('frontend/assets/js/custom.js')}}"></script>
     <script>
         //according to loftblog tut
@@ -218,6 +220,12 @@
               }
           });
   }
+</script>
+
+<script>
+  $(document).ready( function () {
+    $('#table').DataTable();
+  } );
 </script>
 
 </body>

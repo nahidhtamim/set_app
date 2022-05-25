@@ -19,7 +19,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="{{url('/my-profile')}}">Profile</a></li>
-              <li><a class="dropdown-item" href="{{url('/my-order')}}">Order</a></li>
+              <li><a class="dropdown-item" href="{{url('/my-orders')}}">Order</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"
