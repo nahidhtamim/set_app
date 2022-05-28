@@ -34,7 +34,7 @@ Order | SET - A Premium Laundry Service
                                         <h2>Shipping Details</h2>
                                     </div>
                                     <div class="col-lg-12">
-                                    <table  class="display table table-stripped table-bordered" style="width:100%">
+                                    <table id="table" class="display table table-stripped table-bordered" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -53,10 +53,18 @@ Order | SET - A Premium Laundry Service
                                           @foreach($orders as $order)
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
-                                                <td>{{$order->customer_id}}</td>
-                                                <td>{{$order->sport_id}}</td>
-                                                <td>{{$order->service_id}}</td>
-                                                <td>{{$order->locker_id}}</td>
+                                                <td>{{$order->u_name}}</td>
+                                                <td>{{$order->sport_name}}</td>
+                                                <td>
+                                                    <b>Service:</b> {{$order->s_name}} <br>
+                                                    <b>Place Service:</b> {{$order->ps_name}} <br>
+                                                    <b>Service Code:</b> {{$order->ps_code}}
+                                                </td>
+                                                <td>
+                                                    <b>Locker:</b> {{$order->l_name}} <br>
+                                                    <b>Place Locker:</b> {{$order->pl_name}} <br>
+                                                    <b>Locker Code:</b> {{$order->pl_code}}
+                                                </td>
                                                 <td>
                                                   <b>Name:</b> {{$order->shipping_name}} <br>
                                                   <b>Email:</b> {{$order->shipping_email}} <br>
@@ -69,8 +77,8 @@ Order | SET - A Premium Laundry Service
                                                   <b>Phone:</b> {{$order->billing_phone}} <br>
                                                   <b>Address:</b> {{$order->billing_address}}
                                                 </td>
-                                                <td>{{$order->service_id}}</td>
-                                                <td>{{$order->customer_id}}</td>
+                                                <td>{{$order->s_price}}</td>
+                                                <td>{{$order->order_status}}</td>
                                                 <td>{{$order->customer_id}}</td>
 
                                             </tr>
@@ -98,5 +106,53 @@ Order | SET - A Premium Laundry Service
     <br>
     <br>
 </section>
+
+
+<style>
+    .dataTables_length label{
+        padding-bottom: 20px;
+        text-align: center;
+    }
+    
+    .dataTables_wrapper .dataTables_length select {
+        border: 1px solid #aaa;
+        border-radius: 20px;
+        padding: 5px;
+        background-color: transparent;
+        padding: 4px;
+    }
+    .order-form #order-form select {
+        width: 35%;
+        height: 30px;
+        border-radius: 20px;
+        background-color: #f7f7f7;
+        outline: none;
+        border: 1px solid #aaa;
+        box-shadow: none;
+        font-size: 13px;
+        font-weight: 500;
+        color: #252525;
+        padding: 0px 15px;
+        margin-bottom: 0px;
+    }
+
+    .dataTables_filter label{
+        text-align: center;
+    }
+    .order-form #order-form input{
+        width: 60%;
+        height: 30px;
+        border-radius: 20px;
+        background-color: #f7f7f7;
+        outline: none;
+        border: 1px solid #aaa;
+        box-shadow: none;
+        font-size: 13px;
+        font-weight: 500;
+        color: #252525;
+        padding: 0px 15px;
+        margin-bottom: 0px;
+    }
+</style>
 
 @endsection

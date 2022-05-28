@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\PlaceLocker;
 use App\Models\PlaceService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -53,7 +54,28 @@ class HomeController extends Controller
 
     public function myOrders()
     {
-        $orders = Order::get()->where('customer_id', Auth::user()->id);
+        // $orders = Order::get()->where('customer_id', Auth::user()->id);
+        $orders = DB::table('orders AS o')
+        ->where('customer_id', Auth::user()->id)
+        ->join('users AS u', 'o.customer_id', '=', 'u.id')
+        ->join('sports AS sp', 'o.sport_id', '=', 'sp.id')
+        ->join('place_services AS ps', 'o.locker_id', '=', 'ps.service_id')
+        ->join('services AS s', 'ps.service_id', '=', 's.id')
+        ->join('place_lockers AS pl', 'o.locker_id', '=', 'pl.locker_id')
+        ->join('lockers AS l', 'pl.locker_id', '=', 'l.id')
+        ->get([
+            'o.*',
+            'u.name As u_name',
+            'sp.*',
+            's.service_name As s_name',
+            's.service_price As s_price',
+            'ps.name As ps_name',
+            'ps.code As ps_code',
+            'l.locker_name As l_name',
+            'pl.name As pl_name',
+            'pl.code As pl_code',
+        ]);
+
         return view('frontend.order', compact('orders'));
     }
 

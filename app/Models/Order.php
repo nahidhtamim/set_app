@@ -28,4 +28,16 @@ class Order extends Model
         'message',
         'order_status'
     ];
+
+
+
+    public function customer_inf()
+    {
+        return $this->belongsTo(User::class,'customer_id','id');
+    }
+
+    public function sport_inf()
+    {
+        return $this->belongsTo(Sport::class,'sport_id','id');
+    }
 }
