@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
     <title>@yield('title')</title>
 
     {{-- <!-- Bootstrap core CSS -->
     <link href="{{asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"> --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
 
@@ -23,9 +23,10 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/owl.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/lightbox.css')}}">
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
     <script src="{{asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
     {{-- <script src="{{asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
 
@@ -83,6 +84,7 @@
     <script src="{{asset('frontend/assets/js/video.js')}}"></script>
     <script src="{{asset('frontend/assets/js/slick-slider.js')}}"></script>
     <script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="{{asset('frontend/assets/js/custom.js')}}"></script>
     <script>
         //according to loftblog tut
@@ -224,7 +226,9 @@
 
 <script>
   $(document).ready( function () {
-    $('#table').DataTable();
+    $('#table').DataTable({
+        scrollX: true,
+    });
   } );
 </script>
 
