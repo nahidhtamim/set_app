@@ -1,52 +1,69 @@
-@extends('layouts.frontend')
-@section('title')
-Order | SET - A Premium Laundry Service
-@endsection
+@extends('layouts.admin')
+ @section('title')
+ Lockers - SET Admin Panel
+ @endsection
 @section('contents')
+            
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Dashboard</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <div class="d-md-flex">
+                            <ol class="breadcrumb ms-auto">
+                                <li><a href="{{url('/orders')}}" class="fw-normal">Orders</a></li>
+                            </ol>
+                            {{-- <a href="{{url('/add-locker')}}"
+                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add lockers
+                            </a> --}}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Three charts -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Orders Table</h3>
 
+                            @if(session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @elseif(session('warning'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('warning') }}
+                            </div>
+                            @endif
 
-
-<section class="meetings-page" id="meetings">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="order-form" id="order-form">
-                    <div class="align-self-center">
-                        <div class="row">
-                            <div id="order-form">
-                                @csrf
-                                <div class="row">
-                                    <div id="info text-center">
-                                        <p></p>
-                                    </div>
-
-                                    @if (session('status'))
-                                        <div class="alert alert-success" role="alert">
-                                            {{ session('status') }}
-                                        </div>
-                                    @elseif (session('warning'))
-                                        <div class="alert alert-danger" role="alert">
-                                            {{ session('warning') }}
-                                        </div>    
-                                    @endif
-                                    
-                                    <div class="col-lg-12 text-center">
-                                        <h2>Order Details</h2>
-                                    </div>
-                                    <div class="col-lg-12">
-                                    <table id="table" class="display table table-stripped table-bordered" style="width:100%">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th>#</th>
-                                                <th>Customer</th>
-                                                <th>Sport</th>
-                                                <th>Price</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                          @foreach($orders as $order)
+                            <div class="table-responsive">
+                                <table class="table text-nowrap table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Customer</th>
+                                            <th class="border-top-0">Sport</th>
+                                            <th class="border-top-0">Price</th>
+                                            <th class="border-top-0">Status</th>
+                                            <th class="border-top-0">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($orders as $order)
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
                                                 <td>{{$order->u_name}}</td>
@@ -54,21 +71,7 @@ Order | SET - A Premium Laundry Service
                                                 <td class="text-right">{{$order->s_price}}€</td>
                                                 <td>
                                                     @if($order->order_status == 1)
-                                                        <span class="text-success">
-                                                             <b>Active</b> 
-                                                             {{-- <div class="btn-group" role="group" aria-label="Buttons">
-                                                                <a href="#" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details">
-                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                </a>
-                                                                <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
-                                                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                                                </a>
-                                                            </div> --}}
-                                                            
-                                                        </span>
-                                                        <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
+                                                        <span class="text-success"> <b>Active</b> </span>
                                                     @elseif($order->order_status == 2)
                                                         <span class="text-warning"> <b>On Closing</b> </span>
                                                     @elseif($order->order_status == 3)
@@ -149,83 +152,20 @@ Order | SET - A Premium Laundry Service
 
                                           @endforeach
 
-                                        </tbody>
-                                    </table>
-                                    </div>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {{-- <div class="col-lg-12">
-              <div class="main-button-red">
-                <a href="meetings.html">Back To Meetings List</a>
-              </div>
-            </div> --}}
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-</section>
-
-
-<style>
-    .page-item.active .page-link {
-        z-index: 3;
-        color: #fff;
-        background-color: #1B2325;
-        border-color: #1B2325;
-    }
-
-    .dataTables_length label{
-        padding-bottom: 10px;
-        text-align: center;
-    }
-    
-    .dataTables_wrapper .dataTables_length select {
-        border: 1px solid #aaa;
-        border-radius: 20px;
-        padding: 5px;
-        background-color: transparent;
-        padding: 4px;
-    }
-    .order-form #order-form select {
-        width: 40%;
-        height: 30px;
-        border-radius: 20px;
-        background-color: #f7f7f7;
-        outline: none;
-        border: 1px solid #aaa;
-        box-shadow: none;
-        font-size: 13px;
-        font-weight: 500;
-        color: #252525;
-        padding: 0px 15px;
-        margin-bottom: 0px;
-    }
-
-    .dataTables_filter label{
-        text-align: center;
-    }
-    .order-form #order-form input{
-        width: 80%;
-        height: 30px;
-        border-radius: 20px;
-        background-color: #f7f7f7;
-        outline: none;
-        border: 1px solid #aaa;
-        box-shadow: none;
-        font-size: 13px;
-        font-weight: 500;
-        color: #252525;
-        padding: 0px 15px;
-        margin-bottom: 10px;
-        
-    }
-</style>
-
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            
+          
 @endsection
+        
+        
+ 
+        

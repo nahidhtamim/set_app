@@ -9,9 +9,11 @@ use App\Models\Locker;
 use App\Models\Service;
 use App\Models\PlaceLocker;
 use App\Models\PlaceService;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class HomeController extends Controller
 {
@@ -39,7 +41,8 @@ class HomeController extends Controller
 
     public function myProfile()
     {
-        return view('frontend.profile');
+        $profile = User::find(Auth::user()->id);
+        return view('frontend.profile', compact('profile'));
     }
 
     public function orderForm()
@@ -59,9 +62,9 @@ class HomeController extends Controller
         ->where('customer_id', Auth::user()->id)
         ->join('users AS u', 'o.customer_id', '=', 'u.id')
         ->join('sports AS sp', 'o.sport_id', '=', 'sp.id')
-        ->join('place_services AS ps', 'o.locker_id', '=', 'ps.service_id')
+        ->join('place_services AS ps', 'o.service_id', '=', 'ps.id')
         ->join('services AS s', 'ps.service_id', '=', 's.id')
-        ->join('place_lockers AS pl', 'o.locker_id', '=', 'pl.locker_id')
+        ->join('place_lockers AS pl', 'o.locker_id', '=', 'pl.id')
         ->join('lockers AS l', 'pl.locker_id', '=', 'l.id')
         ->get([
             'o.*',
@@ -117,11 +120,11 @@ class HomeController extends Controller
 
     public function getLockers(Request $request)
     {
-        //$serviceLocker=PlaceLocker::where('service_id', $request->service_id)->orderBy('name')->get();
+        $serviceLocker=PlaceLocker::where('service_id', $request->service_id)->orderBy('name')->get();
 
-        $serviceLocker=PlaceLocker::where('service_id', $request->service_id)
-        ->join('services', 'place_lockers.service_id', '=', 'services.id')
-        ->orderBy('name')->get(['place_lockers.*', 'services.*']);
+        // $serviceLocker=PlaceLocker::where('service_id', $request->service_id)
+        // ->join('lockers', 'place_lockers.locker_id', '=', 'lockers.id')
+        // ->orderBy('name')->get(['place_lockers.*', 'lockers.*']);
 
 
         return $serviceLocker;

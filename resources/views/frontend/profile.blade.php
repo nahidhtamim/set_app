@@ -35,27 +35,140 @@ Profile | SET - A Premium Laundry Service
                                     </div>
                                     <div class="profile-card col-lg-12">
                                         <div class="card">
-                                            <div class="text">
+                                            <div class="text ">
                                                 <img src="https://www.shareicon.net/data/512x512/2016/09/15/829452_user_512x512.png"
                                                     alt="">
                                                 <h3>{{Auth::user()->name}}</h3>
-                                                <p>{{Auth::user()->email}}</p>
-                                                <p>
+                                                <hr>
+                                                <br>
+                                                <p>Email: {{Auth::user()->email}}</p>
+                                                <br>
+                                                <p>Phone: +123456789</p>
+                                                {{-- <p>
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing
                                                     elit, sed do eiusmod tempor incididunt ut labore
                                                     et dolore magna aliqua. Ut enim ad minim veniam,
                                                     quis nostrud exercitation ullamco laboris nisi ut.
-                                                </p>
+                                                </p> --}}
                                             </div>
+                                            <hr>
                                             <div class="links">
-                                                <a target="_blank" href="https://codepen.io/l-e-e/"><i
-                                                        class="fab fa-codepen"></i></a>
-                                                <a target="_blank" href="https://github.com/Leena26"><i
-                                                        class="fab fa-github"></i></a>
-                                                <a target="_blank"
-                                                    href="https://www.youtube.com/channel/UCPOyUi82bRcPTdpDuSHVNbw"><i
-                                                        class="fab fa-youtube"></i></a>
+                                                <a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#detailsModal" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Edit Details">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
                                             </div>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="detailsModal" tabindex="-1"
+                                                aria-labelledby="detailsModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="detailsModalLabel">Profile</h5>
+                                                            <a href="#" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></a>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <form action="{{ url('update-details/'.$profile->id) }}"
+                                                                        method="POST" enctype="multipart/form-data">
+                                                                        <h4 class="text-left">Update Details</h4>
+                                                                        <hr>
+                                                                        @csrf
+                                                                        <div class="card-body" id="">
+                                                                            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto" src="{{asset('/uploads/avatars/'.Auth::user()->avatar)}}" width="150px" alt="#" /></span>
+                                                                            <div id="">
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-12">
+                                                                                        <label for="name">Username</label>
+                                                                                        <input type="text" class="form-control" name="name"
+                                                                                            id="name" value="{{ $profile->name }}" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-12">
+                                                                                        <label for="email">Email Address</label>
+                                                                                        <input type="email" class="form-control" name="email"
+                                                                                            id="email" value="{{ $profile->email }}" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-12">
+                                                                                        <label for="address">Address</label>
+                                                                                        <input type="text" class="form-control" name="address"
+                                                                                            id="address" value="{{ $profile->address }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-12">
+                                                                                        <label for="phone">Phone</label>
+                                                                                        <input type="tel" class="form-control" name="phone"
+                                                                                            id="phone" value="{{ $profile->phone }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-12">
+                                                                                        <label for="avatar">Profile Image</label>
+                                                                                        <input type="file" class="form-control" name="avatar"
+                                                                                            id="avatar">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <button type="submit" class="btn btn-primary btn-sm text-white">Save</button>
+                                                                        </div>
+                                                                    </form>
+                                                            
+                                                                    <form action="{{ url('update-pass/'.$profile->id) }}"
+                                                                        method="POST">
+                                                                        <br>
+                                                                        <br>
+                                                                        <h4 class="text-left">Update Password</h4>
+                                                                        <hr>
+                                                                        @csrf
+                                                                        <div class="card-body" id="">
+                                                                            <div id="">
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-12">
+                                                                                        <label for="password"
+                                                                                        class="">{{ __('Password*:') }}</label>
+                                                                                        <input id="password" type="password"
+                                                                                            class="form-control @error('password') is-invalid @enderror"
+                                                                                            name="password" required autocomplete="new-password">
+                                                            
+                                                                                        @error('password')
+                                                                                            <span class="invalid-feedback" role="alert">
+                                                                                                <strong>{{ $message }}</strong>
+                                                                                            </span>
+                                                                                        @enderror
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-12">
+                                                                                        <label for="password-confirm"
+                                                                                        class="">{{ __('Confirm Password*:') }}</label>
+                                                                                        <input id="password-confirm" type="password"
+                                                                                            class="form-control" name="password_confirmation"
+                                                                                            required autocomplete="new-password">
+                                                                                    </div>
+                                                                                </div>
+                                                            
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <button type="submit" class="btn btn-primary btn-sm text-white">Save</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

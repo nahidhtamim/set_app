@@ -62,6 +62,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/orders')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Orders">
+                        <i class="fa fa-stop" aria-hidden="true"></i>
+                        <span class="hide-menu">Orders</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('logout') }}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Logout"
                         onclick="event.preventDefault();

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\SportsController;
 use App\Http\Controllers\Admin\LockersController;
@@ -103,4 +104,6 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::post('getPlaceServices',[PlaceLockersController::class,'getPlaceServices'])->name('getPlaceServices');
 
 
+   // Services Routes
+   Route::get('/orders', [OrderController::class, 'index']);
 });
