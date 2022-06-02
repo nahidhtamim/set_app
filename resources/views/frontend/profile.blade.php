@@ -20,14 +20,14 @@ Profile | SET - A Premium Laundry Service
                                         <p></p>
                                     </div>
 
-                                    @if (session('status'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ session('status') }}
-                                    </div>
-                                    @elseif (session('warning'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ session('warning') }}
-                                    </div>
+                                    @if(session('status'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('status') }}
+                                        </div>
+                                    @elseif(session('warning'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ session('warning') }}
+                                        </div>
                                     @endif
 
                                     <div class="col-lg-12 text-center">
@@ -36,26 +36,23 @@ Profile | SET - A Premium Laundry Service
                                     <div class="profile-card col-lg-12">
                                         <div class="card">
                                             <div class="text ">
-                                                <img src="https://www.shareicon.net/data/512x512/2016/09/15/829452_user_512x512.png"
-                                                    alt="">
-                                                <h3>{{Auth::user()->name}}</h3>
+                                                <img class="img-fluid img-profile rounded-circle mx-auto"
+                                                    src="{{ asset('/uploads/avatars/'.Auth::user()->image) }}"
+                                                    width="80px" alt="#" />
+                                                <h3>{{ Auth::user()->name }}</h3>
                                                 <hr>
                                                 <br>
-                                                <p>Email: {{Auth::user()->email}}</p>
+                                                <p>Email: {{ Auth::user()->email }}</p>
                                                 <br>
-                                                <p>Phone: +123456789</p>
-                                                {{-- <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                    elit, sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua. Ut enim ad minim veniam,
-                                                    quis nostrud exercitation ullamco laboris nisi ut.
-                                                </p> --}}
+                                                <p>Address: {{ Auth::user()->address }}</p>
+                                                <br>
+                                                <p>Phone: {{ Auth::user()->phone }}</p>
                                             </div>
                                             <hr>
                                             <div class="links">
-                                                <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#detailsModal" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Edit Details">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#detailsModal"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Edit Details">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
                                             </div>
@@ -72,57 +69,82 @@ Profile | SET - A Premium Laundry Service
                                                         <div class="modal-body">
                                                             <div class="container">
                                                                 <div class="row">
-                                                                    <form action="{{ url('update-details/'.$profile->id) }}"
+                                                                    <form
+                                                                        action="{{ url('update-details') }}"
                                                                         method="POST" enctype="multipart/form-data">
                                                                         <h4 class="text-left">Update Details</h4>
                                                                         <hr>
                                                                         @csrf
                                                                         <div class="card-body" id="">
-                                                                            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto" src="{{asset('/uploads/avatars/'.Auth::user()->avatar)}}" width="150px" alt="#" /></span>
+                                                                            <span class="d-none d-lg-block"><img
+                                                                                    class="rounded-circle"
+                                                                                    src="{{ asset('/uploads/avatars/'.Auth::user()->image) }}"
+                                                                                    width="50px" alt="#" /></span>
                                                                             <div id="">
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col-md-12">
-                                                                                        <label for="name">Username</label>
-                                                                                        <input type="text" class="form-control" name="name"
-                                                                                            id="name" value="{{ $profile->name }}" readonly>
+                                                                                        <label
+                                                                                            for="name">Username</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            name="name" id="name"
+                                                                                            value="{{ $profile->name }}"
+                                                                                            readonly>
+                                                                                        <p class="text-danger">{{$errors->first('name')}}</p>    
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col-md-12">
-                                                                                        <label for="email">Email Address</label>
-                                                                                        <input type="email" class="form-control" name="email"
-                                                                                            id="email" value="{{ $profile->email }}" readonly>
+                                                                                        <label for="email">Email
+                                                                                            Address</label>
+                                                                                        <input type="email"
+                                                                                            class="form-control"
+                                                                                            name="email" id="email"
+                                                                                            value="{{ $profile->email }}"
+                                                                                            readonly>
+                                                                                        <p class="text-danger">{{$errors->first('email')}}</p>  
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col-md-12">
-                                                                                        <label for="address">Address</label>
-                                                                                        <input type="text" class="form-control" name="address"
-                                                                                            id="address" value="{{ $profile->address }}">
+                                                                                        <label
+                                                                                            for="address">Address</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            name="address" id="address"
+                                                                                            value="{{ $profile->address }}" required>
+                                                                                        <p class="text-danger">{{$errors->first('address')}}</p>    
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col-md-12">
                                                                                         <label for="phone">Phone</label>
-                                                                                        <input type="tel" class="form-control" name="phone"
-                                                                                            id="phone" value="{{ $profile->phone }}">
+                                                                                        <input type="tel"
+                                                                                            class="form-control"
+                                                                                            name="phone" id="phone"
+                                                                                            value="{{ $profile->phone }}" required>
+                                                                                        <p class="text-danger">{{$errors->first('phone')}}</p>   
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col-md-12">
-                                                                                        <label for="avatar">Profile Image</label>
-                                                                                        <input type="file" class="form-control" name="avatar"
-                                                                                            id="avatar">
+                                                                                        <label for="image">Profile
+                                                                                            Image</label>
+                                                                                        <input type="file"
+                                                                                            class="form-control"
+                                                                                            name="image" id="image">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-12">
-                                                                            <button type="submit" class="btn btn-primary btn-sm text-white">Save</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary btn-sm text-white">Save</button>
                                                                         </div>
                                                                     </form>
-                                                            
-                                                                    <form action="{{ url('update-pass/'.$profile->id) }}"
+
+                                                                    <form
+                                                                        action="{{ url('update-password') }}"
                                                                         method="POST">
                                                                         <br>
                                                                         <br>
@@ -131,35 +153,36 @@ Profile | SET - A Premium Laundry Service
                                                                         @csrf
                                                                         <div class="card-body" id="">
                                                                             <div id="">
+                                                                                <p class="text-danger">{{$errors->first('password')}}</p>  
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col-md-12">
                                                                                         <label for="password"
-                                                                                        class="">{{ __('Password*:') }}</label>
-                                                                                        <input id="password" type="password"
-                                                                                            class="form-control @error('password') is-invalid @enderror"
-                                                                                            name="password" required autocomplete="new-password">
-                                                            
-                                                                                        @error('password')
-                                                                                            <span class="invalid-feedback" role="alert">
-                                                                                                <strong>{{ $message }}</strong>
-                                                                                            </span>
-                                                                                        @enderror
+                                                                                            class="">{{ __('Password*:') }}</label>
+                                                                                        <input id="password"
+                                                                                            type="password"
+                                                                                            class="form-control"
+                                                                                            name="password" required
+                                                                                            autocomplete="new-password">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col-md-12">
                                                                                         <label for="password-confirm"
-                                                                                        class="">{{ __('Confirm Password*:') }}</label>
-                                                                                        <input id="password-confirm" type="password"
-                                                                                            class="form-control" name="password_confirmation"
-                                                                                            required autocomplete="new-password">
+                                                                                            class="">{{ __('Confirm Password*:') }}</label>
+                                                                                        <input id="password-confirm"
+                                                                                            type="password"
+                                                                                            class="form-control"
+                                                                                            name="password_confirmation"
+                                                                                            required
+                                                                                            autocomplete="new-password">
                                                                                     </div>
                                                                                 </div>
-                                                            
+
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-12">
-                                                                            <button type="submit" class="btn btn-primary btn-sm text-white">Save</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary btn-sm text-white">Save</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -250,6 +273,7 @@ Profile | SET - A Premium Laundry Service
     .card .links i:hover {
         color: rgb(29, 157, 189);
     }
+
 </style>
 
 @endsection

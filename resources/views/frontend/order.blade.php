@@ -56,19 +56,7 @@ Order | SET - A Premium Laundry Service
                                                     @if($order->order_status == 1)
                                                         <span class="text-success">
                                                              <b>Active</b> 
-                                                             {{-- <div class="btn-group" role="group" aria-label="Buttons">
-                                                                <a href="#" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details">
-                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                </a>
-                                                                <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
-                                                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                                                </a>
-                                                            </div> --}}
-                                                            
                                                         </span>
-                                                        <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
                                                     @elseif($order->order_status == 2)
                                                         <span class="text-warning"> <b>On Closing</b> </span>
                                                     @elseif($order->order_status == 3)
@@ -81,7 +69,7 @@ Order | SET - A Premium Laundry Service
                                                         <a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details">
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                                         </a>
-                                                        <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
+                                                        <a href="{{url('/request-closing/'.$order->id)}}" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
                                                             <i class="fa fa-times" aria-hidden="true"></i>
                                                         </a>
                                                         @else

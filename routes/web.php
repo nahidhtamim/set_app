@@ -38,10 +38,13 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/my-profile', [HomeController::class, 'myProfile'])->name('my-profile');
-Route::get('/my-orders', [HomeController::class, 'myOrders'])->name('my-orders');
+Route::post('/update-details', [HomeController::class, 'updateDetails']);
+Route::post('/update-password', [HomeController::class, 'updatePassword']);
 
+Route::get('/my-orders', [HomeController::class, 'myOrders'])->name('my-orders');
 Route::get('/order-form', [HomeController::class, 'orderForm']);
 Route::post('/save-order', [HomeController::class, 'saveOrder']);
+Route::get('/request-closing/{id}', [HomeController::class, 'requestClosing']);
 
 Route::post('getServices',[HomeController::class,'getServices'])->name('getServices');
 Route::post('getLockers',[HomeController::class,'getLockers'])->name('getLockers');
@@ -106,4 +109,7 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 
    // Services Routes
    Route::get('/orders', [OrderController::class, 'index']);
+   Route::get('/closing-request/{id}', [OrderController::class, 'closingRequest']);
+   Route::get('/order-active/{id}', [OrderController::class, 'orderActive']);
+   Route::get('/order-close/{id}', [OrderController::class, 'orderClose']);
 });

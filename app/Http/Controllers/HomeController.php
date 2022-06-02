@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Place;
 use App\Models\Sport;
@@ -9,10 +10,11 @@ use App\Models\Locker;
 use App\Models\Service;
 use App\Models\PlaceLocker;
 use App\Models\PlaceService;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class HomeController extends Controller
@@ -43,6 +45,43 @@ class HomeController extends Controller
     {
         $profile = User::find(Auth::user()->id);
         return view('frontend.profile', compact('profile'));
+    }
+
+    public function updateDetails(Request $request)
+    {
+
+        $this->validate($request, array(
+            'phone' => 'required|numeric|min:5',
+            'address' => 'required|string|max:191',
+        ));
+
+        $profile = User::find(Auth::user()->id);
+        $profile->name = $request->name;
+        $profile->email = $request->email;
+        $profile->phone = $request->phone;
+        $profile->address = $request->input('address');
+        if($request->hasFile('image')){
+            $avatar = $request->file('image');
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save(public_path('/uploads/avatars/' . $filename));
+            $profile->image = $filename;
+            $profile->update();
+        }
+        $profile->update();
+        return redirect()->back()->with('status', 'Profile Updated Successfully'); 
+    }
+
+    public function updatePassword(Request $request)
+    {
+
+        $this->validate($request, array(
+            'password' => 'required|string|min:8|confirmed',
+        ));
+
+        $profile = User::find(Auth::user()->id);
+        $profile->password = Hash::make($request->password);
+        $profile->update();
+        return redirect()->back()->with('status', 'Password Updated Successfully'); 
     }
 
     public function orderForm()
@@ -104,6 +143,14 @@ class HomeController extends Controller
         return redirect()->back()->with('status', 'Order Has Been Saved Successfully');
     }
 
+
+    public function requestClosing($id)
+    {
+        $order = Order::find($id);
+        $order->order_status = '2';
+        $order->update();
+        return redirect()->back()->with('status', 'Request Has Been For Clossing The Order');
+    }
 
     public function getServices(Request $request)
     {
