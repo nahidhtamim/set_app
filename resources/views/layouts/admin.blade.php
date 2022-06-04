@@ -14,7 +14,7 @@
     <title>@yield('title')</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('admin/plugins/images/favicon.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('frontend/assets/images/logo.png')}}">
     <!-- Custom CSS -->
     <link href="{{asset('admin/plugins/bower_components/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link rel="stylesheet"
@@ -174,6 +174,8 @@
                 });
         }
     </script>
+
+
     
 </body>
 

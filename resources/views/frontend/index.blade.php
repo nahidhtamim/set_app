@@ -137,14 +137,14 @@
                 <div class="price">
                   <span>$48.00</span>
                 </div>
-                <a href="meeting-details.html"><img src="{{asset('frontend/assets/images/meeting-04.jpg')}}" alt="Student Training"></a>
+                <a href="#"><img src="{{asset('frontend/assets/images/meeting-04.jpg')}}" alt="Student Training"></a>
               </div>
               <div class="down-content">
                 <div class="date">
                   <h6><i class="fa fa-star-o" aria-hidden="true"></i>
                   </h6>
                 </div>
-                <a href="meeting-details.html"><h4>Set Custom</h4></a>
+                <a href="#"><h4>Set Custom</h4></a>
                 <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
               </div>
             </div>

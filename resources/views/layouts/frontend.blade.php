@@ -15,7 +15,8 @@
     <link href="{{asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"> --}}
     <link href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/x-icon" href="{{asset('frontend/assets/images/logo.png')}}">
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="{{asset('frontend/assets/css/fontawesome.css')}}">
@@ -200,7 +201,7 @@
 </script>
 
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
   $('#locker_id').on('change', function () {
       get_info();
   });
@@ -222,7 +223,7 @@
               }
           });
   }
-</script>
+</script> --}}
 
 <script>
   $(document).ready( function () {

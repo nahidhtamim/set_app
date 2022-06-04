@@ -109,7 +109,10 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 
    // Services Routes
    Route::get('/orders', [OrderController::class, 'index']);
+   Route::get('/edit-order/{id}', [OrderController::class, 'editOrder']);
+   Route::post('/update-order/{id}', [OrderController::class, 'updateOrder']);
    Route::get('/closing-request/{id}', [OrderController::class, 'closingRequest']);
    Route::get('/order-active/{id}', [OrderController::class, 'orderActive']);
    Route::get('/order-close/{id}', [OrderController::class, 'orderClose']);
+   Route::get('/delete-order/{id}', [OrderController::class, 'deleteOrder']);
 });

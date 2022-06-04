@@ -20,10 +20,10 @@
                     </a>
                 </li> --}}
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/services')}}"
-                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Services">
-                        <i class="fa fa-tasks" aria-hidden="true"></i>
-                        <span class="hide-menu">Services</span>
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/sports')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Sports">
+                        <i class="fa fa-futbol" aria-hidden="true"></i>
+                        <span class="hide-menu">Sports</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -34,6 +34,22 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/services')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Services">
+                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                        <span class="hide-menu">Services</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/place-services')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Place Services">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                        <span class="hide-menu">Place Services</span>
+                    </a>
+                </li>
+                
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/lockers')}}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Lockers">
                         <i class="fa fa-archive" aria-hidden="true"></i>
@@ -41,30 +57,17 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/sports')}}"
-                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Sports">
-                        <i class="fa fa-futbol" aria-hidden="true"></i>
-                        <span class="hide-menu">Sports</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/place-services')}}"
-                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Place Services">
-                        <i class="fa fa-stop" aria-hidden="true"></i>
-                        <span class="hide-menu">Place Services</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/place-lockers')}}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Place Lockers">
-                        <i class="fa fa-stop" aria-hidden="true"></i>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <i class="fa fa-archive" aria-hidden="true"></i>
                         <span class="hide-menu">Place Lockers</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/orders')}}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Orders">
-                        <i class="fa fa-stop" aria-hidden="true"></i>
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
                         <span class="hide-menu">Orders</span>
                     </a>
                 </li>

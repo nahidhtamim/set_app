@@ -40,4 +40,19 @@ class Order extends Model
     {
         return $this->belongsTo(Sport::class,'sport_id','id');
     }
+
+    public function place_inf()
+    {
+        return $this->belongsTo(Place::class,'place_id','id');
+    }
+
+    public function place_service_inf()
+    {
+        return $this->belongsTo(PlaceService::class,'service_id','id');
+    }
+
+    public function place_locker_inf()
+    {
+        return $this->belongsTo(PlaceLocker::class,'locker_id','id');
+    }
 }

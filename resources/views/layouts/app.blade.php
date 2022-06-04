@@ -6,7 +6,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/x-icon" href="{{asset('frontend/assets/images/logo.png')}}">
     <title>SET</title>
 
     <!-- Scripts -->

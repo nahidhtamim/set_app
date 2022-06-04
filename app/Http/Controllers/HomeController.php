@@ -149,7 +149,7 @@ class HomeController extends Controller
         $order = Order::find($id);
         $order->order_status = '2';
         $order->update();
-        return redirect()->back()->with('status', 'Request Has Been For Clossing The Order');
+        return redirect()->back()->with('status', 'Request Has Been Sent For Clossing The Order');
     }
 
     public function getServices(Request $request)
@@ -172,7 +172,6 @@ class HomeController extends Controller
         // $serviceLocker=PlaceLocker::where('service_id', $request->service_id)
         // ->join('lockers', 'place_lockers.locker_id', '=', 'lockers.id')
         // ->orderBy('name')->get(['place_lockers.*', 'lockers.*']);
-
 
         return $serviceLocker;
     }
