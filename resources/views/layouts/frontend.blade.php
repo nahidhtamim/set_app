@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,13 +25,20 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/lightbox.css')}}">
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+
+    <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
     {{-- <script src="{{asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
-    <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
-  </head>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('admin/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script> --}}
+
+    <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+
+</head>
 
 <body>
 
@@ -89,8 +96,7 @@
         $('.nav li:first').addClass('active');
 
         var showSection = function showSection(section, isAnimate) {
-          var
-          direction = section.replace(/#/, ''),
+          var direction = section.replace(/#/, ''),
           reqSection = $('.section').filter('[data-section="' + direction + '"]'),
           reqSectionPos = reqSection.offset().top - 0;
 
@@ -132,20 +138,20 @@
     </script>
     <script>
       (function($) {
-  $( window ).scroll( function () {
-    if ( $(document).scrollTop() > 300 ) {
-      // Navigation Bar
-      $('.navbar').removeClass('fadeIn');
-      $('body').addClass('shrink');
-      $('.navbar').addClass('fixed-top animated fadeInDown');
-    } else {
-      $('.navbar').removeClass('fadeInDown');
-      $('.navbar').removeClass('fixed-top');
-      $('body').removeClass('shrink');
-      $('.navbar').addClass('animated fadeIn');
-    }
-  });  
-})(jQuery);
+        $( window ).scroll( function () {
+          if ( $(document).scrollTop() > 300 ) {
+            // Navigation Bar
+            $('.navbar').removeClass('fadeIn');
+            $('body').addClass('shrink');
+            $('.navbar').addClass('fixed-top animated fadeInDown');
+          } else {
+            $('.navbar').removeClass('fadeInDown');
+            $('.navbar').removeClass('fixed-top');
+            $('body').removeClass('shrink');
+            $('.navbar').addClass('animated fadeIn');
+          }
+        });  
+      })(jQuery);
     </script>
 
 <script type="text/javascript">
@@ -229,6 +235,9 @@
     });
   } );
 </script>
+
+
+
 
 </body>
 </html>

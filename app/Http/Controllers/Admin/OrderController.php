@@ -91,7 +91,7 @@ class OrderController extends Controller
     public function deleteOrder($id)
     {
         $order = Order::find($id);
-        $order->update();
+        $order->delete();
         return redirect()->back()->with('warning', 'Order Has Been Deleted');
     }
 }

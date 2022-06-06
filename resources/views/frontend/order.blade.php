@@ -66,16 +66,16 @@ Order | SET - A Premium Laundry Service
                                                 <td class="text-center">
                                                     <div class="btn-group" role="group" aria-label="Buttons">
                                                         @if($order->order_status == 1)
-                                                        <a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details">
-                                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                                        </a>
-                                                        <a href="{{url('/request-closing/'.$order->id)}}" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
-                                                            <i class="fa fa-times" aria-hidden="true"></i>
-                                                        </a>
+                                                            <a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details">
+                                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            </a>
+                                                            <a href="{{url('/request-closing/'.$order->id)}}" class="btn btn-danger btn-sm onClosing" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
+                                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                                            </a>
                                                         @else
-                                                        <a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details">
-                                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                                        </a>
+                                                            <a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details">
+                                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            </a>
                                                         @endif
                                                     </div>
                                                 </td>
@@ -215,5 +215,32 @@ Order | SET - A Premium Laundry Service
         
     }
 </style>
+
+<script>
+    $(document).ready(function () {
+  
+      $('.onClosing').on('click', function (event) {
+                  event.preventDefault();
+                  const url = $(this).attr('href');
+                  swal({
+                      title: 'Are you sure?',
+                      text: "7 days prior notification is must to completely close the order.",
+                      icon: "warning",
+                      // buttons: ["Cancel", "Yes!"],
+                      buttons: true,
+                      dangerMode: true,
+                  }).then(function(value) {
+                      if (value) {
+                          swal("Order has been set for closing.", {
+                              icon: "success",
+                          });
+                          window.location.href = url;
+                      }
+                  });
+              });
+    
+    });
+    
+  </script>
 
 @endsection

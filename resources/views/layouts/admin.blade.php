@@ -34,8 +34,8 @@
 
     <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.9/sweetalert2.min.js"></script> --}}
 </head>
 
 <body>
@@ -116,7 +116,7 @@
     <!--Custom JavaScript -->
     <script src="{{asset('admin/js/custom.js')}}"></script>
     <!--This page JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.9/sweetalert2.min.js"></script>
+    
     <!--chartis chart-->
     <script src="{{asset('admin/plugins/bower_components/chartist/dist/chartist.min.js')}}"></script>
     <script
@@ -148,16 +148,7 @@
           });
         });
       </script> 
-      {{-- @if(session('status'))
-      <script>
-        swal("{{session('status')}}")
-      </script>
-      @elseif(session('warning'))
-      <script>
-        swal("{{session('warning')}}")
-      </script>
-      
-    @endif --}}
+
       <script type="text/javascript">
         $('#place_id').on('change', function () {
             get_service_by_place();
@@ -181,8 +172,98 @@
                 });
         }
     </script>
+  
+    <script>
+        $(document).ready(function () {
 
+            $('.deleteBtn').on('click', function (event) {
+                event.preventDefault();
+                const url = $(this).attr('href');
+                swal({
+                    title: 'Are you sure?',
+                    text: "Once deleted, you will not be able to recover this order!",
+                    icon: "warning",
+                    // buttons: ["Cancel", "Yes!"],
+                    buttons: true,
+                    dangerMode: true,
+                }).then(function(value) {
+                    if (value) {
+                        swal("Poof! Your record has been deleted!", {
+                            icon: "success",
+                        });
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+        
+    </script>
+    <script>
+        $(document).ready(function () {
 
+            $('.onClosing').on('click', function (event) {
+                event.preventDefault();
+                const url = $(this).attr('href');
+                swal({
+                    title: 'Are you sure?',
+                    text: "7 days prior notification is must to completely close the order.",
+                    icon: "warning",
+                    // buttons: ["Cancel", "Yes!"],
+                    buttons: true,
+                    dangerMode: true,
+                }).then(function(value) {
+                    if (value) {
+                        swal("Order has been set for closing.", {
+                            icon: "success",
+                        });
+                        window.location.href = url;
+                    }
+                });
+            });
+        
+
+            $('.closeOrder').on('click', function (event) {
+                event.preventDefault();
+                const url = $(this).attr('href');
+                swal({
+                    title: 'Are you sure?',
+                    text: "Once closed, you will not be able to reactive this record!",
+                    icon: "warning",
+                    // buttons: ["Cancel", "Yes!"],
+                    buttons: true,
+                    dangerMode: true,
+                }).then(function(value) {
+                    if (value) {
+                        swal("Order has been closed!", {
+                            icon: "success",
+                        });
+                        window.location.href = url;
+                    }
+                });
+            });
+        
+
+            $('.activeOrder').on('click', function (event) {
+                event.preventDefault();
+                const url = $(this).attr('href');
+                swal({
+                    title: "Do you really want to active this order?",
+                    icon: "warning",
+                    // buttons: ["Cancel", "Yes!"],
+                    buttons: true,
+                    dangerMode: true,
+                }).then(function(value) {
+                    if (value) {
+                        swal("Congratulations! Order has been activated.", {
+                            icon: "success",
+                        });
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+        
+    </script>
     
 </body>
 

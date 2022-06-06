@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Place;
 use App\Models\Sport;
 use App\Models\Locker;
+use App\Models\OnlineStatus;
 use App\Models\Service;
 use App\Models\PlaceLocker;
 use App\Models\PlaceService;
@@ -149,6 +150,14 @@ class HomeController extends Controller
         $order = Order::find($id);
         $order->order_status = '2';
         $order->update();
+        return redirect()->back()->with('status', 'Request Has Been Sent For Clossing The Order');
+    }
+
+    public function onlineStatus()
+    {
+        $os = new OnlineStatus();
+        $os->online_status = '1';
+        $os->save();
         return redirect()->back()->with('status', 'Request Has Been Sent For Clossing The Order');
     }
 

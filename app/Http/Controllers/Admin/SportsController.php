@@ -37,12 +37,12 @@ class SportsController extends Controller
         $sport->sport_description = $request->input('sport_description');
         $sport->sport_status = $request->input('sport_status');
         $sport->update();
-        return redirect('/sports')->with('status', 'sport Updated Successfully');
+        return redirect('/sports')->with('status', 'Sport Updated Successfully');
     }
 
     public function deleteSport($id, Request $request){
         $sport = Sport::find($id);
         $sport->delete();
-        return redirect('/sports')->with('warning', 'sport Deleted Successfully');
+        return redirect('/sports')->with('warning', 'Sport Deleted Successfully');
     }
 }

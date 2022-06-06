@@ -24,7 +24,7 @@ class LockersController extends Controller
         $locker->locker_description = $request->input('locker_description');
         $locker->locker_status = $request->input('locker_status');
         $locker->save();
-        return redirect('/lockers')->with('status', 'locker Added Successfully');
+        return redirect('/lockers')->with('status', 'Locker Added Successfully');
     }
 
     public function editLocker($id){
@@ -39,12 +39,12 @@ class LockersController extends Controller
         $locker->locker_description = $request->input('locker_description');
         $locker->locker_status = $request->input('locker_status');
         $locker->update();
-        return redirect('/lockers')->with('status', 'locker Updated Successfully');
+        return redirect('/lockers')->with('status', 'Locker Updated Successfully');
     }
 
     public function deleteLocker($id, Request $request){
         $locker = Locker::find($id);
         $locker->delete();
-        return redirect('/lockers')->with('warning', 'locker Deleted Successfully');
+        return redirect('/lockers')->with('warning', 'Locker Deleted Successfully');
     }
 }

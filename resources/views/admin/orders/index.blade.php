@@ -73,20 +73,20 @@
                                                     @if($order->order_status == 1)
                                                         <span class="text-success"> <b>Active</b> </span>
                                                         <div class="btn-group" role="group" aria-label="Buttons">
-                                                            <a href="{{url('closing-request/'.$order->id)}}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Stop The Order">
+                                                            <a href="{{url('closing-request/'.$order->id)}}" class="btn btn-warning btn-sm onClosing" data-bs-toggle="tooltip" data-bs-placement="top" title="Stop The Order">
                                                                 <i class="fa fa-stop" aria-hidden="true"></i>
                                                             </a>
-                                                            <a href="{{url('order-close/'.$order->id)}}" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel The Order">
+                                                            <a href="{{url('order-close/'.$order->id)}}" class="btn btn-danger btn-sm closeOrder" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel The Order">
                                                                 <i class="fa fa-times" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
                                                     @elseif($order->order_status == 2)
                                                         <span class="text-warning"> <b>On Closing</b> </span>
                                                         <div class="btn-group" role="group" aria-label="Buttons">
-                                                            <a href="{{url('order-active/'.$order->id)}}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Order">
+                                                            <a href="{{url('order-active/'.$order->id)}}" class="btn btn-success btn-sm activeOrder" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Order">
                                                                 <i class="fa fa-check" aria-hidden="true"></i>
                                                             </a>
-                                                            <a href="{{url('order-close/'.$order->id)}}" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
+                                                            <a href="{{url('order-close/'.$order->id)}}" class="btn btn-danger btn-sm closeOrder" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
                                                                 <i class="fa fa-times" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
@@ -102,7 +102,7 @@
                                                         class="btn btn-info text-white">Edit
                                                     </a>
                                                     <a href="{{url('/delete-order/'.$order->id)}}"
-                                                        class="btn btn-danger text-white">Delete
+                                                        class="btn btn-danger text-white deleteBtn">Delete
                                                     </a>
                                                     <div class="btn-group" role="group" aria-label="Buttons">
                                                         {{-- @if($order->order_status == 1)

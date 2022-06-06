@@ -77,7 +77,7 @@
                                                 class="btn btn-info text-white">Edit
                                                 </a>
                                                 <a href="{{url('/delete-place/'.$place->id)}}"
-                                                class="btn btn-danger text-white">Delete
+                                                class="btn btn-danger text-white deleteBtn">Delete
                                                 </a>
                                             </td>
                                         </tr>
@@ -93,7 +93,6 @@
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
             
-          
 @endsection
         
         

@@ -42,13 +42,13 @@ Lockers - SET Admin Panel
                 <h3 class="box-title">Lockers Table</h3>
 
                 @if(session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
                 @elseif(session('warning'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ session('warning') }}
-                    </div>
+                <div class="alert alert-danger" role="alert">
+                    {{ session('warning') }}
+                </div>
                 @endif
 
                 <div class="table-responsive">
@@ -65,28 +65,31 @@ Lockers - SET Admin Panel
                         </thead>
                         <tbody>
                             @foreach($lockers as $locker)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $locker->locker_name }}</td>
-                                    <td>{{ $locker->locker_size }}</td>
-                                    <td>{!!$locker->locker_description!!}</td>
-                                    <td>
-                                        @if($locker->locker_status == 1)
-                                            Active
-                                        @elseif($locker->locker_status == 0)
-                                            Deactive
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ url('/edit-locker/'.$locker->id) }}"
-                                            class="btn btn-info text-white">Edit
-                                        </a>
-                                        <a 
-                                        {{-- href="{{ url('/delete-locker/'.$locker->id) }}" --}}
-                                            class="btn btn-danger text-white deleteBtn">Delete
-                                        </a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $locker->locker_name }}</td>
+                                <td>{{ $locker->locker_size }}</td>
+                                <td>{!!$locker->locker_description!!}</td>
+                                <td>
+                                    @if($locker->locker_status == 1)
+                                    Active
+                                    @elseif($locker->locker_status == 0)
+                                    Deactive
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ url('/edit-locker/'.$locker->id) }}"
+                                        class="btn btn-info text-white">Edit
+                                    </a>
+                                    {{-- <a href="javascript:void(0)" id="show-user"
+                                        data-url="{{ url('/delete-locker/'.$locker->id) }}"
+                                        class="btn btn-danger text-white deleteBtn">Delete</a> --}}
+                                    <a 
+                                        href="{{ url('/delete-locker/'.$locker->id) }}"
+                                    class="btn btn-danger text-white deleteBtn">Delete
+                                    </a>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -101,29 +104,3 @@ Lockers - SET Admin Panel
 
 
 @endsection
-
-<script>
-    $(document).ready(function () {
-
-        $('.deleteBtn').click(function (e) {
-            e.preventDefault();
-            swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this file!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        swal("Poof! Your file has been deleted!", {
-                            icon: "success",
-                        });
-                    }
-                });
-
-        });
-
-    });
-
-</script>

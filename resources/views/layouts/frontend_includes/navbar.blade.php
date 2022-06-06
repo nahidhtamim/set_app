@@ -12,7 +12,10 @@
           <li class="nav-item">
             <a class="nav-link" href="{{url('/about')}}">About</a>
           </li>
-          @if(isset(Auth::user()->name))
+          @if(isset(Auth::user()->name)) 
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-toggle-on text-success" aria-hidden="true"></i></a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-user"></i>
