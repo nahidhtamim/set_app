@@ -22,6 +22,20 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <!-- Custom CSS -->
     <link href="{{asset('admin/css/style.min.css')}}" rel="stylesheet">
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('admin/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <script src="https:////cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{{asset('admin/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+
+    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <body>
@@ -85,14 +99,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('admin/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
-    <script src="https:////cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{asset('admin/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-
-    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace( 'long_desc' );
         CKEDITOR.replace( 'place_description' );
