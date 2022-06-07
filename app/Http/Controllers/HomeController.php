@@ -162,13 +162,6 @@ class HomeController extends Controller
         return redirect()->back()->with('status', 'Request Has Been Sent For Clossing The Order');
     }
 
-    public function onlineStatus()
-    {
-        $os = new OnlineStatus();
-        $os->online_status = '1';
-        $os->save();
-        return redirect()->back()->with('status', 'Request Has Been Sent For Clossing The Order');
-    }
 
     public function getServices(Request $request)
     {

@@ -32,10 +32,6 @@
     <script src="{{asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
     {{-- <script src="{{asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
 
-
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('admin/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script> --}}
-
     <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -179,116 +175,108 @@
       })(jQuery);
     </script>
 
-<script type="text/javascript">
-  $('#place_id').on('change', function () {
-      get_service_by_place();
-  });
+    <script type="text/javascript">
+      $('#place_id').on('change', function () {
+          get_service_by_place();
+      });
 
-  function get_service_by_place() {
-      var place_id = $('#place_id').val();
-      $.post('{{ route('getServices') }}', {
-              _token: '{{ csrf_token() }}',
-              place_id: place_id
-          },
-          function (data) {
-              $('#service_id').html(null);
-              $('#service_id').append($('<option value="">Select A Package</option>', {}));
-              for (var i = 0; i < data.length; i++) {
-                  $('#service_id').append($('<option>', {
-                      value: data[i].id,
-                      text: data[i].name +' - '+ data[i].service_price +'€',
-                  }));
-                  
-              }
-          });
-  }
-</script>
+      function get_service_by_place() {
+          var place_id = $('#place_id').val();
+          $.post('{{ route('getServices') }}', {
+                  _token: '{{ csrf_token() }}',
+                  place_id: place_id
+              },
+              function (data) {
+                  $('#service_id').html(null);
+                  $('#service_id').append($('<option value="">Select A Package</option>', {}));
+                  for (var i = 0; i < data.length; i++) {
+                      $('#service_id').append($('<option>', {
+                          value: data[i].id,
+                          text: data[i].name +' - '+ data[i].service_price +'€',
+                      }));
+                      
+                  }
+              });
+      }
+    </script>
 
-<script type="text/javascript">
-  $('#service_id').on('change', function () {
-      get_locker_by_service();
-  });
+    <script type="text/javascript">
+      $('#service_id').on('change', function () {
+          get_locker_by_service();
+      });
 
-  function get_locker_by_service() {
-      var service_id = $('#service_id').val();
-      $.post('{{ route('getLockers') }}', {
-              _token: '{{ csrf_token() }}',
-              service_id: service_id
-          },
-          function (data) {
-              $('#locker_id').html(null);
-              $('#locker_id').append($('<option value="">Select A Locker</option>', {}));
-              for (var i = 0; i < data.length; i++) {
-                  $('#locker_id').append($('<option>', {
-                      value: data[i].id,
-                      text: data[i].name
-                  }));
-              }
-          });
-  }
-</script>
-
-
-{{-- <script type="text/javascript">
-  $('#locker_id').on('change', function () {
-      get_info();
-  });
-
-  function get_info() {
-      var locker_id = $('#locker_id').val();
-      $.post('{{ route('getInfo') }}', {
-              _token: '{{ csrf_token() }}',
-              locker_id: locker_id
-          },
-          function (data) {
-              $('#info').html(null);
-              $('#info').append($('<p>Your Choice Of Service</p> <hr>', {}));
-              for (var i = 0; i < data.length; i++) {
-                  $('#info').append($('<p>', {
-                      value: data[i].id,
-                      text: '<b>Service Name:</b> '+ data[i].name + '<br><b>Locker Name:</b> ' + data[i].name +'<br><b>Service Price:</b> '+ data[i].service_price,
+      function get_locker_by_service() {
+          var service_id = $('#service_id').val();
+          $.post('{{ route('getLockers') }}', {
+                  _token: '{{ csrf_token() }}',
+                  service_id: service_id
+              },
+              function (data) {
+                  $('#locker_id').html(null);
+                  $('#locker_id').append($('<option value="">Select A Locker</option>', {}));
+                  for (var i = 0; i < data.length; i++) {
+                      $('#locker_id').append($('<option>', {
+                          value: data[i].id,
+                          text: data[i].name
                   }));
               }
-          });
-  }
-</script> --}}
+        });
+      }
+    </script>
 
-<script>
-  $(document).ready( function () {
-    $('#table').DataTable({
-        scrollX: true,
-    });
-  } );
-</script>
 
-<script>
-  let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+    <script>
+      $(document).ready( function () {
+        $('#table').DataTable({
+            scrollX: true,
+        });
+      } );
+    </script>
 
-    elems.forEach(function(html) {
-        let switchery = new Switchery(html,  { size: 'small' });
-    });
-</script>
+    <script>
+      let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
-<script>
-  $(document).ready(function(){
-    $('.js-switch').change(function () {
-        let status = $(this).prop('checked') === true ? 1 : 0;
-        let userId = $(this).data('id');
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '{{ route('users.update.status') }}',
-            data: {'online_status': status, 'user_id': userId},
-            success: function (data) {
-                toastr.options.closeButton = true;
-                toastr.options.closeMethod = 'fadeOut';
-                toastr.options.closeDuration = 100;
-                toastr.success(data.message);
-            }
+        elems.forEach(function(html) {
+            let switchery = new Switchery(html,  { size: 'small' });
+        });
+    </script>
+
+    <script>
+      $(document).ready(function(){
+        $('.js-switch').change(function () {
+            let status = $(this).prop('checked') === true ? 1 : 0;
+            let userId = $(this).data('id');
+            swal({
+                  // title: 'Are you sure?',
+                  text: "Notification will be sent to the admin about the status.",
+                  icon: "info",
+                  // buttons: ["Cancel", "Yes!"],
+                  buttons: true,
+                  // dangerMode: true,
+              }).then(function(value) {
+                  if (value) {
+                    $.ajax({
+                      type: "GET",
+                      dataType: "json",
+                      url: '{{ route('users.update.status') }}',
+                      data: {'online_status': status, 'user_id': userId},
+                      success: function (data) {
+                          swal("Notification Has Been Sent.", {
+                            icon: "success",
+                          });
+                          // toastr.options.closeButton = true;
+                          // toastr.options.closeMethod = 'fadeOut';
+                          // toastr.options.closeDuration = 100;
+                          // toastr.success(data.message);
+                          window.location.href = url;
+                      }
+                  });
+                      
+                }
+            });
+            
         });
     });
-});
-</script>
-
-</body>
+    </script>  
+    </body>
 </html>
