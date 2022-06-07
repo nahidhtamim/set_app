@@ -25,8 +25,9 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/lightbox.css')}}">
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-
-
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
     {{-- <script src="{{asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
@@ -36,8 +37,33 @@
     <script src="{{asset('admin/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script> --}}
 
     <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     
+    <script>
+      $(document).ready(function () {
 
+          $('.onClosing').on('click', function (event) {
+              event.preventDefault();
+              const url = $(this).attr('href');
+              swal({
+                  title: 'Are you sure?',
+                  text: "7 days prior notification is must to completely close the order.",
+                  icon: "warning",
+                  // buttons: ["Cancel", "Yes!"],
+                  buttons: true,
+                  dangerMode: true,
+              }).then(function(value) {
+                  if (value) {
+                      swal("Order has been set for closing.", {
+                          icon: "success",
+                      });
+                      window.location.href = url;
+                  }
+              });
+          });
+      });
+    </script>    
 </head>
 
 <body>
@@ -81,7 +107,6 @@
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
     
-
     <script src="{{asset('frontend/assets/js/isotope.min.js')}}"></script>
     <script src="{{asset('frontend/assets/js/owl-carousel.js')}}"></script>
     <script src="{{asset('frontend/assets/js/lightbox.js')}}"></script>
@@ -236,8 +261,34 @@
   } );
 </script>
 
+<script>
+  let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
+    elems.forEach(function(html) {
+        let switchery = new Switchery(html,  { size: 'small' });
+    });
+</script>
 
+<script>
+  $(document).ready(function(){
+    $('.js-switch').change(function () {
+        let status = $(this).prop('checked') === true ? 1 : 0;
+        let userId = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{ route('users.update.status') }}',
+            data: {'online_status': status, 'user_id': userId},
+            success: function (data) {
+                toastr.options.closeButton = true;
+                toastr.options.closeMethod = 'fadeOut';
+                toastr.options.closeDuration = 100;
+                toastr.success(data.message);
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>

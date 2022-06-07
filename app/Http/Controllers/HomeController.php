@@ -42,6 +42,15 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function updateStatus(Request $request)
+    {
+        $user = User::findOrFail($request->user_id);
+        $user->online_status = $request->online_status;
+        $user->save();
+
+        return response()->json(['status' => 'User status updated successfully.']);
+    }
+
     public function myProfile()
     {
         $profile = User::find(Auth::user()->id);

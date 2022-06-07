@@ -37,6 +37,8 @@ Route::get('/service/{id}', [FrontendController::class, 'service']);
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/status/update', [HomeController::class, 'updateStatus'])->name('users.update.status');
+
 Route::get('/my-profile', [HomeController::class, 'myProfile'])->name('my-profile');
 Route::post('/update-details', [HomeController::class, 'updateDetails']);
 Route::post('/update-password', [HomeController::class, 'updatePassword']);

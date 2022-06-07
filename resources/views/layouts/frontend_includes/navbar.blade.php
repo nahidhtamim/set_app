@@ -14,7 +14,10 @@
           </li>
           @if(isset(Auth::user()->name)) 
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa fa-toggle-on text-success" aria-hidden="true"></i></a>
+            <a class="nav-link" href="#">
+              <input type="checkbox" data-id="{{ Auth::user()->id }}" name="status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}>
+          </a>
+            
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

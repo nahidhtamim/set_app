@@ -88,6 +88,7 @@ Lockers - SET Admin Panel
                                         href="{{ url('/delete-locker/'.$locker->id) }}"
                                     class="btn btn-danger text-white deleteBtn">Delete
                                     </a>
+                                    {{ $locker->created_at->diffForHumans() }}
                                 </td>
                             </tr>
                             @endforeach
