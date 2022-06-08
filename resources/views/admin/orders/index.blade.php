@@ -72,10 +72,12 @@
                                                 <td class="text-right">{{$order->s_price}}€</td>
                                                 <td>
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        Payment
+                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        <i class="fa fa-plus" aria-hidden="true"></i>
                                                     </button>
-                                                    
+                                                    <a href="{{url('payments/'.$order->id)}}" class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments List">
+                                                        <i class="fa fa-list" aria-hidden="true"></i>
+                                                    </a>
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
@@ -87,11 +89,45 @@
                                                             <div class="modal-body">
                                                                 <form class="form-horizontal form-material" method="POST" action="{{url('/save-payment')}}">
                                                                     @csrf
+
+                                                                    <input type="hidden" name="customer_id" value="{{$order->customer_id}}">
+                                                                    <input type="hidden" name="order_id" value="{{$order->id}}">
+
+                                                                    @php
+                                                                        $invoice_no = date('m', strtotime($order->created_at)).'-'.$order->id;
+                                                                        $create_date = date('d-m-Y', strtotime($order->created_at));
+                                                                        $update_date = date('d-m-Y', strtotime($order->updated_at));
+                                                                    @endphp
+
+                                                                    <input type="hidden" name="invoice_no" value="{{$invoice_no}}">
+                                                                    <input type="hidden" name="s_name" value="{{$order->s_name}}">
+                                                                    <input type="hidden" name="ps_name" value="{{$order->ps_name}}">
+                                                                    <input type="hidden" name="ps_code" value="{{$order->ps_code}}">
+                                                                    <input type="hidden" name="l_name" value="{{$order->l_name}}">
+                                                                    <input type="hidden" name="pl_name" value="{{$order->pl_name}}">
+                                                                    <input type="hidden" name="pl_code" value="{{$order->pl_code}}">
+                                                                    <input type="hidden" name="sport_name" value="{{$order->sport_name}}">
+                                                                    <input type="hidden" name="s_price" value="{{$order->s_price}}">
+
+                                                                    <input type="hidden" name="shipping_name" value="{{$order->shipping_name}}">
+                                                                    <input type="hidden" name="shipping_email" value="{{$order->shipping_email}}">
+                                                                    <input type="hidden" name="shipping_phone" value="{{$order->shipping_phone}}">
+                                                                    <input type="hidden" name="shipping_address" value="{{$order->shipping_address}}">
+                                                                    <input type="hidden" name="billing_name" value="{{$order->billing_name}}">
+                                                                    <input type="hidden" name="billing_email" value="{{$order->billing_email}}">
+                                                                    <input type="hidden" name="billing_phone" value="{{$order->billing_phone}}">
+                                                                    <input type="hidden" name="billing_address" value="{{$order->billing_address}}">
+                                                                    <input type="hidden" name="billing_phone" value="{{$order->billing_phone}}">
+                                                                    <input type="hidden" name="message" value="{{$order->message}}">
+                                                                    <input type="hidden" name="create_date" value="{{$create_date}}">
+                                                                    <input type="hidden" name="update_date" value="{{$update_date}}">
+
+
                                                                     <div class="form-group mb-4">
                                                                         <label class="col-md-12 p-0"><b>Payment Month <span class="text-danger">*</span></b></label>
 
                                                                         <div class="col-sm-12 border-bottom">
-                                                                            <select class="form-select shadow-none p-0 border-0 form-control-line" name="payment_month" required>
+                                                                            <select class="form-select shadow-none p-0 border-0 form-control-line" name="month" required>
                                                                                 <option>Select Payment Month</option>
                                                                                 <option value="1">January</option>
                                                                                 <option value="2">February</option>
@@ -113,7 +149,7 @@
                                                                         <label class="col-md-12 p-0"><b>Payment Year <span class="text-danger">*</span></b></label>
                                                                         <div class="col-md-12 border-bottom p-0">
                                                                             <input type="text" placeholder="SET Payment Year"
-                                                                                class="form-control p-0 border-0" name="payment_year" required> 
+                                                                                class="form-control p-0 border-0" name="year" required> 
                                                                             </div>
                                                                     </div>
 

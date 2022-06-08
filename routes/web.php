@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\SportsController;
 use App\Http\Controllers\Admin\LockersController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\PlaceLockersController;
 use App\Http\Controllers\Admin\PlaceServicesController;
@@ -121,4 +122,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 
    // Users Routes
    Route::get('/users', [UserController::class, 'index']);
+
+   // Payments Routes
+   Route::get('/payments/{id}', [PaymentController::class, 'index']);
+   Route::post('/save-payment', [PaymentController::class, 'savePayment']);
 });

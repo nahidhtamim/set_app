@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('customer_id');
             $table->tinyInteger('order_id');
-            $table->string('month');
+            $table->integer('month');
             $table->string('year');
             $table->timestamps();
         });
