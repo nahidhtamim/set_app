@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\SportsController;
@@ -109,7 +110,7 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::post('getPlaceServices',[PlaceLockersController::class,'getPlaceServices'])->name('getPlaceServices');
 
 
-   // Services Routes
+   // Orders Routes
    Route::get('/orders', [OrderController::class, 'index']);
    Route::get('/edit-order/{id}', [OrderController::class, 'editOrder']);
    Route::post('/update-order/{id}', [OrderController::class, 'updateOrder']);
@@ -117,4 +118,7 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/order-active/{id}', [OrderController::class, 'orderActive']);
    Route::get('/order-close/{id}', [OrderController::class, 'orderClose']);
    Route::get('/delete-order/{id}', [OrderController::class, 'deleteOrder']);
+
+   // Users Routes
+   Route::get('/users', [UserController::class, 'index']);
 });

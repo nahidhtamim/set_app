@@ -72,6 +72,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/users')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Users">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span class="hide-menu">Users</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('logout') }}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Logout"
                         onclick="event.preventDefault();
@@ -83,13 +90,13 @@
                         @csrf
                     </form>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
 
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-                </li>
+                </li> --}}
                 {{-- <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fontawesome.html"
                         aria-expanded="false">

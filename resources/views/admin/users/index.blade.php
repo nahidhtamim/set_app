@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Lockers - SET Admin Panel
+Users - SET Admin Panel
 @endsection
 @section('contents')
 
@@ -15,12 +15,12 @@ Lockers - SET Admin Panel
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
                 <ol class="breadcrumb ms-auto">
-                    <li><a href="{{ url('/lockers') }}" class="fw-normal">Lockers</a></li>
+                    <li><a href="{{ url('/users') }}" class="fw-normal">Users</a></li>
                 </ol>
-                <a href="{{ url('/add-locker') }}"
+                {{-- <a href="{{ url('/add-locker') }}"
                     class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add
                     lockers
-                </a>
+                </a> --}}
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@ Lockers - SET Admin Panel
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
-                <h3 class="box-title">Lockers Table</h3>
+                <h3 class="box-title">Users Table</h3>
 
                 @if(session('status'))
                 <div class="alert alert-success" role="alert">
@@ -56,39 +56,54 @@ Lockers - SET Admin Panel
                         <thead>
                             <tr>
                                 <th class="border-top-0">#</th>
-                                <th class="border-top-0">Locker Name</th>
-                                <th class="border-top-0">Locker Size</th>
-                                <th class="border-top-0">Description</th>
+                                <th class="border-top-0">Username</th>
+                                <th class="border-top-0">Image</th>
+                                <th class="border-top-0">Email</th>
+                                <th class="border-top-0">Phone</th>
+                                <th class="border-top-0">Address</th>
+                                <th class="border-top-0">Created</th>
+                                <th class="border-top-0">Online Status</th>
                                 <th class="border-top-0">Status</th>
                                 <th class="border-top-0">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($lockers as $locker)
+                            @foreach($users as $user)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $locker->locker_name }}</td>
-                                <td>{{ $locker->locker_size }}</td>
-                                <td>{!!$locker->locker_description!!}</td>
+                                <td>{{ $user->name }}</td>
                                 <td>
-                                    @if($locker->locker_status == 1)
-                                    Active
-                                    @elseif($locker->locker_status == 0)
-                                    Deactive
+                                    <img class="img-fluid img-profile rounded-circle mx-auto"
+                                    src="{{ asset('/uploads/avatars/'.$user->image) }}"
+                                    width="80px" alt="#" />
+                                </td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone }}</td>
+                                <td>{{ $user->address }}</td>
+                                <td>{{ $user->created_at->diffForHumans() }}</td>
+                                <td>
+                                    @if($user->role_as == 1)
+                                    Admin  
+                                    @elseif($user->role_as == 0)
+                                    Customer
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ url('/edit-locker/'.$locker->id) }}"
+                                    <input type="checkbox" data-id="{{ $user->id }}" name="status" class="js-switch" {{ $user->online_status == 1 ? 'checked' : '' }}>
+                                    {{-- @if($user->online_status == 1)
+                                    <i class="fa fa-toggle-on btn-lg text-success"></i>
+                                     
+                                    @elseif($user->online_status == 0)
+                                    <i class="fa fa-toggle-off btn-lg text-secondary"></i> 
+                                    @endif --}}
+                                </td>
+                                <td>
+                                    <a href="{{ url('/edit-user/'.$user->id) }}"
                                         class="btn btn-info text-white">Edit
                                     </a>
-                                    {{-- <a href="javascript:void(0)" id="show-user"
-                                        data-url="{{ url('/delete-locker/'.$locker->id) }}"
-                                        class="btn btn-danger text-white deleteBtn">Delete</a> --}}
-                                    <a 
-                                        href="{{ url('/delete-locker/'.$locker->id) }}"
+                                    <a href="{{ url('/delete-user/'.$user->id) }}"
                                     class="btn btn-danger text-white deleteBtn">Delete
                                     </a>
-                                    {{ $locker->created_at->diffForHumans() }}
                                 </td>
                             </tr>
                             @endforeach

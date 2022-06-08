@@ -51,13 +51,14 @@
                             @endif
 
                             <div class="table-responsive">
-                                <table class="table text-nowrap table-bordered table-striped">
+                                <table class="table text-nowrap table-bordered table-striped" id="table">
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">#</th>
                                             <th class="border-top-0">Customer</th>
                                             <th class="border-top-0">Sport</th>
                                             <th class="border-top-0">Price</th>
+                                            <th class="border-top-0">Payment</th>
                                             <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
@@ -69,6 +70,68 @@
                                                 <td>{{$order->u_name}}</td>
                                                 <td>{{$order->sport_name}}</td>
                                                 <td class="text-right">{{$order->s_price}}€</td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        Payment
+                                                    </button>
+                                                    
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Payment</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form class="form-horizontal form-material" method="POST" action="{{url('/save-payment')}}">
+                                                                    @csrf
+                                                                    <div class="form-group mb-4">
+                                                                        <label class="col-md-12 p-0"><b>Payment Month <span class="text-danger">*</span></b></label>
+
+                                                                        <div class="col-sm-12 border-bottom">
+                                                                            <select class="form-select shadow-none p-0 border-0 form-control-line" name="payment_month" required>
+                                                                                <option>Select Payment Month</option>
+                                                                                <option value="1">January</option>
+                                                                                <option value="2">February</option>
+                                                                                <option value="3">March</option>
+                                                                                <option value="4">April</option>
+                                                                                <option value="5">May</option>
+                                                                                <option value="6">June</option>
+                                                                                <option value="7">July</option>
+                                                                                <option value="8">August</option>
+                                                                                <option value="9">September</option>
+                                                                                <option value="10">October</option>
+                                                                                <option value="11">November</option>
+                                                                                <option value="12">December</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                    
+                                                                    <div class="form-group mb-4">
+                                                                        <label class="col-md-12 p-0"><b>Payment Year <span class="text-danger">*</span></b></label>
+                                                                        <div class="col-md-12 border-bottom p-0">
+                                                                            <input type="text" placeholder="SET Payment Year"
+                                                                                class="form-control p-0 border-0" name="payment_year" required> 
+                                                                            </div>
+                                                                    </div>
+
+                                                                    <div class="form-group mb-4">
+                                                                        <div class="col-sm-12">
+                                                                            <button class="btn btn-success">Save</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            {{-- <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save</button>
+                                                            </div> --}}
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                                 <td>
                                                     @if($order->order_status == 1)
                                                         <span class="text-success"> <b>Active</b> </span>

@@ -20,6 +20,8 @@
     <link rel="stylesheet"
         href="{{asset('admin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css')}}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
     <!-- Custom CSS -->
     <link href="{{asset('admin/css/style.min.css')}}" rel="stylesheet">
 
@@ -30,11 +32,12 @@
     <script src="https:////cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{asset('admin/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+    {{-- <script src="{{asset('admin/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script> --}}
 
     <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 
     <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
     {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.9/sweetalert2.min.js"></script> --}}
 </head>
 
@@ -264,7 +267,51 @@
         });
         
     </script>
-    
+    <script>
+        let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+  
+          elems.forEach(function(html) {
+              let switchery = new Switchery(html,  { size: 'small' });
+          });
+      </script>
+  
+      <script>
+        $(document).ready(function(){
+          $('.js-switch').change(function () {
+              let status = $(this).prop('checked') === true ? 1 : 0;
+              let userId = $(this).data('id');
+              swal({
+                    // title: 'Are you sure?',
+                    text: "Notification will be sent to the admin about the status.",
+                    icon: "info",
+                    // buttons: ["Cancel", "Yes!"],
+                    buttons: true,
+                    // dangerMode: true,
+                }).then(function(value) {
+                    if (value) {
+                      $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        url: '{{ route('users.update.status') }}',
+                        data: {'online_status': status, 'user_id': userId},
+                        success: function (data) {
+                            swal("Notification Has Been Sent.", {
+                              icon: "success",
+                            });
+                            // toastr.options.closeButton = true;
+                            // toastr.options.closeMethod = 'fadeOut';
+                            // toastr.options.closeDuration = 100;
+                            // toastr.success(data.message);
+                            window.location.href = url;
+                        }
+                    });
+                        
+                  }
+              });
+              
+          });
+      });
+      </script>  
 </body>
 
 </html>
