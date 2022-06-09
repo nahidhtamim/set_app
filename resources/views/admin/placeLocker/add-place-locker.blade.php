@@ -1,6 +1,6 @@
 @extends('layouts.admin')
  @section('title')
- Add Sport - SET Admin Panel
+ Add Place Locker - SET Admin Panel
  @endsection
 @section('contents')
             
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Sports</h4>
+                        <h4 class="page-title">Place Lockers</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="{{url('/add-sport')}}" class="fw-normal">Add Sport</a></li>
+                                <li><a href="{{url('/add-place-locker')}}" class="fw-normal">Add Place Locker</a></li>
                             </ol>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                         <th><label class=""><b>Locker <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Name <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Code <span class="text-danger">*</span></b></label></th>
-                                        <th><label class=""><b>Status <span class="text-danger">*</span></b></label></th>
+                                        {{-- <th><label class=""><b>Status <span class="text-danger">*</span></b></label></th> --}}
                                     </tr>
                                 </thead>
                                 <tbody id="data_row">
@@ -85,13 +85,13 @@
                                             <input type="text" placeholder="SET Code"
                                             class="form-control p-0 border-0" name="code[]" required> 
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <select id="inputState" class="form-select shadow-none p-0 border-0" name="status[]" required>
                                                 <option>SET Active Status</option>
                                                 <option value="1">Active</option>
                                                 <option value="0">Deactive</option>
                                             </select>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                     <tr id="locker_row1"></tr>
                                 </tbody>

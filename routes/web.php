@@ -67,6 +67,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-service/{id}', [ServicesController::class, 'editService']);
    Route::post('/update-service/{id}', [ServicesController::class, 'updateService']);
    Route::get('/delete-service/{id}', [ServicesController::class, 'deleteService']);
+   Route::get('/service-active/{id}', [ServicesController::class, 'active']);
+   Route::get('/service-deactive/{id}', [ServicesController::class, 'deactive']);
 
 
    // Places Routes
@@ -76,6 +78,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-place/{id}', [PlacesController::class, 'editPlace']);
    Route::post('/update-place/{id}', [PlacesController::class, 'updatePlace']);
    Route::get('/delete-place/{id}', [PlacesController::class, 'deletePlace']);
+   Route::get('/place-active/{id}', [PlacesController::class, 'active']);
+   Route::get('/place-deactive/{id}', [PlacesController::class, 'deactive']);
 
    // Lockers Routes
    Route::get('/lockers', [LockersController::class, 'index']);
@@ -84,6 +88,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-locker/{id}', [LockersController::class, 'editLocker']);
    Route::post('/update-locker/{id}', [LockersController::class, 'updateLocker']);
    Route::get('/delete-locker/{id}', [LockersController::class, 'deleteLocker']);
+   Route::get('/locker-active/{id}', [LockersController::class, 'active']);
+   Route::get('/locker-deactive/{id}', [LockersController::class, 'deactive']);
 
    // Sports Routes
    Route::get('/sports', [SportsController::class, 'index']);
@@ -92,6 +98,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-sport/{id}', [SportsController::class, 'editSport']);
    Route::post('/update-sport/{id}', [SportsController::class, 'updateSport']);
    Route::get('/delete-sport/{id}', [SportsController::class, 'deleteSport']);
+   Route::get('/sport-active/{id}', [SportsController::class, 'active']);
+   Route::get('/sport-deactive/{id}', [SportsController::class, 'deactive']);
 
    // Place Lockers Routes
    Route::get('/place-services', [PlaceServicesController::class, 'index']);
@@ -100,6 +108,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-place-service/{id}', [PlaceServicesController::class, 'editPlaceService']);
    Route::post('/update-place-service/{id}', [PlaceServicesController::class, 'updatePlaceService']);
    Route::get('/delete-place-service/{id}', [PlaceServicesController::class, 'deletePlaceService']);
+   Route::get('/place-service-active/{id}', [PlaceServicesController::class, 'active']);
+   Route::get('/place-service-deactive/{id}', [PlaceServicesController::class, 'deactive']);
 
    // Place Lockers Routes
    Route::get('/place-lockers', [PlaceLockersController::class, 'index']);
@@ -109,6 +119,8 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::post('/update-place-locker/{id}', [PlaceLockersController::class, 'updatePlaceLocker']);
    Route::get('/delete-place-locker/{id}', [PlaceLockersController::class, 'deletePlaceLocker']);
    Route::post('getPlaceServices',[PlaceLockersController::class,'getPlaceServices'])->name('getPlaceServices');
+   Route::get('/place-locker-active/{id}', [PlaceLockersController::class, 'active']);
+   Route::get('/place-locker-deactive/{id}', [PlaceLockersController::class, 'deactive']);
 
 
    // Orders Routes
@@ -122,8 +134,17 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 
    // Users Routes
    Route::get('/users', [UserController::class, 'index']);
+   Route::get('/edit-user/{id}', [UserController::class, 'editUser']);
+   Route::post('/update-user/{id}', [UserController::class, 'updateUser']);
+   Route::post('/update-password/{id}', [UserController::class, 'updatePassword']);
+   Route::get('/user-active/{id}', [UserController::class, 'active']);
+   Route::get('/user-deactive/{id}', [UserController::class, 'deactive']);
 
    // Payments Routes
-   Route::get('/payments/{id}', [PaymentController::class, 'index']);
+   Route::get('/order-payments/{id}', [PaymentController::class, 'index']);
    Route::post('/save-payment', [PaymentController::class, 'savePayment']);
+   Route::get('/payment-details/{id}', [PaymentController::class, 'paymentDetails']);
+   Route::get('/edit-payment/{id}', [PaymentController::class, 'editPayment']);
+   Route::post('/update-payment/{id}', [PaymentController::class, 'updatePayment']);
+   Route::get('/delete-payment/{id}', [PaymentController::class, 'deletePayment']);
 });

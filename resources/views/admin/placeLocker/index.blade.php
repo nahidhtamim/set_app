@@ -10,7 +10,7 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">Place Lockers</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
@@ -18,7 +18,7 @@
                                 <li><a href="{{url('/place-lockers')}}" class="fw-normal">Place Lockers</a></li>
                             </ol>
                             <a href="{{url('/add-place-locker')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place Lockers
+                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place Locker
                                 </a>
                         </div>
                     </div>
@@ -76,8 +76,14 @@
                                             <td>
                                                 @if($placeLocker->status == 1)
                                                 Active
+                                                <a href="{{url('place-locker-deactive/'.$placeLocker->id)}}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactive The Place Locker">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </a>
                                                 @elseif($placeLocker->status == 0)
                                                 Deactive
+                                                <a href="{{url('place-locker-active/'.$placeLocker->id)}}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Place Locker">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                </a>
                                                 @endif
                                             </td>
                                             <td>

@@ -100,6 +100,8 @@
     @include('layouts.frontend_includes.footer')
     <!-- ***** Main Area End ***** -->
 
+
+    
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
     

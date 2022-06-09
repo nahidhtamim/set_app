@@ -1,6 +1,6 @@
 @extends('layouts.admin')
  @section('title')
- Edit Locker - SET Admin Panel
+ Edit Order - SET Admin Panel
  @endsection
 @section('contents')
             

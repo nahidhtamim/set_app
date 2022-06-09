@@ -36,7 +36,7 @@ class PlaceLockersController extends Controller
         $locker_id = $request->locker_id;
         $name = $request->name;
         $code = $request->code;
-        $status = $request->status;
+        $status = '1';
         // $selection_id = $$selection->id;
         for($i = 0; $i < count($name); $i++){
             $datasave = [
@@ -70,7 +70,6 @@ class PlaceLockersController extends Controller
         $placeLocker->locker_id = $request->input('locker_id');
         $placeLocker->name = $request->input('name');
         $placeLocker->code = $request->input('code');
-        $placeLocker->status = $request->input('status');
         $placeLocker->update();
         return redirect('/place-lockers')->with('status', 'Place Locker Updated Successfully');
     }
@@ -86,5 +85,22 @@ class PlaceLockersController extends Controller
     {
         $placeService=PlaceService::where('place_id', $request->place_id)->orderBy('name')->get();
         return $placeService;
+    }
+
+
+    public function active($id)
+    {
+        $placeLocker = PlaceLocker::find($id);
+        $placeLocker->status = '1';
+        $placeLocker->update();
+        return redirect()->back()->with('status', 'Item Activated');
+    }
+
+    public function deactive($id)
+    {
+        $placeLocker = PlaceLocker::find($id);
+        $placeLocker->status = '0';
+        $placeLocker->update();
+        return redirect()->back()->with('warning', 'Item De-activated');
     }
 }

@@ -21,7 +21,7 @@ class SportsController extends Controller
         $sport = new Sport();
         $sport->sport_name = $request->input('sport_name');
         $sport->sport_description = $request->input('sport_description');
-        $sport->sport_status = $request->input('sport_status');
+        $sport->sport_status = '1';
         $sport->save();
         return redirect('/sports')->with('status', 'Sport Added Successfully');
     }
@@ -35,7 +35,6 @@ class SportsController extends Controller
         $sport = Sport::find($id);
         $sport->sport_name = $request->input('sport_name');
         $sport->sport_description = $request->input('sport_description');
-        $sport->sport_status = $request->input('sport_status');
         $sport->update();
         return redirect('/sports')->with('status', 'Sport Updated Successfully');
     }
@@ -44,5 +43,21 @@ class SportsController extends Controller
         $sport = Sport::find($id);
         $sport->delete();
         return redirect('/sports')->with('warning', 'Sport Deleted Successfully');
+    }
+
+    public function active($id)
+    {
+        $sport = Sport::find($id);
+        $sport->sport_status = '1';
+        $sport->update();
+        return redirect()->back()->with('status', 'Item Activated');
+    }
+
+    public function deactive($id)
+    {
+        $sport = Sport::find($id);
+        $sport->sport_status = '0';
+        $sport->update();
+        return redirect()->back()->with('warning', 'Item De-activated');
     }
 }

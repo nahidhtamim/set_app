@@ -10,14 +10,14 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">Places</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
                                 <li><a href="{{url('/places')}}" class="fw-normal">Places</a></li>
                             </ol>
-                            <a href="{{url('/add-place')}}"class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Places</a>
+                            <a href="{{url('/add-place')}}"class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place</a>
                         </div>
                     </div>
                 </div>
@@ -68,8 +68,14 @@
                                             <td>
                                                 @if($place->place_status == 1)
                                                 Active
+                                                <a href="{{url('place-deactive/'.$place->id)}}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactive The Place">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </a>
                                                 @elseif($place->place_status == 0)
                                                 Deactive
+                                                <a href="{{url('place-active/'.$place->id)}}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Place">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                </a>
                                                 @endif
                                             </td>
                                             <td>

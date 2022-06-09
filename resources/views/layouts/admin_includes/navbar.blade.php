@@ -49,8 +49,8 @@
                 </li>
                 <li>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown button
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li><a class="dropdown-item" href="#">Action</a></li>
@@ -63,7 +63,7 @@
                 <!-- User profile and search -->
                 <!-- ============================================================== -->
                 <li>
-                    <a class="profile-pic" href="#">
+                    <a class="profile-pic" href="{{url('/edit-user/'.Auth::user()->id)}}">
                         <img src="{{ asset('/uploads/avatars/'.Auth::user()->image) }}" alt="user-img" width="36"
                             class="img-circle"><span class="text-white font-medium">{{Auth::user()->name}}</span></a>
                 </li>

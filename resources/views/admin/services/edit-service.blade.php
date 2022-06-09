@@ -74,7 +74,7 @@
                                         </textarea>
                                     </div>
                                 </div>
-                                <div class="form-group mb-4">
+                                {{-- <div class="form-group mb-4">
                                     <label class="col-sm-12"><b>Service Status <span class="text-danger">*</span></b></label>
 
                                     <div class="col-sm-12 border-bottom">
@@ -90,7 +90,7 @@
                                             <option value="0">Deactive</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group mb-4">
                                     <div class="col-sm-12">
                                         <button class="btn btn-success">Update</button>

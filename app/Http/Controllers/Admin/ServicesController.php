@@ -25,7 +25,7 @@ class ServicesController extends Controller
         $service->service_price = $request->input('service_price');
         $service->short_desc = $request->input('short_desc');
         $service->long_desc = $request->input('long_desc');
-        $service->service_status = $request->input('service_status');
+        $service->service_status = '1';
         if($request->hasFile('service_image')){
             $service_image = $request->file('service_image');
             $fileName = time(). '.' .$service_image->getClientOriginalExtension();
@@ -48,7 +48,6 @@ class ServicesController extends Controller
         $service->service_price = $request->input('service_price');
         $service->short_desc = $request->input('short_desc');
         $service->long_desc = $request->input('long_desc');
-        $service->service_status = $request->input('service_status');
         if($request->hasFile('service_image')){
             $service_image = $request->file('service_image');
             $fileName = time(). '.' .$service_image->getClientOriginalExtension();
@@ -63,5 +62,22 @@ class ServicesController extends Controller
         $service = Service::find($id);
         $service->delete();
         return redirect('/services')->with('warning', 'Service Deleted Successfully');
+    }
+
+
+    public function active($id)
+    {
+        $service = Service::find($id);
+        $service->service_status = '1';
+        $service->update();
+        return redirect()->back()->with('status', 'Item Activated');
+    }
+
+    public function deactive($id)
+    {
+        $service = Service::find($id);
+        $service->service_status = '0';
+        $service->update();
+        return redirect()->back()->with('warning', 'Item De-activated');
     }
 }

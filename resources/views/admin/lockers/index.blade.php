@@ -10,7 +10,7 @@ Lockers - SET Admin Panel
 <div class="page-breadcrumb bg-white">
     <div class="row align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Dashboard</h4>
+            <h4 class="page-title">Lockers</h4>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
@@ -19,7 +19,7 @@ Lockers - SET Admin Panel
                 </ol>
                 <a href="{{ url('/add-locker') }}"
                     class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add
-                    lockers
+                    Locker
                 </a>
             </div>
         </div>
@@ -72,23 +72,25 @@ Lockers - SET Admin Panel
                                 <td>{!!$locker->locker_description!!}</td>
                                 <td>
                                     @if($locker->locker_status == 1)
-                                    Active
+                                    Active 
+                                    <a href="{{url('locker-deactive/'.$locker->id)}}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactive The Locker">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
                                     @elseif($locker->locker_status == 0)
                                     Deactive
+                                    <a href="{{url('locker-active/'.$locker->id)}}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Locker">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </a>
                                     @endif
                                 </td>
                                 <td>
                                     <a href="{{ url('/edit-locker/'.$locker->id) }}"
                                         class="btn btn-info text-white">Edit
                                     </a>
-                                    {{-- <a href="javascript:void(0)" id="show-user"
-                                        data-url="{{ url('/delete-locker/'.$locker->id) }}"
-                                        class="btn btn-danger text-white deleteBtn">Delete</a> --}}
-                                    <a 
-                                        href="{{ url('/delete-locker/'.$locker->id) }}"
+                                    <a href="{{ url('/delete-locker/'.$locker->id) }}"
                                     class="btn btn-danger text-white deleteBtn">Delete
                                     </a>
-                                    {{ $locker->created_at->diffForHumans() }}
+                                    {{-- {{ $locker->created_at->diffForHumans() }} --}}
                                 </td>
                             </tr>
                             @endforeach

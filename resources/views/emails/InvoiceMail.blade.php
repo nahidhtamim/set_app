@@ -180,7 +180,33 @@
 
   <div id="headerimage"></div>
   <div id="invoice" class="effect2">
-    
+    <div class="header" style="text-align: center;">
+      @if ($details['month'] == '1' )
+      <h1>Invoice - January </h1>
+      @elseif ($details['month'] == '2' )
+      <h1>Invoice - February </h1>
+      @elseif ($details['month'] == '3' )
+      <h1>Invoice - March </h1>
+      @elseif ($details['month'] == '4' )
+      <h1>Invoice - April </h1>
+      @elseif ($details['month'] == '5' )
+      <h1>Invoice - May </h1>
+      @elseif ($details['month'] == '6' )
+      <h1>Invoice - June </h1>
+      @elseif ($details['month'] == '7' )
+      <h1>Invoice - July </h1>
+      @elseif ($details['month'] == '8' )
+      <h1>Invoice - August </h1>
+      @elseif ($details['month'] == '9' )
+      <h1>Invoice - September </h1>
+      @elseif ($details['month'] == '10' )
+      <h1>Invoice - October </h1>
+      @elseif ($details['month'] == '11' )
+      <h1>Invoice - November </h1>
+      @else
+      <h1>Invoice - December </h1>
+      @endif
+    </div>
     <div id="invoice-top">
       <div class="logo" style="background: url({{asset('frontend/assets/images/logo.png')}}); width:50px;"></div>
       <div class="info">

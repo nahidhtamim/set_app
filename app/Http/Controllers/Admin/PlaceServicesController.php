@@ -31,7 +31,7 @@ class placeServicesController extends Controller
         $service_id = $request->service_id;
         $name = $request->name;
         $code = $request->code;
-        $status = $request->status;
+        $status = '1';
         // $selection_id = $$selection->id;
         for($i = 0; $i < count($name); $i++){
             $datasave = [
@@ -61,7 +61,6 @@ class placeServicesController extends Controller
         $placeService->service_id = $request->input('service_id');
         $placeService->name = $request->input('name');
         $placeService->code = $request->input('code');
-        $placeService->status = $request->input('status');
         $placeService->update();
         return redirect('/place-services')->with('status', 'Place Service Updated Successfully');
     }
@@ -70,5 +69,21 @@ class placeServicesController extends Controller
         $placeService = PlaceService::find($id);
         $placeService->delete();
         return redirect('/place-services')->with('warning', 'Place Service Deleted Successfully');
+    }
+
+    public function active($id)
+    {
+        $placeService = PlaceService::find($id);
+        $placeService->status = '1';
+        $placeService->update();
+        return redirect()->back()->with('status', 'Item Activated');
+    }
+
+    public function deactive($id)
+    {
+        $placeService = PlaceService::find($id);
+        $placeService->status = '0';
+        $placeService->update();
+        return redirect()->back()->with('warning', 'Item De-activated');
     }
 }

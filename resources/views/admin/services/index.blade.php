@@ -10,7 +10,7 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">Services</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
@@ -18,7 +18,7 @@
                                 <li><a href="{{url('/services')}}" class="fw-normal">Services</a></li>
                             </ol>
                             <a href="{{url('/add-service')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Services
+                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Service
                                 </a>
                         </div>
                     </div>
@@ -76,8 +76,14 @@
                                             <td>
                                                 @if($service->service_status == 1)
                                                 Active
+                                                <a href="{{url('service-deactive/'.$service->id)}}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactive The Service">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </a>
                                                 @elseif($service->service_status == 0)
                                                 Deactive
+                                                <a href="{{url('service-active/'.$service->id)}}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Service">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                </a>
                                                 @endif
                                             </td>
                                             <td>

@@ -10,7 +10,7 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">Orders</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
@@ -75,7 +75,7 @@
                                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                                     </button>
-                                                    <a href="{{url('payments/'.$order->id)}}" class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments List">
+                                                    <a href="{{url('order-payments/'.$order->id)}}" class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments List">
                                                         <i class="fa fa-list" aria-hidden="true"></i>
                                                     </a>
                                                     <!-- Modal -->

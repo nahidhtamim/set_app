@@ -22,7 +22,7 @@ class LockersController extends Controller
         $locker->locker_name = $request->input('locker_name');
         $locker->locker_size = $request->input('locker_size');
         $locker->locker_description = $request->input('locker_description');
-        $locker->locker_status = $request->input('locker_status');
+        $locker->locker_status = '1';
         $locker->save();
         return redirect('/lockers')->with('status', 'Locker Added Successfully');
     }
@@ -37,7 +37,6 @@ class LockersController extends Controller
         $locker->locker_name = $request->input('locker_name');
         $locker->locker_size = $request->input('locker_size');
         $locker->locker_description = $request->input('locker_description');
-        $locker->locker_status = $request->input('locker_status');
         $locker->update();
         return redirect('/lockers')->with('status', 'Locker Updated Successfully');
     }
@@ -46,5 +45,21 @@ class LockersController extends Controller
         $locker = Locker::find($id);
         $locker->delete();
         return redirect('/lockers')->with('warning', 'Locker Deleted Successfully');
+    }
+
+    public function active($id)
+    {
+        $locker = Locker::find($id);
+        $locker->locker_status = '1';
+        $locker->update();
+        return redirect()->back()->with('status', 'Item Activated');
+    }
+
+    public function deactive($id)
+    {
+        $locker = Locker::find($id);
+        $locker->locker_status = '0';
+        $locker->update();
+        return redirect()->back()->with('warning', 'Item De-activated');
     }
 }
