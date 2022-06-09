@@ -76,13 +76,13 @@
                                             <input type="text" placeholder="SET Code"
                                             class="form-control p-0 border-0" name="code[]" required> 
                                         </td>
-                                        {{-- <td>
+                                        <td>
                                             <select id="inputState" class="form-select shadow-none p-0 border-0" name="status[]" required>
                                                 <option>SET Active Status</option>
                                                 <option value="1">Active</option>
                                                 <option value="0">Deactive</option>
                                             </select>
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                     <tr id="locker_row1"></tr>
                                 </tbody>

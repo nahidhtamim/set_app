@@ -31,7 +31,7 @@ class placeServicesController extends Controller
         $service_id = $request->service_id;
         $name = $request->name;
         $code = $request->code;
-        $status = '1';
+        $status = $request->status;
         // $selection_id = $$selection->id;
         for($i = 0; $i < count($name); $i++){
             $datasave = [
