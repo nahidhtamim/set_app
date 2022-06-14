@@ -98,11 +98,11 @@
                                                 {{-- <a href="{{url('/edit-payment/'.$op->id)}}"
                                                 class="btn btn-info text-white">Edit
                                                 </a> --}}
-                                                <a href="{{url('/payment-details/'.$op->id)}}"
+                                                <a href="{{url('payment-details/'.$op->id)}}"
                                                     class="btn btn-info text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="View Invoice">
                                                     <i class="fa fa-file-pdf" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{url('/delete-payment/'.$op->id)}}"
+                                                <a href="{{url('delete-payment/'.$op->id)}}"
                                                 class="btn btn-danger text-white deleteBtn">Delete
                                                 </a>
                                             </td>

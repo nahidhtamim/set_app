@@ -77,9 +77,7 @@ class PaymentController extends Controller
             'l.locker_name As l_name',
             'pl.name As pl_name',
             'pl.code As pl_code',
-        ])->get();
-        //$order = OrderPayment::find($id);
-        //$order = DB::table('order_payments AS op')->where('op.id', $id)->get(['op.*']);
+        ])->first();
         return view('admin.orders.payment-invoice', compact('op'));
     }
 

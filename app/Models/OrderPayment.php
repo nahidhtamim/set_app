@@ -29,4 +29,9 @@ class OrderPayment extends Model
     {
         return $this->belongsTo(Order::class,'order_id','id');
     }
+
+    public function order_details()
+    {
+        return $this->belongsTo(Order::class,'order_id','id');
+    }
 }
