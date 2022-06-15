@@ -12,13 +12,13 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
-                {{-- <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html"
+                <li class="sidebar-item pt-2">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/notifications')}}"
                         aria-expanded="false">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <span class="hide-menu">Profile</span>
+                        <i class="far fa-clock" aria-hidden="true"></i>
+                        <span class="hide-menu">Notifications</span>
                     </a>
-                </li> --}}
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/sports')}}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Sports">

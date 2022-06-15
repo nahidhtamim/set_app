@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\SportsController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\LockersController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ServicesController;
@@ -147,4 +148,9 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/edit-payment/{id}', [PaymentController::class, 'editPayment']);
    Route::post('/update-payment/{id}', [PaymentController::class, 'updatePayment']);
    Route::get('/delete-payment/{id}', [PaymentController::class, 'deletePayment']);
+
+   // Users Routes
+   Route::get('/notifications', [NotificationController::class, 'index']); 
+   Route::get('read-status/{id}', [NotificationController::class, 'readStatus']);
+   Route::get('delete-status/{id}', [NotificationController::class, 'deleteStatus']);
 });

@@ -131,6 +131,11 @@
             $('#table').DataTable();
         } );
     </script>
+    <script>
+        $(document).ready( function () {
+            $('#read_table').DataTable();
+        } );
+    </script>
     <script> 
         $(document).ready(function(){
           let row_number = 1;
@@ -184,7 +189,7 @@
                 const url = $(this).attr('href');
                 swal({
                     title: 'Are you sure?',
-                    text: "Once deleted, you will not be able to recover this order!",
+                    text: "Once deleted, you will not be able to recover this record!",
                     icon: "warning",
                     // buttons: ["Cancel", "Yes!"],
                     buttons: true,
@@ -312,6 +317,24 @@
           });
       });
       </script>  
+
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+</script>
+        
+
 </body>
 
 </html>

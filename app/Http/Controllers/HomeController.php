@@ -39,13 +39,17 @@ class HomeController extends Controller
     
     public function index()
     {
-        return view('home');
+        $online_status = DB::table('online_statuses')->where('customer_id', Auth::user()->id)->latest('online_status')->first();
+        return view('home', compact('online_status'));
     }
 
     public function updateStatus(Request $request)
     {
-        $user = User::findOrFail($request->user_id);
+        // $user = User::findOrFail($request->user_id);
+        $user = new OnlineStatus();
         $user->online_status = $request->online_status;
+        $user->customer_id = Auth::user()->id;
+        $user->read_at = '0';
         $user->save();
 
         return response()->json(['status' => 'User status updated successfully.']);
@@ -53,8 +57,9 @@ class HomeController extends Controller
 
     public function myProfile()
     {
+        $online_status = DB::table('online_statuses')->where('customer_id', Auth::user()->id)->latest('online_status')->first();
         $profile = User::find(Auth::user()->id);
-        return view('frontend.profile', compact('profile'));
+        return view('frontend.profile', compact('profile', 'online_status'));
     }
 
     public function updateDetails(Request $request)
@@ -96,11 +101,12 @@ class HomeController extends Controller
 
     public function orderForm()
     {
+        $online_status = DB::table('online_statuses')->where('customer_id', Auth::user()->id)->latest('online_status')->first();
         // $services = PlaceService::all();
         $places = Place::all();
         // $lockers = PlaceLocker::all();
         $sports = Sport::all();
-        return view('frontend.order-form', compact('places', 'sports'));
+        return view('frontend.order-form', compact('places', 'sports', 'online_status'));
         //return view('frontend.order-form', compact('services', 'places', 'lockers', 'sports'));
     }
 
@@ -127,8 +133,8 @@ class HomeController extends Controller
             'pl.name As pl_name',
             'pl.code As pl_code',
         ]);
-
-        return view('frontend.order', compact('orders'));
+        $online_status = DB::table('online_statuses')->where('customer_id', Auth::user()->id)->latest('online_status')->first();
+        return view('frontend.order', compact('orders', 'online_status'));
     }
 
     public function saveOrder(Request $request)

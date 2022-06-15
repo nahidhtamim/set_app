@@ -15,10 +15,26 @@
           @if(isset(Auth::user()->name)) 
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <input type="checkbox" data-id="{{ Auth::user()->id }}" name="status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}>
-          </a>
-            
+              <input type="checkbox" data-id="{{ Auth::user()->id }}" name="online_status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}>
+            </a>
           </li>
+          {{-- @if(isset($online_status == '1')) 
+          <li class="nav-item">
+            <form action="{{url('/deactive-user')}}" method="POST">
+              <input type="hidden" value="{{ Auth::user()->id }}" name="customer_id">
+              <input type="hidden" value="0" name="online_status">
+              <a type="submit" class=""><i class="fa fa-toggle-on text-success"></i></a>
+            </form>
+          </li>
+          @elseif(isset($online_status == '0')) 
+          <li class="nav-item">
+            <form action="{{url('/deactive-user')}}" method="POST">
+              <input type="hidden" value="{{ Auth::user()->id }}" name="customer_id">
+              <input type="hidden" value="0" name="online_status">
+              <a type="submit" class=""><i class="fa fa-toggle-on text-success"></i></a>
+            </form>
+          </li>
+          @endif --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-user"></i>
