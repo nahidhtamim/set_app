@@ -49,9 +49,9 @@
 
                             <div class="table-responsive">
                                  <!-- Tab links -->
-                                <div class="tab">
-                                    <button class="tablinks" onclick="openCity(event, 'London')">Unread</button>
-                                    <button class="tablinks" onclick="openCity(event, 'Paris')">Read</button>
+                                <div class="tab text-center">
+                                    <button class="tablinks" onclick="openCity(event, 'London')"> <span class=" btn btn-info">Unread</span> </button>
+                                    <button class="tablinks" onclick="openCity(event, 'Paris')"><span class=" btn btn-success">Read</span> </button>
                                 </div>
                                 
                                 <!-- Tab content -->

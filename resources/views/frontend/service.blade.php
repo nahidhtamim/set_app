@@ -34,7 +34,7 @@
               <div class="meeting-single-item">
                 <div class="thumb">
                   <div class="price">
-                    <span>${{$service->service_price}}.00</span>
+                    <span>{{$service->service_price}}.00€</span>
                   </div>
                   {{-- <div class="date">
                     <h6>Nov <span>12</span></h6>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="down-content">
                   <h4>{{$service->service_name}}</h4>
-                  <p>${{$service->service_price}}.00</p>
+                  <p>{{$service->service_price}}.00€</p>
                   <br>
                   <p>{{$service->short_desc}}</p>
                   <hr>

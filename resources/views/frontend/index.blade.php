@@ -98,6 +98,14 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="section-heading">
+          <a class="nav-link" href="#">
+            <input type="checkbox" data-id="{{ Auth::user()->id }}" name="online_status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}>
+          </a>
+        </div>
+      </div>
+      
+      <div class="col-lg-12">
+        <div class="section-heading">
           <h2>Our Offerings</h2>
         </div>
       </div>
@@ -108,7 +116,7 @@
             <div class="meeting-item">
               <div class="thumb">
                 <div class="price">
-                  <span>${{$service->service_price}}.00</span>
+                  <span>{{$service->service_price}}.00€</span>
                 </div>
                 <a href="meeting-details.html"><img src="/uploads/services/{{$service->service_image}}" alt="{{$service->service_name}}"></a>
               </div>
@@ -136,7 +144,7 @@
             <div class="meeting-item">
               <div class="thumb">
                 <div class="price">
-                  <span>$48.00</span>
+                  <span>Contact</span>
                 </div>
                 <a href="#"><img src="{{asset('frontend/assets/images/meeting-04.jpg')}}" alt="Student Training"></a>
               </div>

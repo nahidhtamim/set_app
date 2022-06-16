@@ -5,8 +5,11 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="TemplateMo">
+    <meta name="keywords"
+        content="Laundry, Service, Sports, Gym, Football, Tennis, SET">
+    <meta name="description"
+        content="SET - A Premium Sports Laundry Service">
+    <meta name="author" content="SET.com">
     <link href="//fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
     <title>@yield('title')</title>

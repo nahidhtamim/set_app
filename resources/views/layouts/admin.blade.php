@@ -7,9 +7,9 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords"
-        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+        content="Laundry, Service, Sports, Gym, Football, Tennis, SET">
     <meta name="description"
-        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+        content="SET - A Premium Sports Laundry Service">
     <meta name="robots" content="noindex,nofollow">
     <title>@yield('title')</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />

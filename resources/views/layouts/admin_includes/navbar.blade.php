@@ -42,22 +42,10 @@
                 <li class=" in">
                     <form role="search" class="app-search d-none d-md-block me-3">
                         <input type="text" placeholder="Search..." class="form-control mt-0">
-                        <a href="" class="active">
+                        <a href="#" class="active">
                             <i class="fa fa-search"></i>
                         </a>
                     </form>
-                </li>
-                <li>
-                    <div class="dropdown">
-                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-bell"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
                 </li>
                 <!-- ============================================================== -->
                 <!-- User profile and search -->

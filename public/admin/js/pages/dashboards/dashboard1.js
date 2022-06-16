@@ -4,7 +4,7 @@ Author: Wrappixel
 Email: niravjoshi87@gmail.com
 File: js
 */
-$(function () {
+$(function() {
     "use strict";
     // ============================================================== 
     // Newsletter
@@ -14,8 +14,8 @@ $(function () {
     new Chartist.Line('#ct-visits', {
         labels: ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015'],
         series: [
-            [5, 2, 7, 4, 5, 3, 5, 4]
-            , [2, 5, 2, 6, 2, 5, 2, 4]
+            [5, 2, 7, 4, 5, 3, 5, 4],
+            [2, 5, 2, 6, 2, 5, 2, 4]
         ]
     }, {
         top: 0,
@@ -26,7 +26,7 @@ $(function () {
             Chartist.plugins.tooltip()
         ],
         axisY: {
-            labelInterpolationFnc: function (value) {
+            labelInterpolationFnc: function(value) {
                 return (value / 1) + 'k';
             }
         },
@@ -36,7 +36,7 @@ $(function () {
 
     var chart = [chart];
 
-    var sparklineLogin = function () {
+    var sparklineLogin = function() {
         $('#sparklinedash').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
             type: 'bar',
             height: '30',
@@ -69,13 +69,27 @@ $(function () {
             barSpacing: '5',
             barColor: '#f33155'
         });
+        $('#sparklinedash5').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+            type: 'bar',
+            height: '30',
+            barWidth: '4',
+            resize: true,
+            barSpacing: '5',
+            barColor: '#ff8c00'
+        });
+        $('#sparklinedash6').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+            type: 'bar',
+            height: '30',
+            barWidth: '4',
+            resize: true,
+            barSpacing: '5',
+            barColor: '#ffe500'
+        });
     }
     var sparkResize;
-    $(window).on("resize", function (e) {
+    $(window).on("resize", function(e) {
         clearTimeout(sparkResize);
         sparkResize = setTimeout(sparklineLogin, 500);
     });
     sparklineLogin();
 });
-
-

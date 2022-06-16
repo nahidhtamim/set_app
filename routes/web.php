@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -57,9 +58,7 @@ Route::post('getInfo',[HomeController::class,'getInfo'])->name('getInfo');
 
 Route::group(['middleware' => ['auth','isAdmin']], function () {
 
-   Route::get('/dashboard', function () {
-      return view('admin.dashboard');
-   });
+   Route::get('/dashboard', [DashboardController::class, 'index']);
 
    // Services Routes
    Route::get('/services', [ServicesController::class, 'index']);
