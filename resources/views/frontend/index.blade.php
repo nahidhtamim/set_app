@@ -7,10 +7,12 @@
 @if (session('status'))
     <div class="alert alert-success" role="alert">
          {{ session('status') }}
+         <a class="close">&times;</a>
     </div>
 @elseif (session('warning'))
     <div class="alert alert-danger" role="alert">
          {{ session('warning') }}
+         <a class="close">&times;</a>
     </div>    
 @endif
 
@@ -96,13 +98,13 @@
 <section class="upcoming-meetings" id="meetings">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12">
+      {{-- <div class="col-lg-12">
         <div class="section-heading">
           <a class="nav-link" href="#">
             <input type="checkbox" data-id="{{ Auth::user()->id }}" name="online_status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}>
           </a>
         </div>
-      </div>
+      </div> --}}
       
       <div class="col-lg-12">
         <div class="section-heading">
@@ -153,7 +155,7 @@
                   <h6><i class="fa fa-star-o" aria-hidden="true"></i>
                   </h6>
                 </div>
-                <a href="#"><h4>Set Custom</h4></a>
+                <a href="#contact"><h4>Set Custom</h4></a>
                 <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
               </div>
             </div>

@@ -7,10 +7,12 @@
 @if (session('status'))
     <div class="alert alert-success" role="alert">
          {{ session('status') }}
+         <a class="close">&times;</a>
     </div>
 @elseif (session('warning'))
     <div class="alert alert-danger" role="alert">
          {{ session('warning') }}
+         <a class="close">&times;</a>
     </div>    
 @endif
 
@@ -26,7 +28,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="about-area-content">
-                  <div class="count-digit">About-Us</div>
+                  <div class="count">About</div>
                   <div class="count-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit tenetur tempora illo consequuntur aperiam esse impedit distinctio eius incidunt ratione unde alias, a vitae aspernatur? Exercitationem id beatae corrupti vel!
                     <br>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit tenetur tempora illo consequuntur 

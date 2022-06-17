@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords"
@@ -30,6 +29,33 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <style>
+      .close {
+        margin-left: 15px;
+        color: #8c8c8c;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-width:1px;
+        border-style:solid;
+        border-radius:50%;
+      }
+
+      .close:hover {
+        color: black;
+      }
+      .dropdown-item:hover{
+        background: #8c8c8c;
+      }
+      button.navbar-toggler{
+        font-weight: bold;
+        background: #8c8c8c;
+      }
+    </style>
 
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
@@ -244,6 +270,13 @@
         elems.forEach(function(html) {
             let switchery = new Switchery(html,  { size: 'small' });
         });
+    </script>
+    <script>
+    $(".close").click(function() {
+      $(this)
+        .parent(".alert")
+        .fadeOut();
+    });
     </script>
 
     <script>

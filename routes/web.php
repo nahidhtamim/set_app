@@ -1,20 +1,23 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\SportsController;
-use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\LockersController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ServicesController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PlaceLockersController;
 use App\Http\Controllers\Admin\PlaceServicesController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,27 +39,31 @@ use App\Http\Controllers\Admin\PlaceServicesController;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/about', [FrontendController::class, 'about']);
 Route::get('/service/{id}', [FrontendController::class, 'service']);
-// Route::get('/order-form', [FrontendController::class, 'orderForm']);
+Route::post('/email', [MailController::class, 'sendEmail'])->name('send.email');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/status/update', [HomeController::class, 'updateStatus'])->name('users.update.status');
+Route::group(['middleware' => ['auth','verified']], function () {
 
-Route::get('/my-profile', [HomeController::class, 'myProfile'])->name('my-profile');
-Route::post('/update-details', [HomeController::class, 'updateDetails']);
-Route::post('/update-password', [HomeController::class, 'updatePassword']);
+   Route::get('/home', [HomeController::class, 'index'])->name('home');
+   Route::get('/status/update', [HomeController::class, 'updateStatus'])->name('users.update.status');
 
-Route::get('/my-orders', [HomeController::class, 'myOrders'])->name('my-orders');
-Route::get('/order-form', [HomeController::class, 'orderForm']);
-Route::post('/save-order', [HomeController::class, 'saveOrder']);
-Route::get('/request-closing/{id}', [HomeController::class, 'requestClosing']);
+   Route::get('/my-profile', [HomeController::class, 'myProfile'])->name('my-profile');
+   Route::post('/update-details', [HomeController::class, 'updateDetails']);
+   Route::post('/update-password', [HomeController::class, 'updatePassword']);
 
-Route::post('getServices',[HomeController::class,'getServices'])->name('getServices');
-Route::post('getLockers',[HomeController::class,'getLockers'])->name('getLockers');
-Route::post('getInfo',[HomeController::class,'getInfo'])->name('getInfo');
+   Route::get('/my-orders', [HomeController::class, 'myOrders'])->name('my-orders');
+   Route::get('/order-form', [HomeController::class, 'orderForm']);
+   Route::post('/save-order', [HomeController::class, 'saveOrder']);
+   Route::get('/request-closing/{id}', [HomeController::class, 'requestClosing']);
 
-Route::group(['middleware' => ['auth','isAdmin']], function () {
+   Route::post('getServices',[HomeController::class,'getServices'])->name('getServices');
+   Route::post('getLockers',[HomeController::class,'getLockers'])->name('getLockers');
+   Route::post('getInfo',[HomeController::class,'getInfo'])->name('getInfo');
+
+});
+
+Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
 
    Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -69,7 +76,6 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/delete-service/{id}', [ServicesController::class, 'deleteService']);
    Route::get('/service-active/{id}', [ServicesController::class, 'active']);
    Route::get('/service-deactive/{id}', [ServicesController::class, 'deactive']);
-
 
    // Places Routes
    Route::get('/places', [PlacesController::class, 'index']);
@@ -122,7 +128,6 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('/place-locker-active/{id}', [PlaceLockersController::class, 'active']);
    Route::get('/place-locker-deactive/{id}', [PlaceLockersController::class, 'deactive']);
 
-
    // Orders Routes
    Route::get('/orders', [OrderController::class, 'index']);
    Route::get('/edit-order/{id}', [OrderController::class, 'editOrder']);
@@ -153,3 +158,24 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
    Route::get('read-status/{id}', [NotificationController::class, 'readStatus']);
    Route::get('delete-status/{id}', [NotificationController::class, 'deleteStatus']);
 });
+
+
+
+//verifying email
+Route::get('/email/verify', function () {
+   return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+//sending verification email
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+   $request->fulfill();
+
+   return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+//re-sending verification email
+Route::post('/email/verification-notification', function (Request $request) {
+   $request->user()->sendEmailVerificationNotification();
+
+   return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

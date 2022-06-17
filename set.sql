@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2022 at 09:40 PM
+-- Generation Time: Jun 17, 2022 at 08:05 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -86,7 +86,110 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2022_04_11_193737_create_places_table', 3),
 (10, '2022_04_12_225658_create_lockers_table', 4),
 (11, '2022_04_18_180815_create_sports_table', 5),
-(12, '2022_04_23_181931_create_place_lockers_table', 6);
+(12, '2022_04_23_181931_create_place_lockers_table', 6),
+(13, '2022_04_26_181048_create_place_services_table', 7),
+(14, '2022_05_24_172837_create_orders_table', 8),
+(15, '2022_06_06_190500_create_online_statuses_table', 9),
+(16, '2022_06_08_110632_create_notifications_table', 10),
+(17, '2022_06_08_112419_create_order_payments_table', 10),
+(18, '2022_06_15_184732_create_online_statuses_table', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `online_statuses`
+--
+
+CREATE TABLE `online_statuses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `online_status` tinyint(4) NOT NULL,
+  `customer_id` tinyint(4) NOT NULL,
+  `read_at` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `online_statuses`
+--
+
+INSERT INTO `online_statuses` (`id`, `online_status`, `customer_id`, `read_at`, `created_at`, `updated_at`) VALUES
+(2, 1, 2, 0, '2022-06-15 13:49:27', '2022-06-15 13:49:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` tinyint(4) NOT NULL,
+  `sport_id` tinyint(4) NOT NULL,
+  `place_id` tinyint(4) NOT NULL,
+  `service_id` tinyint(4) NOT NULL,
+  `locker_id` tinyint(4) NOT NULL,
+  `shipping_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `customer_id`, `sport_id`, `place_id`, `service_id`, `locker_id`, `shipping_name`, `shipping_address`, `shipping_phone`, `shipping_email`, `billing_name`, `billing_address`, `billing_phone`, `billing_email`, `message`, `order_status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, 1, 11, 'Demo Customer', 'Demo Address', '123456789123', 'demo@gmail.com', 'Demo Customer', 'Demo Address', '123456789123', 'pohuistmc@gmailpro.cf', 'ADsadas', 1, '2022-05-31 10:30:47', '2022-06-06 13:01:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_payments`
+--
+
+CREATE TABLE `order_payments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` tinyint(4) NOT NULL,
+  `order_id` tinyint(4) NOT NULL,
+  `month` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_payments`
+--
+
+INSERT INTO `order_payments` (`id`, `customer_id`, `order_id`, `month`, `year`, `created_at`, `updated_at`) VALUES
+(3, 2, 1, '1', '2022', '2022-06-08 13:41:05', '2022-06-08 13:41:05'),
+(7, 2, 1, '2', '2022', '2022-06-08 14:22:53', '2022-06-08 14:22:53'),
+(9, 2, 1, '3', '2022', '2022-06-08 14:34:41', '2022-06-08 14:34:41'),
+(10, 2, 1, '6', '2022', '2022-06-08 14:46:44', '2022-06-08 14:46:44'),
+(13, 2, 1, '10', '2022', '2022-06-08 14:56:10', '2022-06-08 14:56:10'),
+(14, 2, 1, '12', '2022', '2022-06-08 14:58:25', '2022-06-08 14:58:25'),
+(15, 2, 1, '6', '2022', '2022-06-08 14:58:49', '2022-06-08 14:58:49');
 
 -- --------------------------------------------------------
 
@@ -165,9 +268,36 @@ CREATE TABLE `place_lockers` (
 --
 
 INSERT INTO `place_lockers` (`id`, `place_id`, `service_id`, `locker_id`, `name`, `code`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 2, 'Basic1', 'SBB1', 1, NULL, NULL),
-(2, 1, 1, 2, 'Basic2', 'SBB2', 1, NULL, NULL),
-(3, 1, 1, 2, 'Basic3', 'SBB3', 1, NULL, '2022-04-23 13:34:26');
+(11, 1, 1, 2, 'SBBasic1', 'SBB1', 1, NULL, NULL),
+(12, 1, 1, 2, 'SBBasic2', 'SBB2', 1, NULL, NULL),
+(13, 1, 2, 1, 'SBPro1', 'SBP1', 1, NULL, NULL),
+(14, 1, 2, 1, 'SBPro2', 'SBP2', 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `place_services`
+--
+
+CREATE TABLE `place_services` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `place_id` tinyint(4) NOT NULL,
+  `service_id` tinyint(4) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `place_services`
+--
+
+INSERT INTO `place_services` (`id`, `place_id`, `service_id`, `name`, `code`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'StuBasic', 'SB001', 1, NULL, NULL),
+(2, 1, 2, 'StuDemo', 'SD002', 1, NULL, NULL),
+(3, 1, 3, 'StuDummy', 'SD003', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -233,6 +363,11 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role_as` tinyint(4) NOT NULL DEFAULT 0,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png',
+  `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` int(191) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `online_status` tinyint(4) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -241,9 +376,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `role_as`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', NULL, '$2y$10$.E4aCVu3xipgZHEGMx.FiuBKUUG9xy1dwe8tuLaq6laNgIULuS/rW', NULL, 1, '2022-04-05 12:00:43', '2022-04-05 12:00:43'),
-(2, 'customer', 'customer@gmail.com', NULL, '$2y$10$rwwJGlj985yT6peq1vVQr.WuzyKAQ02yMyKnSwZWdnCOPyoOQ0joe', NULL, 0, '2022-04-05 12:10:20', '2022-04-05 12:10:20');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `role_as`, `image`, `address`, `phone`, `status`, `online_status`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@gmail.com', '2022-06-01 17:59:51', '$2y$10$.E4aCVu3xipgZHEGMx.FiuBKUUG9xy1dwe8tuLaq6laNgIULuS/rW', 'NUjEViqYNyZLoUKy6iGvp9EVOwj9lTBPGQ329EWlIyDtfDtHfj0Nesy5u6BA', 1, 'avatar.png', '', 0, 1, 0, '2022-04-05 12:00:43', '2022-04-05 12:00:43'),
+(2, 'customer', 'customer@gmail.com', '2022-06-16 18:03:40', '$2y$10$rwwJGlj985yT6peq1vVQr.WuzyKAQ02yMyKnSwZWdnCOPyoOQ0joe', 'GgxcrcYZmzoWGfpj28z4yEpwqf7M6NjHsrqb5DOgEfuVPEI5aVinR6Ay1W2B', 0, '1654372135.jpg', 'Germany', 123456789, 1, 1, '2022-04-05 12:10:20', '2022-06-07 11:40:15'),
+(3, 'nhtamim', 'nahidhtamim@gmail.com', '2022-06-17 12:02:24', '$2y$10$NK5iVXQzYbE2pA06EeFSwuj.F32v/bcXTA48lk3Tgxp7GTynBSUS2', NULL, 0, 'avatar.png', 'Dhaka, Bangladesh', 12345678, 1, 0, '2022-06-17 12:01:44', '2022-06-17 12:02:24');
 
 --
 -- Indexes for dumped tables
@@ -266,6 +402,30 @@ ALTER TABLE `lockers`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `online_statuses`
+--
+ALTER TABLE `online_statuses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_payments`
+--
+ALTER TABLE `order_payments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -293,6 +453,13 @@ ALTER TABLE `places`
 --
 ALTER TABLE `place_lockers`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `place_services`
+--
+ALTER TABLE `place_services`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `place_services_code_unique` (`code`);
 
 --
 -- Indexes for table `services`
@@ -327,13 +494,37 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `lockers`
 --
 ALTER TABLE `lockers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `online_statuses`
+--
+ALTER TABLE `online_statuses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `order_payments`
+--
+ALTER TABLE `order_payments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -351,6 +542,12 @@ ALTER TABLE `places`
 -- AUTO_INCREMENT for table `place_lockers`
 --
 ALTER TABLE `place_lockers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `place_services`
+--
+ALTER TABLE `place_services`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -363,13 +560,13 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `sports`
 --
 ALTER TABLE `sports`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
