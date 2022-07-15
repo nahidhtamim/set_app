@@ -65,6 +65,6 @@
       </div>
     </div>
     <div class="footer">
-      <p class="text-dark">Copyright © 2022 SET.com. All Rights Reserved</p>
+      <p class="text-light">Copyright © 2022 SET.com. All Rights Reserved</p>
     </div>
   </section>

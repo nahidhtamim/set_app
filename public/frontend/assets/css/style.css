@@ -457,12 +457,12 @@ upcoming meetings
 */
 
 section.upcoming-meetings {
-  background-image: url(../images/meetings-bg.jpg);
-  background-position: center center;
+  background-color: #e6e6ec;
+  /* background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: cover;
-  padding-top: 230px;
+  background-size: cover; */
+  padding-top: 100px;
   padding-bottom: 110px;
 }
 
@@ -832,7 +832,7 @@ section.our-facts {
   background: rgb(11,11,14);
 background: linear-gradient(90deg, rgba(11,11,14,1) 0%, rgba(81,81,85,1) 35%, rgba(155,159,159,1) 100%);
   background-size:cover;
-  padding: 140px 0px 125px 0px;
+  padding: 200px 0px 125px 0px;
 }
 
 section.our-facts h2 {
@@ -898,11 +898,13 @@ contact us
 */
 
 section.contact-us {
-  background-image: url(../images/meetings-bg.jpg);
-  background-position: center center;
+  background: rgb(11,11,14);
+  background: linear-gradient(90deg, rgba(11,11,14,1) 0%, rgba(81,81,85,1) 35%, rgba(155,159,159,1) 100%);
+  background-size:cover;
+  /* background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   padding: 140px 0px 0px 0px;
 }
 
