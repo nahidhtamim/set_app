@@ -5,19 +5,14 @@
         Menu
       </button>        
       <div class="collapse navbar-collapse" id="navbarMain">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('/about')}}">About</a>
-          </li>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          
           @if(isset(Auth::user()->name)) 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="#">
               <input type="checkbox" data-id="{{ Auth::user()->id }}" name="online_status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}>
             </a>
-          </li>
+          </li> --}}
           {{-- @if(isset($online_status == '1')) 
           <li class="nav-item">
             <form action="{{url('/deactive-user')}}" method="POST">
@@ -37,9 +32,10 @@
           @endif --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-user"></i>
+              <i class="fa fa-user"></i> Hello, {{Auth::user()->name}}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{url('/status')}}">Status</a></li>
               <li><a class="dropdown-item" href="{{url('/my-profile')}}">Profile</a></li>
               <li><a class="dropdown-item" href="{{url('/my-orders')}}">Order</a></li>
               <li><hr class="dropdown-divider"></li>
@@ -60,6 +56,12 @@
           {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">Login/Register</a>
           </li> --}}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('/about')}}">About</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-user"></i>

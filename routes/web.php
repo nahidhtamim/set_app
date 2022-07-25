@@ -41,11 +41,14 @@ Route::get('/about', [FrontendController::class, 'about']);
 Route::get('/service/{id}', [FrontendController::class, 'service']);
 Route::post('/email', [MailController::class, 'sendEmail'])->name('send.email');
 
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth','verified']], function () {
 
    Route::get('/home', [HomeController::class, 'index'])->name('home');
+   Route::get('/status', [HomeController::class, 'status'])->name('status');
    Route::get('/status/update', [HomeController::class, 'updateStatus'])->name('users.update.status');
 
    Route::get('/my-profile', [HomeController::class, 'myProfile'])->name('my-profile');

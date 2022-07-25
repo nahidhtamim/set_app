@@ -32,6 +32,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function status()
+    {
+        return view('frontend.status');
+    }
+
     public function updateStatus(Request $request)
     {
         $user = User::findOrFail($request->user_id);

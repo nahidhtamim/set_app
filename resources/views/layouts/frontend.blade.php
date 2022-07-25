@@ -107,8 +107,19 @@
             <ul>
               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-behance"></i></a></li>
               <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ Config::get('languages')[App::getLocale()] }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #1F272B">
+                @foreach (Config::get('languages') as $lang => $language)
+                    @if ($lang != App::getLocale())
+                            <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{$language}}</a>
+                    @endif
+                @endforeach
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -268,7 +279,7 @@
       let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
         elems.forEach(function(html) {
-            let switchery = new Switchery(html,  { size: 'small' });
+            let switchery = new Switchery(html,  { size: 'large' });
         });
     </script>
     <script>
