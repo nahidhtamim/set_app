@@ -8,26 +8,26 @@
                 @csrf
                 <div class="row">
                   <div class="col-lg-12">
-                    <h2>Let's get in touch</h2>
+                    <h2>{{__('messages.touch')}}</h2>
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                      <input name="name" type="text" id="name" placeholder="YOURNAME...*" required="">
+                      <input name="name" type="text" id="name" placeholder="{{__('messages.your_name')}}...*" required="">
                     </fieldset>
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                    <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..." required="">
+                    <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="{{__('messages.your_email')}}..." required="">
                   </fieldset>
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                      <input name="subject" type="text" id="subject" placeholder="SUBJECT...*" required="">
+                      <input name="subject" type="text" id="subject" placeholder="{{__('messages.subject')}}...*" required="">
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <textarea name="content" type="text" class="form-control" id="message" placeholder="YOUR MESSAGE..." required=""></textarea>
+                      <textarea name="content" type="text" class="form-control" id="message" placeholder="{{__('messages.your_message')}}..." required=""></textarea>
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
@@ -44,19 +44,19 @@
           <div class="right-info">
             <ul>
               <li>
-                <h6>Phone Number</h6>
+                <h6>{{__('messages.phone')}}</h6>
                 <span>010-020-0340</span>
               </li>
               <li>
-                <h6>Email Address</h6>
+                <h6>{{__('messages.email')}}</h6>
                 <span>info@set.com</span>
               </li>
               <li>
-                <h6>Street Address</h6>
+                <h6>{{__('messages.address')}}</h6>
                 <span>Stuttgart, Germany</span>
               </li>
               <li>
-                <h6>Website URL</h6>
+                <h6>{{__('messages.url')}}</h6>
                 <span>www.set.com</span>
               </li>
             </ul>

@@ -36,14 +36,14 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="{{url('/status')}}">Status</a></li>
-              <li><a class="dropdown-item" href="{{url('/my-profile')}}">Profile</a></li>
-              <li><a class="dropdown-item" href="{{url('/my-orders')}}">Order</a></li>
+              <li><a class="dropdown-item" href="{{url('/my-profile')}}">{{__('messages.profile')}}</a></li>
+              <li><a class="dropdown-item" href="{{url('/my-orders')}}">{{__('messages.order')}}</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{__('messages.logout')}}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -57,10 +57,10 @@
             <a class="nav-link" href="{{ route('login') }}">Login/Register</a>
           </li> --}}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{url('/')}}">{{__('messages.home')}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url('/about')}}">About</a>
+            <a class="nav-link" href="{{url('/about')}}">{{__('messages.about')}}</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

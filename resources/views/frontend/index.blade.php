@@ -29,10 +29,10 @@
             <div class="col-lg-12">
               <div class="caption">
             <h6>Hello There</h6>
-            <h2>Welcome to SET</h2>
+            <h2>{{__('messages.welcome')}}</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur sapiente sint exercitationem quod, alias placeat officia excepturi laudantium facilis fuga!</p>
             <div class="main-button-red">
-                <div class="scroll-to-section"><a href="#contact">Get Your Premium Service Now</a></div>
+                <div class="scroll-to-section"><a href="#contact">{{__('messages.get_premium')}}</a></div>
             </div>
         </div>
             </div>

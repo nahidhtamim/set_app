@@ -99,7 +99,7 @@
       <div class="row">
         <div class="col-lg-8 col-sm-8">
           <div class="left-content">
-            <p>Lorem ipsum dolor sit amet.</p>
+            <p>{{__('messages.welcome')}}</p>
           </div>
         </div>
         <div class="col-lg-4 col-sm-4">
@@ -120,6 +120,9 @@
                 @endforeach
                 </div>
               </li>
+              {{-- <li id="google_element">
+
+              </li> --}}
             </ul>
           </div>
         </div>
@@ -153,7 +156,13 @@
     <script src="{{asset('frontend/assets/js/slick-slider.js')}}"></script>
     <script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    {{-- <script src="//translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script> --}}
     <script src="{{asset('frontend/assets/js/custom.js')}}"></script>
+    {{-- <script>
+      function loadGoogleTranslate(){
+        new google.translate.TranslateElement("google_element");
+      }
+    </script> --}}
     <script>
         //according to loftblog tut
         $('.nav li:first').addClass('active');
