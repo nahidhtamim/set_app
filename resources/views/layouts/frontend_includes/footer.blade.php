@@ -49,7 +49,7 @@
               </li>
               <li>
                 <h6>{{__('messages.email')}}</h6>
-                <span>info@set.com</span>
+                <span><a href="mailto:info@de-set.com" style="text-decoration: none; color: white"> info@de-set.com</a></span> 
               </li>
               <li>
                 <h6>{{__('messages.address')}}</h6>
@@ -57,7 +57,7 @@
               </li>
               <li>
                 <h6>{{__('messages.url')}}</h6>
-                <span>www.set.com</span>
+                <span>www.de-set.com</span>
               </li>
             </ul>
           </div>
@@ -65,6 +65,6 @@
       </div>
     </div>
     <div class="footer">
-      <p class="text-light">Copyright © 2022 SET.com. All Rights Reserved</p>
+      <p class="text-light">Copyright © 2022 DE-SET.com. All Rights Reserved</p>
     </div>
   </section>

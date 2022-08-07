@@ -18,7 +18,7 @@
 
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
-    <video autoplay id="bg-video">
+    <video autoplay loop id="bg-video">
         <!-- <source src="assets/images/course-video.mp4" type="video/mp4" /> -->
         <source src="{{asset('frontend/assets/images/set.mp4')}}" type="video/mp4" />
     </video>
@@ -98,8 +98,6 @@
 <section class="our-facts">
   <div class="container">
     <div class="row">
-      <div class="row">
-
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -214,7 +212,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
   </div>
 </section>
