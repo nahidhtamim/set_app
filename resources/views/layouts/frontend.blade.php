@@ -156,7 +156,12 @@
     <script src="{{asset('frontend/assets/js/slick-slider.js')}}"></script>
     <script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    {{-- <script src="//translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script> --}}
+    <script>
+      window.onload = function(){
+        document.getElementById('bg-video').play();
+      }
+       
+    </script>
     <script src="{{asset('frontend/assets/js/custom.js')}}"></script>
     {{-- <script>
       function loadGoogleTranslate(){

@@ -18,10 +18,8 @@
 
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
-    <video autoplay loop id="bg-video">
-        <!-- <source src="assets/images/course-video.mp4" type="video/mp4" /> -->
-        <source src="{{asset('frontend/assets/images/set.mp4')}}" type="video/mp4" />
-    </video>
+    <video src="{{asset('frontend/assets/images/set.mp4')}}" type="video/mp4" autoplay="" playsinline="" id="bg-video"></video>
+  
 
     <div class="video-overlay header-text">
         <div class="container">
