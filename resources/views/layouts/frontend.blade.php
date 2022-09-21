@@ -52,8 +52,18 @@
         background: #8c8c8c;
       }
       button.navbar-toggler{
-        font-weight: bold;
-        background: #8c8c8c;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 5px solid #1F272B;
+        font-size: 24px;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color: #1F272B;
+        transition: 0.9s;
+      }
+      button.navbar-toggler:hover{
+        color: #fff;
+        background: #1F272B;
       }
     </style>
 

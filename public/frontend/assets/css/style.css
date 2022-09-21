@@ -335,9 +335,9 @@ banner
 
 #bg-video {
     min-width: 100%;
-    min-height: 65vh;
+    min-height: 45vh;
     max-width: 100%;
-    max-height: 100vh;
+    max-height: 85vh;
     object-fit: cover;
     z-index: -1;
 }
@@ -414,9 +414,10 @@ services
 */
 
 .services {
-    margin-top: -135px;
-    position: absolute;
+    padding: 10vh 0vh 8vh 0vh;
+    position: relative;
     width: 100%;
+    background-color: #e6e6ec;
 }
 
 .services .item {
@@ -534,8 +535,8 @@ section.upcoming-meetings {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover; */
-    padding-top: 100px;
-    padding-bottom: 110px;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
 }
 
 section.upcoming-meetings .section-heading {
@@ -912,7 +913,8 @@ section.our-facts {
     background: rgb(11, 11, 14);
     background: linear-gradient(90deg, rgba(11, 11, 14, 1) 0%, rgba(81, 81, 85, 1) 35%, rgba(155, 159, 159, 1) 100%);
     background-size: cover;
-    padding: 150px 0px 150px 0px;
+    background-size: cover;
+    padding: 10vh 0px;
 }
 
 section.our-facts h2 {
@@ -1100,6 +1102,7 @@ section.contact-us .right-info ul li span {
 }
 
 .footer {
+    background-color: #1F272B;
     text-align: center;
     margin-top: 40px;
     border-top: 1px solid rgba(250, 250, 250, 0.15);
@@ -1446,9 +1449,9 @@ responsive
     .main-banner .caption .main-button-red {
         margin-top: 15px;
     }
-    .services {
+    /* .services {
         margin-top: -135px;
-    }
+    } */
     /* section.upcoming-meetings {
         padding-top: 400px;
     } */
@@ -1500,7 +1503,7 @@ About Page
 .about-area-content {
     text-align: center;
     /* background-color: rgba(250,250,250,0.15); */
-    background-color: #252525;
+    /* background-color: #252525; */
     border-radius: 20px;
     padding: 25px 30px 35px 30px;
     margin: 15px 0px;

@@ -29,9 +29,13 @@ About | SET - A Premium Laundry Service
                         <div class="row">
                             <div class="col-lg-6 align-self-center">
                                 <div class="slider text-center" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; border-radius: 5%;">
+                                    <div class="">
+                                        <img src="{{asset('frontend/assets/images/about-slider/5.png')}}"
+                                                class="d-block w-100" alt="..." style="border-radius: 5%;">
+                                    </div>
                                     {{-- <a href="https://www.youtube.com/watch?v=HndV87XpkWg" target="_blank"><img src="{{asset('frontend/assets/images/play-icon.png')}}"
                                     alt=""></a> --}}
-                                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                    {{-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                         <div class="carousel-indicators">
                                           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                                           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -59,7 +63,7 @@ About | SET - A Premium Laundry Service
                                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                           <span class="visually-hidden">Next</span>
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     {{-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                         <div class="carousel-indicators">
                                             <button type="button" data-bs-target="#carouselExampleIndicators"

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('frontend/assets/images/logo.png')}}" alt="" height="50px"></a>
-      <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
         Menu
       </button>        
       <div class="collapse navbar-collapse" id="navbarMain">
