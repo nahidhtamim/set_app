@@ -68,11 +68,21 @@
                                         @foreach($services as $service)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$service->service_name}}</td>
-                                            <td>{{$service->service_price}}</td>
+                                            <td>
+                                                <b>Eng:</b> {{$service->service_name}} <br>
+                                                <b>Ger:</b> {{$service->service_name_ger}}
+                                            </td>
+                                            <td>{!!$service->service_price!!}</td>
                                             <td><img src="/uploads/services/{{$service->service_image}}" alt="" width="100px"></td>
-                                            <td>{{$service->short_desc}}</td>
-                                            <td>{!!$service->long_desc!!}</td>
+                                            <td>
+                                                <b>Eng:</b> {{$service->short_desc}} <br>
+                                                <b>Ger:</b> {{$service->short_desc_ger}}
+                                            </td>
+                                            <td>
+                                                <b>Eng:</b> {!!$service->long_desc!!} <br>
+                                                <b>Ger:</b> {!!$service->long_desc_ger!!}
+                                                
+                                            </td>
                                             <td>
                                                 @if($service->service_status == 1)
                                                 Active

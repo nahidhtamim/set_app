@@ -22,14 +22,17 @@ class ServicesController extends Controller
     public function saveService(Request $request){
         $service = new Service();
         $service->service_name = $request->input('service_name');
+        $service->service_name_ger = $request->input('service_name_ger');
         $service->service_price = $request->input('service_price');
         $service->short_desc = $request->input('short_desc');
+        $service->short_desc_ger = $request->input('short_desc_ger');
         $service->long_desc = $request->input('long_desc');
+        $service->long_desc_ger = $request->input('long_desc_ger');
         $service->service_status = '1';
         if($request->hasFile('service_image')){
             $service_image = $request->file('service_image');
             $fileName = time(). '.' .$service_image->getClientOriginalExtension();
-            Image::make($service_image)->resize(370, 215)->save(public_path('/uploads/services/'.$fileName));
+            Image::make($service_image)->resize(640, 425)->save(public_path('/uploads/services/'.$fileName));
             $service->service_image = $fileName;
             $service->save();
         };
@@ -45,13 +48,16 @@ class ServicesController extends Controller
     public function updateService($id, Request $request){
         $service = Service::find($id);
         $service->service_name = $request->input('service_name');
+        $service->service_name_ger = $request->input('service_name_ger');
         $service->service_price = $request->input('service_price');
         $service->short_desc = $request->input('short_desc');
+        $service->short_desc_ger = $request->input('short_desc_ger');
         $service->long_desc = $request->input('long_desc');
+        $service->long_desc_ger = $request->input('long_desc_ger');
         if($request->hasFile('service_image')){
             $service_image = $request->file('service_image');
             $fileName = time(). '.' .$service_image->getClientOriginalExtension();
-            Image::make($service_image)->resize(370, 215)->save(public_path('/uploads/services/'.$fileName));
+            Image::make($service_image)->resize(640, 425)->save(public_path('/uploads/services/'.$fileName));
             $service->service_image = $fileName;
             $service->update();
         };

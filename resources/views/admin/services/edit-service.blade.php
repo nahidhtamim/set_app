@@ -46,6 +46,14 @@
                                 </div>
 
                                 <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Service Name in German<span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" value="{{$service->service_name_ger}}"
+                                            class="form-control p-0 border-0" name="service_name_ger" required> 
+                                        </div>
+                                </div>
+
+                                <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Service Price <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="number" value="{{$service->service_price}}"
@@ -66,6 +74,15 @@
                                             class="form-control p-0 border-0" name="short_desc" required>
                                     </div>
                                 </div>
+
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Service Short Description in German<span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text"value="{{$service->short_desc_ger}}"
+                                            class="form-control p-0 border-0" name="short_desc_ger" required>
+                                    </div>
+                                </div>
+
                                 <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Service Long Description <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
@@ -74,6 +91,16 @@
                                         </textarea>
                                     </div>
                                 </div>
+
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Service Long Description in German <span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <textarea rows="5" class="form-control p-0 border-0" name="long_desc_ger" required>
+                                            {{$service->long_desc_ger}}
+                                        </textarea>
+                                    </div>
+                                </div>
+
                                 {{-- <div class="form-group mb-4">
                                     <label class="col-sm-12"><b>Service Status <span class="text-danger">*</span></b></label>
 

@@ -17,7 +17,9 @@ class Service extends Model
         'service_price',
         'service_image',
         'short_desc',
+        'short_desc_ger',
         'long_desc',
+        'long_desc_ger',
         'service_status',
     ];
 

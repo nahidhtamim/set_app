@@ -16,10 +16,13 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('service_name');
-            $table->integer('service_price');
+            $table->string('service_name_ger')->nullable();
+            $table->float('service_price', 8, 2);
             $table->string('service_image')->default('default.jpg');
             $table->string('short_desc');
+            $table->string('short_desc_ger')->nullable();
             $table->text('long_desc');
+            $table->text('long_desc_ger')->nullable();
             $table->tinyInteger('service_status')->default('0');
             $table->timestamps();
         });

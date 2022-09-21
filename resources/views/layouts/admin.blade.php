@@ -105,6 +105,7 @@
     
     <script>
         CKEDITOR.replace( 'long_desc' );
+        CKEDITOR.replace( 'long_desc_ger' );
         CKEDITOR.replace( 'place_description' );
         CKEDITOR.replace( 'locker_description' );
         CKEDITOR.replace( 'sport_description' );
