@@ -53,7 +53,7 @@
             </div> -->
             <div class="down-content">
               <h4>{{__('messages.sports_equipment')}}</h4>
-              <p>{{__('messages.sports_equipment_para')}} <br><br></p>
+              <p>{{__('messages.sports_equipment_para')}}</p>
             </div>
           </div>
           <div class="item">
@@ -62,7 +62,7 @@
             </div> -->
             <div class="down-content">
               <h4>{{__('messages.pickups')}}</h4>
-              <p>{{__('messages.pickups_para')}} <br><br></p>
+              <p>{{__('messages.pickups_para')}}</p>
             </div>
           </div>
           <div class="item">
@@ -71,7 +71,7 @@
             </div> -->
             <div class="down-content">
               <h4>{{__('messages.individual')}}</h4>
-              <p>{{__('messages.individual_para')}} <br><br><br></p>
+              <p>{{__('messages.individual_para')}}</p>
             </div>
           </div>
           <div class="item">
@@ -80,7 +80,7 @@
             </div> -->
             <div class="down-content">
               <h4>{{__('messages.athlete')}}</h4>
-              <p>{{__('messages.athlete_para')}} <br></p>
+              <p>{{__('messages.athlete_para')}}</p>
             </div>
           </div>
           
@@ -90,7 +90,7 @@
             </div> -->
             <div class="down-content">
               <h4>{{__('messages.pickup')}}</h4>
-              <p>{{__('messages.pickup_para')}} <br></p>
+              <p>{{__('messages.pickup_para')}}</p>
             </div>
           </div>
           
@@ -100,7 +100,7 @@
             </div> -->
             <div class="down-content">
               <h4>{{__('messages.flexible')}}</h4>
-              <p>{{__('messages.flexible_para')}} <br> <br> <br></p>
+              <p>{{__('messages.flexible_para')}}</p>
             </div>
           </div>
 
@@ -116,7 +116,7 @@
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Get To Know Us Better 
+                    <h2>{{__('messages.know_us')}}
                       <a href="{{url('/about')}}" class="text-light"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
                     </h2>
                 </div>
@@ -210,7 +210,7 @@
       
       <div class="col-lg-12">
         <div class="section-heading">
-          <h2>Our Offerings</h2>
+          <h2>{{__('messages.offerings')}}</h2>
         </div>
       </div>
       <div class="col-lg-12">

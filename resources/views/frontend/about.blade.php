@@ -23,7 +23,7 @@ About | SET - A Premium Laundry Service
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2>Get To Know Us Better</h2>
+                        <h2>{{__('messages.know_us')}}</h2>
                     </div>
                     <div class="col-lg-6 about-area">
                         <div class="row">
@@ -103,7 +103,7 @@ About | SET - A Premium Laundry Service
                             </div>
                             <div class="col-lg-6">
                                 <div class="about-area-content">
-                                    <div class="count">About</div>
+                                    <div class="count">{{__('messages.about')}}</div>
                                     <div class="">
 
                                         <p class="text-light text-left" style="font-size: 14px;">Hi ich bin Andreas von der Firma Set, dem Sportbekleidungs-Service.
