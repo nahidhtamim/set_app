@@ -4,7 +4,15 @@
         <div class="col-lg-9 align-self-center">
           <div class="row">
             <div class="col-lg-12">
+              
               <form id="contact" action="{{ route('send.email') }}" method="POST">
+                @if (Session::has('message_sent'))
+                    <div class="bg-green-100 text-center rounded-lg px-6 text-base text-green-700 py-2" role="alert">
+                        {{Session::get('message_sent')}}
+                        <a href="" class="alert-del">&times;</a>
+                    </div>
+                @endif
+
                 @csrf
                 <div class="row">
                   <div class="col-lg-12">
@@ -30,7 +38,31 @@
                       <textarea name="content" type="text" class="form-control" id="message" placeholder="{{__('messages.your_message')}}..." required=""></textarea>
                     </fieldset>
                   </div>
-                  <div class="col-lg-12">
+                  <div class="col-lg-4">
+                    <fieldset>
+                      <input id="captcha" type="text" placeholder="Type What You See" name="captcha"  required=""/>
+                        @if ($errors->has('captcha'))
+                        <span class="text-danger">
+                            @error('message')
+                                <p class="text-danger">{{$message}} {{$errors->first('captcha')}}</p> 
+                            @enderror
+                        </span> 
+                        @endif
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-5">
+                    <fieldset>
+                      <div class="single-input-field{{$errors->has('captcha') ? 'has-error' : ''}}">
+                        <div class="captcha">
+                            <span>{!! captcha_img('flat') !!}</span>
+                            <button type="button" class="px-6 py-3 btn-secondary btn-refresh">
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3">
                     <fieldset>
                       <button type="submit" id="form-submit" class="button">SEND MESSAGE NOW</button>
                     </fieldset>

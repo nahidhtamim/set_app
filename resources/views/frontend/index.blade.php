@@ -220,9 +220,9 @@
             <div class="meeting-item">
               <div class="thumb">
                 <div class="price">
-                  <span>{{$service->service_price}}.00€</span>
+                  <span>{{$service->service_price}}€</span>
                 </div>
-                <a href="meeting-details.html"><img src="/uploads/services/{{$service->service_image}}" alt="{{$service->service_name}}"></a>
+                <a href="{{url('/service/'.$service->id)}}"><img src="/uploads/services/{{$service->service_image}}" alt="{{$service->service_name}}"></a>
               </div>
               <div class="down-content">
                 <div class="date">
@@ -237,8 +237,13 @@
                   <i class="fa fa-star" aria-hidden="true"></i></h6>
                   @endif
                 </div>
-                <a href="{{url('/service/'.$service->id)}}"><h4>{{$service->service_name}}</h4></a>
-                <p>{{$service->short_desc}}</p>
+                @if (session('applocale') == 'en')
+                  <a href="{{url('/service/'.$service->id)}}"><h4>{{$service->service_name}}</h4></a>
+                  <p>{{$service->short_desc}}</p>
+                @else
+                  <a href="{{url('/service/'.$service->id)}}"><h4>{{$service->service_name_ger}}</h4></a>
+                  <p>{{$service->short_desc_ger}}</p>
+                @endif
               </div>
             </div>
           </div>
@@ -250,7 +255,7 @@
                 <div class="price">
                   <span>Contact</span>
                 </div>
-                <a href="#"><img src="{{asset('frontend/assets/images/meeting-04.jpg')}}" alt="Student Training"></a>
+                <a href="#contact"><img src="{{asset('frontend/assets/images/meeting-04.jpg')}}" alt="Student Training"></a>
               </div>
               <div class="down-content">
                 <div class="date">
@@ -258,7 +263,7 @@
                   </h6>
                 </div>
                 <a href="#contact"><h4>Set Custom</h4></a>
-                <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                <p>Morbi in libero blandit lectus cursus ullamcorper.</p>
               </div>
             </div>
           </div>

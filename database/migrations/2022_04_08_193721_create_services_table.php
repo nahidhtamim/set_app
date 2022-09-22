@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('service_name');
             $table->string('service_name_ger')->nullable();
-            $table->float('service_price', 8, 2);
+            $table->string('service_price')->default(00.00);
             $table->string('service_image')->default('default.jpg');
             $table->string('short_desc');
             $table->string('short_desc_ger')->nullable();

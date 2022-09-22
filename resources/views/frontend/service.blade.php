@@ -21,7 +21,11 @@
       <div class="row">
         <div class="col-lg-12">
           <h6>Service</h6>
+          @if (session('applocale') == 'en')
           <h2>{{$service->service_name}}</h2>
+          @else
+          <h2>{{$service->service_name_ger}}</h2>
+          @endif
         </div>
       </div>
     </div>
@@ -44,6 +48,7 @@
                   <img src="/uploads/services/{{$service->service_image}}" alt="{{$service->service_name}}">
                 </div>
                 <div class="down-content">
+                  @if (session('applocale') == 'en')
                   <h4>{{$service->service_name}}</h4>
                   <p>{{$service->service_price}}.00€</p>
                   <br>
@@ -54,6 +59,18 @@
                     {!!$service->long_desc!!}
                   </p>
                   <br>
+                 @else
+                 <h4>{{$service->service_name_ger}}</h4>
+                  <p>{{$service->service_price}}.00€</p>
+                  <br>
+                  <p>{{$service->short_desc_ger}}</p>
+                  <hr>
+                  {{-- <p class="description"> --}}
+                  <p class="">
+                    {!!$service->long_desc_ger!!}
+                  </p>
+                  <br>
+                 @endif
                   @if(Auth::user())
                   <div class="main-button-red">
                     <a href="{{url('/order-form')}}">Order</a>

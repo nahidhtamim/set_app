@@ -106,7 +106,7 @@ Order Form | SET - A Premium Laundry Service
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <h2>Billing Details</h2>
+                                        <h2>{{__('messages.billing_details')}}</h2>
                                     </div>
                                     <div class="col-lg-6">
                                         <fieldset>

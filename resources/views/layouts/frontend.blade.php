@@ -65,6 +65,18 @@
         color: #fff;
         background: #1F272B;
       }
+      .captcha{
+        padding-bottom: 30px;
+      }
+      .captcha img{
+        height: 45px;
+        width: 200px;
+        border-radius: 10px;
+      }
+      .btn-refresh{
+        border-radius: none;
+      }
+
     </style>
 
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -351,5 +363,16 @@
         });
     });
     </script>  
+    <script>
+      $(".btn-refresh").click(function(){
+        $.ajax({
+          type: 'GET',
+          url: '/refresh_captcha',
+          success: function(data){
+            $(".captcha span").html(data.captcha);
+          }
+        })
+      })
+    </script>
     </body>
 </html>

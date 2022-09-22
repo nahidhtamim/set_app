@@ -20,6 +20,7 @@ class ServicesController extends Controller
     }
 
     public function saveService(Request $request){
+
         $service = new Service();
         $service->service_name = $request->input('service_name');
         $service->service_name_ger = $request->input('service_name_ger');
@@ -34,8 +35,8 @@ class ServicesController extends Controller
             $fileName = time(). '.' .$service_image->getClientOriginalExtension();
             Image::make($service_image)->resize(640, 425)->save(public_path('/uploads/services/'.$fileName));
             $service->service_image = $fileName;
-            $service->save();
         };
+        $service->save();
         return redirect('/services')->with('status', 'Service Added Successfully');
         
     }
@@ -46,6 +47,7 @@ class ServicesController extends Controller
     }
 
     public function updateService($id, Request $request){
+
         $service = Service::find($id);
         $service->service_name = $request->input('service_name');
         $service->service_name_ger = $request->input('service_name_ger');
@@ -59,8 +61,8 @@ class ServicesController extends Controller
             $fileName = time(). '.' .$service_image->getClientOriginalExtension();
             Image::make($service_image)->resize(640, 425)->save(public_path('/uploads/services/'.$fileName));
             $service->service_image = $fileName;
-            $service->update();
         };
+        $service->update();
         return redirect('/services')->with('status', 'Service Updated Successfully');
     }
 

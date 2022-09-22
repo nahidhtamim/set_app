@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 use Mail;
 
@@ -9,26 +10,28 @@ class MailController extends Controller
 {
     public function sendEmail(Request $request)
     {
-        $request->validate([
-          'email' => 'required|email',
-          'subject' => 'required',
+
+      $request->validate([
+        'subject' => 'required',
           'name' => 'required',
+          'email' => 'required|email',
           'content' => 'required',
-        ]);
+          'captcha' => 'required|captcha',
+      ]);
 
-        $data = [
-          'subject' => $request->subject,
-          'name' => $request->name,
-          'email' => $request->email,
-          'content' => $request->content
-        ];
-        
+      $details = [
+        'subject' => $request->subject,
+        'name' => $request->name,
+        'email' => $request->email,
+        'content' => $request->content
+      ];
 
-        Mail::send('emails.ContactMail', $data, function($message) use ($data) {
-          $message->to('forfreelancing101@gmail.com')
-          ->subject($data['subject']);
-        });
+      Mail::to('forfreelancing101@gmail.com')->send(new ContactMail($details));
+      return redirect()->back()->with('message_sent', 'Your Mail Has Been Sent');
 
-        return back()->with(['status' => 'Email Successfully Sent!']);
     }
+
+    public function refreshCaptcha(){
+      return response()->json(['captcha' =>captcha_img()]);
+  }
 }

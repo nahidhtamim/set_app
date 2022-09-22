@@ -355,10 +355,10 @@
                             </div>
                         @endif
                         <p>Hi there,</p>
-                        <p>My Name is : {{ $name }}</p>
-                        <p>My Email is : {{ $email }}</p>
+                        <p>My Name is : {{$details['name'] }}</p>
+                        <p>My Email is : {{$details['email'] }}</p>
                         <br>
-                        <p>{!! $content !!}</p>
+                        <p>{!! $details['content'] !!}</p>
                         
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                             <tbody>
@@ -367,7 +367,7 @@
                                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                     <tbody>
                                       <tr>
-                                        <td> <a href="mailto:{{ $email }}">Reply!!</a> </td>
+                                        <td> <a href="mailto:{{$details['email'] }}">Reply!!</a> </td>
                                       </tr>
                                     </tbody>
                                   </table>

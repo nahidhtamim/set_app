@@ -30,7 +30,6 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('SET - Contact Mail')
-                    ->view('emails.ContactMail');
+        return $this->subject('SET - Query Message')->view('emails.ContactMail');
     }
 }

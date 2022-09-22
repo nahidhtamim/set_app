@@ -56,7 +56,7 @@
                                 <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Service Price <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
-                                        <input type="number" value="{{$service->service_price}}"
+                                        <input type="text" value="{{$service->service_price}}"
                                             class="form-control p-0 border-0" name="service_price" required>
                                     </div>
                                 </div>
