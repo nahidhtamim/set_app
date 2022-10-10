@@ -18,7 +18,7 @@
     <link href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Favicon icon -->
-    <link rel="icon" type="image/x-icon" href="{{asset('frontend/assets/images/logo.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('frontend/assets/images/fav.ico')}}">
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="{{asset('frontend/assets/css/fontawesome.css')}}">
@@ -69,12 +69,12 @@
         padding-bottom: 30px;
       }
       .captcha img{
-        height: 45px;
-        width: 200px;
-        border-radius: 10px;
+        height: 57px;
+        width: 85%;
+        border-radius: 5px;
       }
       .btn-refresh{
-        border-radius: none;
+        border-radius: 50%;
       }
 
     </style>

@@ -40,7 +40,7 @@ Route::get('/', [FrontendController::class, 'index']);
 Route::get('/about', [FrontendController::class, 'about']);
 Route::get('/service/{id}', [FrontendController::class, 'service']);
 Route::get('refresh_captcha',[MailController::class, 'refreshCaptcha'])->name('refresh_captcha');
-Route::post('/email', [MailController::class, 'sendEmail'])->name('send.email');
+Route::post('/email', [MailController::class, 'sendEmail'])->name('contact.send');
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 

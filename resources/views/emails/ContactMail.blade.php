@@ -355,10 +355,12 @@
                             </div>
                         @endif
                         <p>Hi there,</p>
-                        <p>My Name is : {{$details['name'] }}</p>
-                        <p>My Email is : {{$details['email'] }}</p>
-                        <br>
-                        <p>{!! $details['content'] !!}</p>
+                        <p>Name : {{$details['name']}}</p>
+                        <p>Email : {{$details['email']}}</p>
+                        <p>Phone : {{$details['phone']}}</p>
+                        <p>Address : {{$details['address']}}</p>
+                        <span>----------------------------------</span>
+                        <p>Message : {!! $details['content'] !!}</p>
                         
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                             <tbody>

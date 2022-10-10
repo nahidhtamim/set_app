@@ -18,7 +18,10 @@
 
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
-    <video src="{{asset('frontend/assets/images/set.mp4')}}" type="video/mp4" autoplay="" playsinline="" id="bg-video"></video>
+    <video autoplay muted playsinline="" id="bg-video">
+      <source src="{{asset('frontend/assets/images/set.mp4')}}" type="video/mp4">
+    </video>
+    {{-- <video src="" type="video/mp4" autoplay="" playsinline="" id="bg-video"></video> --}}
   
 
     <div class="video-overlay header-text">
@@ -30,7 +33,7 @@
             <h2>{{__('messages.welcome')}}</h2>
             <p>{{__('messages.sportswear_service')}}</p>
             <div class="main-button-red">
-                <div class="scroll-to-section"><a href="#contact">{{__('messages.get_premium')}}</a></div>
+                <div class="scroll-to-section"><a href="#meetings">{{__('messages.get_premium')}}</a></div>
             </div>
         </div>
             </div>
@@ -115,11 +118,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>{{__('messages.know_us')}}
-                      <a href="{{url('/about')}}" class="text-light"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
-                    </h2>
-                </div>
+               
                 <div class="col-lg-6 about-area">
                     <div class="row">
                         {{-- <div class="col-lg-6 align-self-center">
@@ -163,7 +162,7 @@
                         </div> --}}
                         <div class="col-lg-6">
                           <div class="about-area-content">
-                              <div class="count">Before</div>
+                              <div class="count">{{__('messages.before')}}</div>
                               <div class="">
                                 @if (session('applocale') == 'en')
                                   <img src="{{asset('frontend/assets/images/about-slider/E1.png')}}"
@@ -177,7 +176,7 @@
                       </div>
                         <div class="col-lg-6">
                             <div class="about-area-content">
-                                <div class="count">After</div>
+                                <div class="count">{{__('messages.after')}}</div>
                                 <div class="">
                                   @if (session('applocale') == 'en')
                                     <img src="{{asset('frontend/assets/images/about-slider/E2.png')}}"
@@ -191,6 +190,14 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-12 text-center">
+                  <a href="{{url('/about')}}" class="text-light">
+                  <h2>{{__('messages.know_us')}}
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                  </h2>
+                </a> 
+              </div>
             </div>
         </div>
     </div>

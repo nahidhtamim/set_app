@@ -52,6 +52,8 @@ return [
     'password'      => 'Password',
     'remember'      => 'Remember Me',
     
+    'before'      => 'Before',
+    'after'      => 'After',
 
     'sports_equipment'    => 'Sports equipment on site in your locker',
     'sports_equipment_para'      => 'No more carrying around the sports gear.

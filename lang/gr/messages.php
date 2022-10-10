@@ -52,6 +52,8 @@ return [
     'password'      => 'Passwort',
     'remember'      => 'Angemeldet Bleiben',
 
+    'before'      => 'Vorher',
+    'after'      => 'Nachher',
 
     'sports_equipment'    => 'Sportausrüstung bei Dir vor Ort in Deinem Spind',
     'sports_equipment_para'      => ' Kein Herumtragen der Sportsachen mehr.

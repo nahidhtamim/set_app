@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <!-- Favicon icon -->
-    <link rel="icon" type="image/x-icon" href="{{asset('frontend/assets/images/logo.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('frontend/assets/images/fav.ico')}}">
     <title>SET</title>
 
     <!-- Scripts -->
