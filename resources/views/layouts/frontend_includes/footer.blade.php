@@ -158,7 +158,7 @@
             </div>
             <!-- End Textarea Message -->
 
-            <div class="col-md-6 col-sm-6 col-xs-12 mb-4">
+            {{-- <div class="col-md-6 col-sm-6 col-xs-12 mb-4">
               <div class="form-floating {{$errors->has('captcha') ? 'has-error' : ''}}">
                   <div class="captcha">
                       <span>{!! captcha_img('flat') !!}</span>
@@ -180,7 +180,7 @@
                   @endif
               </div>
               <br>
-          </div>
+          </div> --}}
           
             <div class="col-md-12 col-12 m-auto text-end">
                 <button type="submit" class="btn btn-dark rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300">Send Message</button>
