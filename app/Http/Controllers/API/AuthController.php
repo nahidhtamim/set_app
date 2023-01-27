@@ -53,7 +53,16 @@ class AuthController extends Controller
                 'message' => 'Wrong Credentials'
             ], 401);
         }
-
+        elseif($user->role_as != '1') {
+            return response([
+                'message' => 'You are not an admin'
+            ], 401);
+        }
+        elseif($user->email_verified_at == null) {
+            return response([
+                'message' => 'You are not verified'
+            ], 401);
+        }
         $token = $user->createToken('app_token')->plainTextToken;
 
         $response = [

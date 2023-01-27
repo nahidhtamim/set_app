@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ClothesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,15 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+// Public routes
+Route::get('/clothes', [ClothesController::class, 'index']);
+Route::get('/clothes/{hexa}', [ClothesController::class, 'show']);
+Route::get('/clothes/search/{hexa}', [ClothesController::class, 'search']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 
 //Protected Routes
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'isAdmin']], function () {
+    Route::post('/clothes', [ClothesController::class, 'store']);
+    Route::put('/clothes/{hexa}', [ClothesController::class, 'update']);
+    Route::delete('/clothes/{hexa}', [ClothesController::class, 'destroy']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
