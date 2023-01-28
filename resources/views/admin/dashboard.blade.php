@@ -85,7 +85,7 @@
 
                     <div class="col-lg-4 col-md-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title">No. of Users <a href="{{url('/lockers')}}" class="" style="text-decoration: none; color: #f33155;"><i class="fa fa-eye"></i></a> </h3>
+                            <h3 class="box-title">No. of Lockers <a href="{{url('/lockers')}}" class="" style="text-decoration: none; color: #f33155;"><i class="fa fa-eye"></i></a> </h3>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <li>
                                     <div id="sparklinedash4"><canvas width="67" height="30"

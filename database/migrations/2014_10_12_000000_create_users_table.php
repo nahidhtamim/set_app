@@ -23,7 +23,7 @@ return new class extends Migration
             $table->tinyInteger('role_as')->default('0');
             $table->string('image')->default('avatar.png');
             $table->string('address');
-            $table->string('phone');
+            $table->text('phone');
             $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });

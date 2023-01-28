@@ -20,6 +20,7 @@ class Cloth extends Model
         'fabric',
         'weight',
         'brand',
+        'image',
         'wash_program_number',
         'dryer_program_number',
     ];

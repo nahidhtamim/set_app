@@ -116,7 +116,7 @@
                                                 <td>{{$urd->created_at}}</td>
                                                 <td>
                                                     <a href="{{url('/delete-status/'.$rd->id)}}"
-                                                    class="btn btn-danger text-white deleteBtn">Delete
+                                                    class="btn btn-danger text-white" onclick="return confirm('Are you sure to delete?')">Delete
                                                     </a>
                                                 </td>
                                             </tr>

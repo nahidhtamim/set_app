@@ -60,6 +60,9 @@
             <a class="nav-link active" aria-current="page" href="{{url('/')}}">{{__('messages.home')}}</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url('/')}}"  data-bs-toggle="modal" data-bs-target="#exampleModal">{{__('messages.imprint')}}</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{url('/about')}}">{{__('messages.about')}}</a>
           </li>
           <li class="nav-item dropdown">

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('fabric');
             $table->string('weight');
             $table->string('brand');
+            $table->string('image')->nullable();
             $table->tinyInteger('wash_program_number')->default('0');
             $table->tinyInteger('dryer_program_number')->default('0');
             $table->timestamps();

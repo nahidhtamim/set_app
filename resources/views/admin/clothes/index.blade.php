@@ -1,6 +1,6 @@
 @extends('layouts.admin')
  @section('title')
- Sports - SET Admin Panel
+ Clothes - SET Admin Panel
  @endsection
 @section('contents')
             
@@ -10,15 +10,15 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Sports</h4>
+                        <h4 class="page-title">Clothes</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="{{url('/sports')}}" class="fw-normal">Sports</a></li>
+                                <li><a href="{{url('/clothes')}}" class="fw-normal">Clothes</a></li>
                             </ol>
-                            <a href="{{url('/add-sport')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Sport
+                            <a href="{{url('/add-cloth')}}"
+                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Cloth
                                 </a>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Sports Table</h3>
+                            <h3 class="box-title">Clothes Table</h3>
 
                             @if(session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -55,36 +55,45 @@
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">#</th>
-                                            <th class="border-top-0">Sport Name</th>
-                                            <th class="border-top-0">Description</th>
-                                            <th class="border-top-0">Status</th>
+                                            <th class="border-top-0">Hexa Code</th>
+                                            <th class="border-top-0">Customer</th>
+                                            <th class="border-top-0">Order No</th>
+                                            <th class="border-top-0">Details</th>
+                                            <th class="border-top-0">Image</th>
+                                            <th class="border-top-0">Wash Status</th>
+                                            <th class="border-top-0">Dryer Status</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($sports as $sport)
+                                        @foreach($clothes as $cloth)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$sport->sport_name}}</td>
-                                            <td>{!!$sport->sport_description!!}</td>
                                             <td>
-                                                @if($sport->sport_status == 1)
-                                                Active
-                                                <a href="{{url('sport-deactive/'.$sport->id)}}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactive The Sport">
-                                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                                </a>
-                                                @elseif($sport->sport_status == 0)
-                                                Deactive
-                                                <a href="{{url('sport-active/'.$sport->id)}}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Sport">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                </a>
-                                                @endif
+                                                {{$cloth->hexa_code}}
+                                            </td>
+                                            <td>{{$cloth->customer_inf->name}}</td>
+                                            <td>{{$cloth->order_id}}</td>
+                                            <td>
+                                                <b>Size:</b> {{$cloth->size}} <br>
+                                                <b>Color:</b> {{$cloth->color}} <br>
+                                                <b>Fabric:</b> {{$cloth->fabric}} <br>
+                                                <b>Weight:</b> {{$cloth->weight}} <br>
+                                                <b>Brand:</b> {{$cloth->brand}} <br>
+                                            </td>
+                                            <td>{{$cloth->customer_inf->name}}</td>
+                                            <td><img src="/uploads/clothes/{{$cloth->image}}" alt="" width="100px"></td>
+                                            <td>
+                                                {{$cloth->wash_program_number}}
                                             </td>
                                             <td>
-                                                <a href="{{url('/edit-sport/'.$sport->id)}}"
+                                                {{$cloth->dryer_program_number}}
+                                            </td>
+                                            <td>
+                                                <a href="{{url('/edit-cloth/'.$cloth->id)}}"
                                                 class="btn btn-info text-white">Edit
                                                 </a>
-                                                <a href="{{url('/delete-sport/'.$sport->id)}}"
+                                                <a href="{{url('/delete-cloth/'.$cloth->id)}}"
                                                 class="btn btn-danger text-white" onclick="return confirm('Are you sure to delete?')">Delete
                                                 </a>
                                             </td>

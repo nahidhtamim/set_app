@@ -151,7 +151,36 @@
       </div>
     </div>
   </div>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Impressum</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--<h1>Impressum</h1>-->
+            <h2>Angaben gemäß § 5 TMG:</h2>
+            <p>Andreas Haffner GbR<br>Wäscheservice für Sportbekleidung<br>Andreas Haffner</p>
+            <h3>Postanschrift:</h3>
+            <p>Unter der Schule<br>Vaihingen an der Enz<br></p>
+            <h3>Kontakt:</h3>
+            <p>Telefon: +491622516704<br>E-Mail: info@de-set.com</p>
+            <p></p><h3>Umsatzsteuer-Identifikationsnummer</h3>
+            <p>55075/09959<br></p>
+            <p><br></p>
+            <p></p><h2>Hinweise zur Website</h2>
+            <p></p><h2>Information gemäß § 36 VSBG</h2>
+            <p>Gemäß § 36 VSBG (Verbraucherstreitbeilegungsgesetz – Gesetz über die alternative Streitbeilegung in Verbrauchersachen) erklärt der Betreiber dieser Website:</p>
+            <p>Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+            <p></p><h2>Hinweis</h2>
+            <p>Die Plattform der EU zur außergerichtlichen Streitbeilegung finden Sie online unter: <a href="https://ec.europa.eu/consumers/odr/">https://ec.europa.eu/consumers/odr/</a></p>
+            <p></p><p><em>Das Impressum wurde mit dem <a href="https://www.activemind.de/datenschutz/impressums-generator/">Impressums-Generator der activeMind AG</a> erstellt.</em></p>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- ***** Header Area Start ***** -->
     
     @include('layouts.frontend_includes.navbar')

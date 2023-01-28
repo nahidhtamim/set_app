@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ClothesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -80,6 +81,16 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    Route::get('/delete-service/{id}', [ServicesController::class, 'deleteService']);
    Route::get('/service-active/{id}', [ServicesController::class, 'active']);
    Route::get('/service-deactive/{id}', [ServicesController::class, 'deactive']);
+
+   // Clothes Routes
+   Route::get('/clothes', [ClothesController::class, 'index']);
+   Route::get('/add-cloth', [ClothesController::class, 'addCloth']);
+   Route::post('/save-cloth', [ClothesController::class, 'saveCloth']);
+   Route::get('/edit-cloth/{id}', [ClothesController::class, 'editCloth']);
+   Route::post('/update-cloth/{id}', [ClothesController::class, 'updateCloth']);
+   Route::get('/delete-cloth/{id}', [ClothesController::class, 'deleteCloth']);
+   // Route::get('/service-active/{id}', [ServicesController::class, 'active']);
+   // Route::get('/service-deactive/{id}', [ServicesController::class, 'deactive']);
 
    // Places Routes
    Route::get('/places', [PlacesController::class, 'index']);

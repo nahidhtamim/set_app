@@ -201,7 +201,7 @@
                                                         class="btn btn-info text-white">Edit
                                                     </a>
                                                     <a href="{{url('/delete-order/'.$order->id)}}"
-                                                        class="btn btn-danger text-white deleteBtn">Delete
+                                                        class="btn btn-danger text-white" onclick="return confirm('Are you sure to delete?')">Delete
                                                     </a>
                                                     <div class="btn-group" role="group" aria-label="Buttons">
                                                         {{-- @if($order->order_status == 1)

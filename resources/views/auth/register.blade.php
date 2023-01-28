@@ -81,13 +81,28 @@
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
-                                @error('name')
+                                @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-4">
+                                <input class="form-check-input @error('accept_term') is-invalid @enderror" name="accept_term" value="1" type="checkbox" id="accept_term" required>
+                                <label class="form-check-label" for="accept_term">
+                                    <!-- Button trigger modal -->
+                                I agree to the <a class="text-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Terms & Conditions</a>
+                                </label>
+                                @error('accept_term')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div> 
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

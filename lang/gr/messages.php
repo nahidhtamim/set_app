@@ -36,6 +36,7 @@ return [
     'get_premium'      => 'Buche Dir Jetzt Dein Package!',
     'know_us'      => 'Lerne Uns Besser Kennen',
     'home'      => 'Startseite',
+    'imprint'      => 'Impressum',
     'about'      => 'über Uns',
     'offerings'   => 'Unsere Angebote',
 

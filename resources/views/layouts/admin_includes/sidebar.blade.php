@@ -72,6 +72,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/clothes')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Clothes">
+                        <i class="fa fa-user-secret" aria-hidden="true"></i>
+                        <span class="hide-menu">Clothes</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/users')}}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Users">
                         <i class="fa fa-user" aria-hidden="true"></i>

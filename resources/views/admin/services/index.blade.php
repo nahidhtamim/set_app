@@ -101,7 +101,7 @@
                                                 class="btn btn-info text-white">Edit
                                                 </a>
                                                 <a href="{{url('/delete-service/'.$service->id)}}"
-                                                class="btn btn-danger text-white deleteBtn">Delete
+                                                class="btn btn-danger text-white" onclick="return confirm('Are you sure to delete?')">Delete
                                                 </a>
                                             </td>
                                         </tr>

@@ -29,6 +29,7 @@ class ClothesController extends Controller
         $request->validate([
             'customer_id' => 'required',
             'order_id' => 'required',
+            'hexa_code' => 'required',
             'size' => 'required',
             'color' => 'required',
             'fabric' => 'required',

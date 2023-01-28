@@ -36,6 +36,7 @@ return [
     'get_premium'      => 'Get Your Premium Service Now',
     'know_us'      => 'Get To Know Us Better',
     'home'      => 'Home',
+    'imprint'      => 'Imprint',
     'about'      => 'About',
     'offerings'   => 'Our Offerings',
 

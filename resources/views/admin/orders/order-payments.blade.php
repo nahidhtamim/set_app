@@ -103,7 +103,7 @@
                                                     <i class="fa fa-file-pdf" aria-hidden="true"></i>
                                                 </a>
                                                 <a href="{{url('delete-payment/'.$op->id)}}"
-                                                class="btn btn-danger text-white deleteBtn">Delete
+                                                class="btn btn-danger text-white" onclick="return confirm('Are you sure to delete?')">Delete
                                                 </a>
                                             </td>
                                         </tr>
