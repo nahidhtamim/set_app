@@ -182,6 +182,30 @@
         }
     </script>
   
+    <script type="text/javascript">
+        $('#customer_id').on('change', function () {
+            get_orders_by_customer();
+        });
+
+        function get_orders_by_customer() {
+            var customer_id = $('#customer_id').val();
+            $.post('{{ route('getCustomerOrders') }}', {
+                    _token: '{{ csrf_token() }}',
+                    customer_id: customer_id
+                },
+                function (data) {
+                    $('#order_id').html(null);
+                    $('#order_id').append($('<option value="">SET Order No</option>', {}));
+                    for (var i = 0; i < data.length; i++) {
+                        $('#order_id').append($('<option>', {
+                            value: data[i].id,
+                            text: data[i].id
+                        }));
+                    }
+                });
+        }
+    </script>
+
     <script>
         $(document).ready(function () {
 

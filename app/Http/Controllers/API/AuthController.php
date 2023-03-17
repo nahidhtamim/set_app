@@ -32,10 +32,12 @@ class AuthController extends Controller
 
         $response = [
             'user' => $user,
-            'token' => $token
+            'token' => $token,
+            'status' => 200,
         ];
 
-        return response($response, 201);
+        //return response($response, 201);
+        return response()->json($response, 200);
     }
 
     public function login(Request $request) {
@@ -67,10 +69,12 @@ class AuthController extends Controller
 
         $response = [
             'user' => $user,
-            'token' => $token
+            'token' => $token,
+            'status' => 200,
         ];
 
-        return response($response, 201);
+        return response()->json($response, 200);
+        //return response($response, 201);
     }
 
     public function logout(Request $request) {
@@ -78,8 +82,10 @@ class AuthController extends Controller
         //Auth::user()->tokens()->delete();
         $request->user()->currentAccessToken()->delete();
         //$user->tokens()->delete();
-        return [
+
+        return response()->json([
+            'status' => 200,
             'message' => 'Logged out'
-        ];
+        ], 200);
     }
 }

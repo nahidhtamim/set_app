@@ -69,9 +69,7 @@
                                         @foreach($clothes as $cloth)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>
-                                                {{$cloth->hexa_code}}
-                                            </td>
+                                            <td>{{$cloth->hexa_code}}</td>
                                             <td>{{$cloth->customer_inf->name}}</td>
                                             <td>{{$cloth->order_id}}</td>
                                             <td>
@@ -81,7 +79,6 @@
                                                 <b>Weight:</b> {{$cloth->weight}} <br>
                                                 <b>Brand:</b> {{$cloth->brand}} <br>
                                             </td>
-                                            <td>{{$cloth->customer_inf->name}}</td>
                                             <td><img src="/uploads/clothes/{{$cloth->image}}" alt="" width="100px"></td>
                                             <td>
                                                 {{$cloth->wash_program_number}}

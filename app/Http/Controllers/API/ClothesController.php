@@ -15,7 +15,11 @@ class ClothesController extends Controller
      */
     public function index()
     {
-        return Cloth::all();
+        $cloth = Cloth::all();
+
+        return response()->json([
+            'cloth' => $cloth
+        ], 200);
     }
 
     /**
@@ -39,7 +43,19 @@ class ClothesController extends Controller
             'dryer_program_number' => 'required',
         ]);
 
-        return Cloth::create($request->all());
+        $data = Cloth::create($request->all());
+        
+        if(!$data){
+            return response()->json([
+                'status' => 400,
+                'error' => 'Something Went Wrong'
+            ], 400);
+        }else{
+            return response()->json([
+                'status' => 200,
+                'message' => 'Data Stored Successfully'
+            ], 200);
+        }
     }
 
     /**
@@ -50,7 +66,20 @@ class ClothesController extends Controller
      */
     public function show($hexa)
     {
-        $cloth = Cloth::where('hexa_code', $hexa)->first();
+        //$cloth = Cloth::where('hexa_code', $hexa)->first();
+
+        $cloth = Cloth::all();
+
+        if(isset($cloth)){
+            return response()->json([
+                'cloth' => $cloth
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'error' => 'Data Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -63,8 +92,21 @@ class ClothesController extends Controller
     public function update(Request $request, $hexa)
     {
         $cloth = Cloth::where('hexa_code', $hexa)->first();
+
         $cloth->update($request->all());
-        return $cloth;
+
+        if(!$cloth){
+            return response()->json([
+                'status' => 400,
+                'error' => 'Something Went Wrong'
+            ], 400);
+        }else{
+            return response()->json([
+                'status' => 200,
+                'error' => 'Data Updated Successfully'
+            ], 200);
+        }
+        // return $cloth;
     }
 
     /**
@@ -77,7 +119,20 @@ class ClothesController extends Controller
     {
         $cloth = Cloth::where('hexa_code', $hexa)->first();
         $cloth->delete();
-        return $cloth;
+        
+        if(!$cloth){
+            return response()->json([
+                'status' => 400,
+                'error' => 'Something Went Wrong'
+            ], 400);
+        }else{
+            return response()->json([
+                'status' => 200,
+                'error' => 'Data Deleted Successfully'
+            ], 200);
+        }
+
+        // return $cloth;
     }
 
      /**
@@ -88,6 +143,17 @@ class ClothesController extends Controller
      */
     public function search($hexa)
     {
-        return Cloth::where('hexa_code', 'like', '%'.$hexa.'%')->get();
+        $cloth = Cloth::where('hexa_code', 'like', '%'.$hexa.'%')->first();
+        
+        if(isset($cloth)){
+            return response()->json([
+                'cloth' => $cloth
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'error' => 'Data Not Found'
+            ], 404);
+        }
     }
 }

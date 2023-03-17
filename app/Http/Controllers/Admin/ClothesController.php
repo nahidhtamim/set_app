@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cloth;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ClothesController extends Controller
 {
@@ -14,7 +17,8 @@ class ClothesController extends Controller
     }
 
     public function addCloth(){
-        return view('admin.clothes.add-cloth');
+        $users = User::where('role_as', '0')->get();
+        return view('admin.clothes.add-cloth', compact('users'));
     }
 
     public function saveCloth(Request $request){
@@ -27,8 +31,8 @@ class ClothesController extends Controller
         $cloth->fabric = $request->input('fabric');
         $cloth->weight = $request->input('weight');
         $cloth->brand = $request->input('brand');
-        $cloth->wash_program_number = $request->input('wash_program_number');
-        $cloth->dryer_program_number = $request->input('dryer_program_number');
+        $cloth->wash_program_number = $request->input('wash_program_number')==true ? '1':'0';
+        $cloth->dryer_program_number = $request->input('dryer_program_number')==true ? '1':'0';
         // $cloth->cloth_status = '1';
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -43,7 +47,8 @@ class ClothesController extends Controller
 
     public function editCloth($id){
         $cloth = cloth::find($id);
-        return view('admin.clothes.edit-cloth', compact('cloth'));
+        $users = User::where('role_as', '0')->get();
+        return view('admin.clothes.edit-cloth', compact('cloth', 'users'));
     }
 
     public function updateCloth($id, Request $request){
@@ -57,8 +62,6 @@ class ClothesController extends Controller
         $cloth->fabric = $request->input('fabric');
         $cloth->weight = $request->input('weight');
         $cloth->brand = $request->input('brand');
-        $cloth->wash_program_number = $request->input('wash_program_number');
-        $cloth->dryer_program_number = $request->input('dryer_program_number');
         // $cloth->cloth_status = '1';
         if($request->hasFile('image')){
             $destination = 'upload/clothes/'.$cloth->image;
@@ -74,12 +77,17 @@ class ClothesController extends Controller
         return redirect('/clothes')->with('status', 'Cloth Updated Successfully');
     }
 
-    public function deleteCloth($id, Request $request){
+    public function deleteCloth($id){
         $cloth = cloth::find($id);
         $cloth->delete();
         return redirect('/clothes')->with('warning', 'Cloth Deleted Successfully');
     }
 
+    public function getCustomerOrders(Request $request)
+    {
+        $orders=Order::where('customer_id', $request->customer_id)->orderBy('id')->get();
+        return $orders;
+    }
 
     // public function active($id)
     // {

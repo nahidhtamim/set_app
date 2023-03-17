@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\ClothesController;
+use App\Http\Controllers\API\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'isAdmin']], function
     Route::put('/clothes/{hexa}', [ClothesController::class, 'update']);
     Route::delete('/clothes/{hexa}', [ClothesController::class, 'destroy']);
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::get('/customers', [CustomerController::class, 'index']);
+    Route::get('/customer/search/{id}', [CustomerController::class, 'customerSearch']);
 });

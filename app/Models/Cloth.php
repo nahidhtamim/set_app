@@ -25,4 +25,9 @@ class Cloth extends Model
         'dryer_program_number',
     ];
 
+    public function customer_inf()
+    {
+        return $this->belongsTo(User::class,'customer_id','id');
+    }
+
 }

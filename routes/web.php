@@ -40,7 +40,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/about', [FrontendController::class, 'about']);
 Route::get('/service/{id}', [FrontendController::class, 'service']);
-Route::get('refresh_captcha',[MailController::class, 'refreshCaptcha'])->name('refresh_captcha');
 Route::post('/email', [MailController::class, 'sendEmail'])->name('contact.send');
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
@@ -89,6 +88,7 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    Route::get('/edit-cloth/{id}', [ClothesController::class, 'editCloth']);
    Route::post('/update-cloth/{id}', [ClothesController::class, 'updateCloth']);
    Route::get('/delete-cloth/{id}', [ClothesController::class, 'deleteCloth']);
+   Route::post('getCustomerOrders',[ClothesController::class,'getCustomerOrders'])->name('getCustomerOrders');
    // Route::get('/service-active/{id}', [ServicesController::class, 'active']);
    // Route::get('/service-deactive/{id}', [ServicesController::class, 'deactive']);
 
