@@ -206,6 +206,23 @@
         }
     </script>
 
+    <script type="text/javascript">
+        $('#order_id').on('change', function () {
+            get_service_by_order();
+        });
+
+        function get_service_by_order() {
+            var order_id = $('#order_id').val();
+            $.post('{{ route('getOrderServiceID') }}', {
+                    _token: '{{ csrf_token() }}',
+                    order_id: order_id
+                },
+                function (data) {
+                    $('#service_id').val(data)
+                });
+        }
+    </script>
+
     <script>
         $(document).ready(function () {
 

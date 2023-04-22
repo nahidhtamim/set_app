@@ -58,6 +58,7 @@
                                             <th class="border-top-0">Hexa Code</th>
                                             <th class="border-top-0">Customer</th>
                                             <th class="border-top-0">Order No</th>
+                                            <th class="border-top-0">Service & Cloting Set</th>
                                             <th class="border-top-0">Details</th>
                                             <th class="border-top-0">Image</th>
                                             <th class="border-top-0">Wash Status</th>
@@ -73,6 +74,11 @@
                                             <td>{{$cloth->customer_inf->name}}</td>
                                             <td>{{$cloth->order_id}}</td>
                                             <td>
+                                                <b>Service Name:</b> {{$cloth->service_inf->service_name}} <br>
+                                                <b>Clothing Set:</b> {{$cloth->set_id}} <br>
+                                            </td>
+                                            <td>
+                                                <b>Cloth Type:</b> {{$cloth->cloth_type}} <br>
                                                 <b>Size:</b> {{$cloth->size}} <br>
                                                 <b>Color:</b> {{$cloth->color}} <br>
                                                 <b>Fabric:</b> {{$cloth->fabric}} <br>

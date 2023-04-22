@@ -59,11 +59,31 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="col-sm-12"><b>Order ID <span class="text-danger">*</span></b></label>
-
                                     <div class="col-sm-12 border-bottom">
                                         <select class="form-select shadow-none p-0 border-0 form-control-line" name="order_id" id="order_id" required>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Service ID<span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="SET Service [Only Read Values]"
+                                            class="form-control p-0 border-0" name="service_id" id="service_id" required readonly> 
+                                        </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Set ID<span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="number" placeholder="SET Package Set Number"
+                                            class="form-control p-0 border-0" name="set_id" required> 
+                                        </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Cloth Type/Name<span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="SET Cloth Type/Name"
+                                            class="form-control p-0 border-0" name="cloth_type" required> 
+                                        </div>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Size<span class="text-danger">*</span></b></label>

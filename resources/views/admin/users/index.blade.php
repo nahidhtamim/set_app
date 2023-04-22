@@ -88,14 +88,38 @@ Users - SET Admin Panel
                                     Customer
                                     @endif
                                 </td>
-                                <td>
-                                    <input type="checkbox" data-id="{{ $user->id }}" name="status" class="js-switch" {{ $user->online_status == 1 ? 'checked' : '' }}>
-                                    {{-- @if($user->online_status == 1)
-                                    <i class="fa fa-toggle-on btn-lg text-success"></i>
-                                     
-                                    @elseif($user->online_status == 0)
-                                    <i class="fa fa-toggle-off btn-lg text-secondary"></i> 
-                                    @endif --}}
+                                <td class="user-buttons">
+                                    @if($user->online_status == 1)
+
+                                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                            <button type="button" class="btn btn-outline-offline btn-sm">
+                                                <a href="{{url('user-status/offline/'.$user->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="Make Offline">
+                                                    Offline
+                                                </a>
+                                            </button>
+                                            <button type="button" class="btn btn-online btn-sm" disabled>
+                                                <a href="{{url('user-status/online/'.$user->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="User Currently Online">
+                                                    Online
+                                                </a>
+                                            </button>
+                                        </div>
+                                        
+                                        @elseif($user->online_status == 0)
+
+                                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                            <button type="button" class="btn btn-offline btn-sm" disabled>
+                                                <a href="{{url('user-status/offline/'.$user->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="User Currently Offline">
+                                                    Offline
+                                                </a>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-online btn-sm">
+                                                <a href="{{url('user-status/online/'.$user->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="Make Online">
+                                                    Online
+                                                </a>
+                                            </button>
+                                        </div>
+
+                                        @endif
                                 </td>
                                 <td>
                                     <a href="{{ url('/edit-user/'.$user->id) }}"
@@ -117,6 +141,72 @@ Users - SET Admin Panel
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
+
+
+<style>
+    .user-buttons button{
+        border-radius: 0px !important;
+        padding: 7px  !important;
+    }
+
+    /* .user-buttons .btn-group{
+        border-radius: 10px !important;
+    } */
+
+    .user-buttons button.btn-online a{
+        color: #fff !important;
+    }
+
+    .user-buttons button.btn-outline-online a{
+        color: #63BC62 !important;
+    }
+
+    .user-buttons button.btn-outline-online:hover a{
+        color: #fff !important;
+    }
+
+    .user-buttons button.btn-offline a{
+        color: #fff !important;
+    }
+
+    .user-buttons button.btn-outline-offline a{
+        color: #f73333 !important;
+    }
+
+    .user-buttons button.btn-outline-offline:hover a{
+        color: #fff !important;
+    }
+
+    .user-buttons button.btn-online{
+        background: #63BC62 !important;
+        border: 1px solid #63BC62 !important;
+    }
+
+    .user-buttons button.btn-outline-online{
+        background: none !important;
+        border: 1px solid #63BC62 !important;
+    }
+
+    .user-buttons button.btn-outline-online:hover{
+        background: #63BC62 !important;
+        border: 1px solid #63BC62 !important;
+    }
+
+    .user-buttons button.btn-offline{
+        background: #f73333 !important;
+        border: 1px solid #f73333 !important;
+    }
+
+    .user-buttons button.btn-outline-offline{
+        background: none !important;
+        border: 1px solid #f73333 !important;
+    }
+
+    .user-buttons button.btn-outline-offline:hover{
+        background: #f73333 !important;
+        border: 1px solid #f73333 !important;
+    }
+</style>
 
 
 @endsection

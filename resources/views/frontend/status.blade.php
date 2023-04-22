@@ -5,6 +5,63 @@ Online Status | SET - A Premium Laundry Service
 @section('contents')
 
 
+<style>
+    .profile-card button{
+        border-radius: 0px !important;
+        padding: 10px !important;
+    }
+
+    /* .profile-card .btn-group{
+        border-radius: 10px !important;
+    } */
+
+    .profile-card button.btn-online a{
+        color: #fff !important;
+    }
+
+    .profile-card button.btn-outline-online a{
+        color: #fff !important;
+    }
+
+    .profile-card button.btn-offline a{
+        color: #fff !important;
+    }
+
+    .profile-card button.btn-outline-offline a{
+        color: #fff !important;
+    }
+
+    .profile-card button.btn-online{
+        background: #63BC62 !important;
+        border: 1px solid #63BC62 !important;
+    }
+
+    .profile-card button.btn-outline-online{
+        background: none !important;
+        border: 1px solid #fff !important;
+    }
+
+    .profile-card button.btn-outline-online:hover{
+        background: #63BC62 !important;
+        border: 1px solid #63BC62 !important;
+    }
+
+    .profile-card button.btn-offline{
+        background: #f73333 !important;
+        border: 1px solid #f73333 !important;
+    }
+
+    .profile-card button.btn-outline-offline{
+        background: none !important;
+        border: 1px solid #fff !important;
+    }
+
+    .profile-card button.btn-outline-offline:hover{
+        background: #f73333 !important;
+        border: 1px solid #f73333 !important;
+    }
+</style>
+
 
 <section class="meetings-page" id="meetings">
     <div class="container">
@@ -38,9 +95,40 @@ Online Status | SET - A Premium Laundry Service
                                         <h2 class="text-light">Online Status</h2>
                                     </div>
                                     <div class="profile-card col-lg-12">
-                                        <a class="nav-link" href="#">
+                                        @if(Auth::user()->online_status == 1)
+
+                                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                            <button type="button" class="btn btn-outline-offline btn-sm">
+                                                <a href="{{url('user-status/offline/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="Make Offline">
+                                                    Offline
+                                                </a>
+                                            </button>
+                                            <button type="button" class="btn btn-online btn-sm" disabled>
+                                                <a href="{{url('user-status/online/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="User Currently Online">
+                                                    Online
+                                                </a>
+                                            </button>
+                                        </div>
+                                        
+                                        @elseif(Auth::user()->online_status == 0)
+
+                                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                            <button type="button" class="btn btn-offline btn-sm" disabled>
+                                                <a href="{{url('user-status/offline/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="User Currently Offline">
+                                                    Offline
+                                                </a>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-online btn-sm">
+                                                <a href="{{url('user-status/online/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="Make Online">
+                                                    Online
+                                                </a>
+                                            </button>
+                                        </div>
+
+                                        @endif
+                                        {{-- <a class="nav-link" href="#">
                                             <input type="checkbox" data-id="{{ Auth::user()->id }}" name="online_status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}  style="height: 50px">
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </div>
                             </div>

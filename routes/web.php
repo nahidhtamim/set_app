@@ -51,6 +51,9 @@ Route::group(['middleware' => ['auth','verified']], function () {
    Route::get('/home', [HomeController::class, 'index'])->name('home');
    Route::get('/status', [HomeController::class, 'status'])->name('status');
    Route::get('/status/update', [HomeController::class, 'updateStatus'])->name('users.update.status');
+   //Route::get('/status/update', [HomeController::class, 'updateStatus'])->name('users.update.status');
+   Route::get('/user-status/online/{id}', [HomeController::class, 'userOnline']);
+   Route::get('/user-status/offline/{id}', [HomeController::class, 'userOffline']);
 
    Route::get('/my-profile', [HomeController::class, 'myProfile'])->name('my-profile');
    Route::post('/update-details', [HomeController::class, 'updateDetails']);
@@ -89,6 +92,7 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    Route::post('/update-cloth/{id}', [ClothesController::class, 'updateCloth']);
    Route::get('/delete-cloth/{id}', [ClothesController::class, 'deleteCloth']);
    Route::post('getCustomerOrders',[ClothesController::class,'getCustomerOrders'])->name('getCustomerOrders');
+   Route::post('getOrderServiceID',[ClothesController::class,'getOrderServiceID'])->name('getOrderServiceID');
    // Route::get('/service-active/{id}', [ServicesController::class, 'active']);
    // Route::get('/service-deactive/{id}', [ServicesController::class, 'deactive']);
 

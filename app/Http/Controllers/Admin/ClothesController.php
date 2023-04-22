@@ -26,6 +26,9 @@ class ClothesController extends Controller
         $cloth->hexa_code = $request->input('hexa_code');
         $cloth->customer_id = $request->input('customer_id');
         $cloth->order_id = $request->input('order_id');
+        $cloth->service_id = $request->input('service_id');
+        $cloth->set_id = $request->input('set_id');
+        $cloth->cloth_type = $request->input('cloth_type');
         $cloth->size = $request->input('size');
         $cloth->color = $request->input('color');
         $cloth->fabric = $request->input('fabric');
@@ -57,6 +60,9 @@ class ClothesController extends Controller
         $cloth->hexa_code = $request->input('hexa_code');
         $cloth->customer_id = $request->input('customer_id');
         $cloth->order_id = $request->input('order_id');
+        $cloth->service_id = $request->input('service_id');
+        $cloth->set_id = $request->input('set_id');
+        $cloth->cloth_type = $request->input('cloth_type');
         $cloth->size = $request->input('size');
         $cloth->color = $request->input('color');
         $cloth->fabric = $request->input('fabric');
@@ -87,6 +93,12 @@ class ClothesController extends Controller
     {
         $orders=Order::where('customer_id', $request->customer_id)->orderBy('id')->get();
         return $orders;
+    }
+
+    public function getOrderServiceID(Request $request)
+    {
+        $service=Order::where('id', $request->order_id)->pluck('service_id');
+        return $service;
     }
 
     // public function active($id)

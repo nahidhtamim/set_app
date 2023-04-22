@@ -67,6 +67,29 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Service ID<span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" value="{{$cloth->service_id}}"
+                                            class="form-control p-0 border-0" name="service_id" id="service_id" required readonly> 
+                                        </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Set ID<span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="number" value="{{$cloth->set_id}}"
+                                            class="form-control p-0 border-0" name="set_id" required> 
+                                        </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Cloth Type/Name<span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" value="{{$cloth->cloth_type}}"
+                                            class="form-control p-0 border-0" name="cloth_type" required> 
+                                        </div>
+                                </div>
+
                                 <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Size<span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">

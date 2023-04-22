@@ -15,6 +15,9 @@ class Cloth extends Model
         'hexa_code',
         'customer_id',
         'order_id',
+        'service_id',
+        'set_id',
+        'cloth_type',
         'size',
         'color',
         'fabric',
@@ -30,4 +33,8 @@ class Cloth extends Model
         return $this->belongsTo(User::class,'customer_id','id');
     }
 
+    public function service_inf()
+    {
+        return $this->belongsTo(Service::class,'service_id','id');
+    }
 }

@@ -11,6 +11,7 @@ use App\Models\OnlineStatus;
 use App\Models\Service;
 use App\Models\PlaceLocker;
 use App\Models\PlaceService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -37,20 +38,48 @@ class HomeController extends Controller
         return view('frontend.status');
     }
 
-    public function updateStatus(Request $request)
+    public function userOnline($id)
     {
-        $user = User::findOrFail($request->user_id);
-        $user->online_status = $request->online_status;
-        $user->save();
+        $date = Carbon::today()->subDays(7);
 
+        $count = OnlineStatus::where('customer_id', $id)
+        ->where('created_at', '>=', $date)
+        ->count();
+
+        if($count < 3){
+
+            $user = User::findOrFail($id);
+            $user->online_status = '1';
+            $user->update();
+
+            $os = new OnlineStatus();
+            $os->online_status = '1';
+            $os->customer_id = $id;
+            $os->read_at = '0';
+            $os->save();
+    
+            return redirect()->back()->with('status', 'User Online');
+        }
+        else{
+            return redirect()->back()->with('warning', 'You can only use this service 3 times in a Week');
+        }
+
+        
+    }
+
+    public function userOffline($id)
+    {
+        $user = User::findOrFail($id);
+        $user->online_status = '0';
+        $user->update();
 
         $os = new OnlineStatus();
-        $os->online_status = $request->online_status;
-        $os->customer_id = Auth::user()->id;
+        $os->online_status = '0';
+        $os->customer_id = $id;
         $os->read_at = '0';
         $os->save();
 
-        return response()->json(['status' => 'User status updated successfully.']);
+        return redirect()->back()->with('warning', 'User Offline');
     }
 
     public function myProfile()

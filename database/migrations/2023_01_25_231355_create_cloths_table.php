@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('hexa_code');
             $table->integer('customer_id');
             $table->integer('order_id');
+            $table->integer('service_id');
+            $table->integer('set_id');
+            $table->string('cloth_type');
             $table->string('size');
             $table->string('color');
             $table->string('fabric');
