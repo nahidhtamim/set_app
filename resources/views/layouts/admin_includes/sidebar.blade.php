@@ -81,7 +81,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/laundries')}}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Clothes">
-                        <i class="fa fa-user-secret" aria-hidden="true"></i>
+                        <i class="fa fa-cube" aria-hidden="true"></i>
                         <span class="hide-menu">Laundries</span>
                     </a>
                 </li>

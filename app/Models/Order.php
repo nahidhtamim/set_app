@@ -58,5 +58,8 @@ class Order extends Model
         return $this->belongsTo(PlaceLocker::class,'locker_id','id');
     }
 
-    
+    public function order_statuses_inf()
+    {
+        return $this->belongsTo(order_status::class,'order_status','id');
+    }
 }

@@ -72,9 +72,15 @@
                   <br>
                  @endif
                   @if(Auth::user())
-                  <div class="main-button-red">
-                    <a href="{{url('/order-form')}}">Order</a>
-                  </div>
+                    @if($hasOrder == true)
+                    <div class="main-button-red">
+                      <div class="alert alert-warning text-center">You already have an order, you can not order more services at once.</div>
+                    </div>
+                    @else
+                    <div class="main-button-red">
+                      <a href="{{url('/order-form')}}">Order</a>
+                    </div>
+                    @endif
                   @else
                   <div class="alert alert-warning text-center">Please login or register to order this service!!!</div>
                   @endif

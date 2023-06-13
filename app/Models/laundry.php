@@ -13,6 +13,7 @@ class laundry extends Model
 
     protected $fillable = [
         'customer_id',
+        'order_id',
         'set_id',
         'washing_program',
         'cloth_group',

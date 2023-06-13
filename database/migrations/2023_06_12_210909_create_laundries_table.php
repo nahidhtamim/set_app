@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('laundries', function (Blueprint $table) {
             $table->id();
             $table->integer('customer_id');
+            $table->integer('order_id');
             $table->integer('set_id');
             $table->integer('washing_program');
             $table->integer('cloth_group');

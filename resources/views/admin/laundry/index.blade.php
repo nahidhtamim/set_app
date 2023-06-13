@@ -63,6 +63,7 @@
                                         <tr>
                                             <th class="border-top-0">#</th>
                                             <th class="border-top-0">Customer</th>
+                                            <th class="border-top-0">Order No</th>
                                             <th class="border-top-0">Clothing Set</th>
                                             <th class="border-top-0">Washing Program</th>
                                             <th class="border-top-0">Color Group</th>
@@ -79,6 +80,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$laundry->user_inf->name}}</td>
+                                            <td>{{$laundry->order_id}}</td>
                                             <td>{{$laundry->set_id}}</td>
                                             <td>{{$laundry->washing_program_inf->name}}</td>
                                             <td>{{$laundry->cloth_group_inf->name}}</td>

@@ -63,8 +63,6 @@
                                             <th class="border-top-0">Customer</th>
                                             <th class="border-top-0">Order Info</th>
                                             <th class="border-top-0">Service & Cloting Set</th>
-                                            {{-- <th class="border-top-0">Details</th>
-                                            <th class="border-top-0">Image</th> --}}
                                             <th class="border-top-0">Service Cycle Status</th>
                                             <th class="border-top-0">Cloth Status</th>
                                             <th class="border-top-0">Action</th>
@@ -109,15 +107,6 @@
                                                 <b>Service Name:</b> {{$cloth->service_inf->service_name}} <br>
                                                 <b>Clothing Set:</b> {{$cloth->set_id}} <br>
                                             </td>
-                                            {{-- <td>
-                                                <b>Cloth Type:</b> {{$cloth->cloth_type}} <br>
-                                                <b>Size:</b> {{$cloth->size}} <br>
-                                                <b>Color:</b> <div style="height: 10px; width: 100%; background-color:{{$cloth->color}}"></div>
-                                                <b>Fabric:</b> {{$cloth->fabric}} <br>
-                                                <b>Weight:</b> {{$cloth->weight}} <br>
-                                                <b>Brand:</b> {{$cloth->brand}} <br>
-                                            </td> 
-                                            <td><img src="/uploads/clothes/{{$cloth->image}}" alt="" width="100px"></td>--}}
                                             <td class="text-center">
                                                 @if($cloth->wash_program_number == '0')
                                                 New Entry
@@ -140,83 +129,9 @@
                                                 
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#clothModal">
-                                                    View Cloths
-                                                </button>
-
-                                                <!-- Fabric Modal -->
-                                                <div class="modal fade" id="clothModal" tabindex="-1" aria-labelledby="clothModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                            <h5 class="modal-title" id="clothModalLabel">Washing Programs</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="table-responsive">
-                                                                    <table class="table text-nowrap table-bordered table-striped" id="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th class="border-top-0">#</th>
-                                                                                <th class="border-top-0">Customer</th>
-                                                                                <th class="border-top-0">Clothing Set</th>
-                                                                                <th class="border-top-0">Washing Program</th>
-                                                                                <th class="border-top-0">Color Group</th>
-                                                                                <th class="border-top-0">Cloth Type</th>
-                                                                                <th class="border-top-0">Fabric</th>
-                                                                                <th class="border-top-0">Sportswear Type</th>
-                                                                                <th class="border-top-0">Description</th>
-                                                                                <th class="border-top-0">Status</th>
-                                                                                <th class="border-top-0">Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            @foreach($laundries as $laundry)
-                                                                                @if($laundry->set_id == $cloth->set_id)
-                                                                                <tr>
-                                                                                    <td>{{$loop->iteration}}</td>
-                                                                                    <td>{{$laundry->user_inf->name}}</td>
-                                                                                    <td>{{$laundry->set_id}}</td>
-                                                                                    <td>{{$laundry->washing_program_inf->name}}</td>
-                                                                                    <td>{{$laundry->cloth_group_inf->name}}</td>
-                                                                                    <td>{{$laundry->cloth_type_inf->name}}</td>
-                                                                                    <td>{{$laundry->fabric_inf->name}}</td>
-                                                                                    <td>{{$laundry->sportswear_inf->name}}</td>
-                                                                                    <td>{!!$laundry->laundry_description!!}</td>
-                                                                                    <td>
-                                                                                        @if($laundry->status == 1)
-                                                                                        Active
-                                                                                        <a href="{{url('laundry-deactive/'.$laundry->id)}}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactive The Laundry">
-                                                                                            <i class="fa fa-times" aria-hidden="true"></i>
-                                                                                        </a>
-                                                                                        @elseif($laundry->status == 0)
-                                                                                        Deactive
-                                                                                        <a href="{{url('laundry-active/'.$laundry->id)}}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Laundry">
-                                                                                            <i class="fa fa-check" aria-hidden="true"></i>
-                                                                                        </a>
-                                                                                        @endif
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a href="{{url('/edit-laundry/'.$laundry->id)}}"
-                                                                                        class="btn btn-info text-white">Edit
-                                                                                        </a>
-                                                                                        <a href="{{url('/delete-laundry/'.$laundry->id)}}"
-                                                                                        class="btn btn-danger text-white" onclick="return confirm('Are you sure to delete?')">Delete
-                                                                                        </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <a href="{{url('load-laundries/'.$cloth->set_id.'/'.$cloth->order_id.'/'.$cloth->customer_id)}}"
+                                                    class="btn btn-secondary text-white">View Cloths
+                                                </a>
                                             </td>
                                             <td>
                                                 
@@ -239,7 +154,7 @@
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-            
+
               <!-- Modal -->
               <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -276,5 +191,4 @@
 @endsection
         
         
- 
-        
+    

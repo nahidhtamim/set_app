@@ -38,7 +38,8 @@ class LaundryController extends Controller
     }
 
     public function saveLaundry(Request $request){
-        $customer_id = $request->client_id;
+        $customer_id = $request->customer_id;
+        $order_id = $request->order_id;
         $set_id = $request->set_id;
         $washing_program = $request->washing_program;
         $cloth_group = $request->cloth_group;
@@ -49,6 +50,7 @@ class LaundryController extends Controller
         for($i = 0; $i < count($fabric); $i++){
             $datasave = [
                 'customer_id' => $customer_id[$i],
+                'order_id' => $order_id[$i],
                 'set_id' => $set_id[$i],
                 'washing_program' => $washing_program[$i],
                 'cloth_group' => $cloth_group[$i],

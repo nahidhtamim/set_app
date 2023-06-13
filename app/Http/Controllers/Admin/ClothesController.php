@@ -17,6 +17,7 @@ use App\Models\sportswear;
 use App\Models\User;
 use App\Models\washing_program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
@@ -35,6 +36,13 @@ class ClothesController extends Controller
         $washing_programs = washing_program::all();
         return view('admin.clothes.index', compact('clothes', 'locations', 'lockers', 'places', 'laundries', 'cloth_groups', 'cloth_types', 'fabrics', 'sportswears', 'washing_programs'));
     }
+
+    public function getLaundryItems($set_id, $order_id, $customer_id)
+    {
+        $laundries = laundry::where('set_id', $set_id)->where('order_id', $order_id)->where('customer_id', $customer_id)->get(); 
+        return view('admin.clothes.laundryItems', compact('laundries'));
+    }
+
 
     public function addCloth(){
         $users = User::where('role_as', '0')->get();

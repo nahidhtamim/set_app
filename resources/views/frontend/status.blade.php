@@ -75,66 +75,72 @@ Online Status | SET - A Premium Laundry Service
                             background-size:cover;">
                                 @csrf
                                 <div class="row">
-                                    {{-- <div id="info text-center">
-                                        <p></p>
-                                    </div> --}}
-                                    @if($order->order_status == 0)
-                                    <div class="col-lg-12 text-center">
-                                        <h1 class="text-light">Your Order is Yet to be Confirmed</h1>
-                                    </div>
-                                    @elseif($order->order_status == 1)
-                                        @if(session('status'))
-                                            <div class="alert alert-success" role="alert">
-                                                {{ session('status') }}
-                                                <a class="close">&times;</a>
+                                    
+                                    @if($hasOrder == true)
+                                        @if($order->order_status == 0)
+                                        <div class="col-lg-12 text-center">
+                                            <h1 class="text-light">Your Order is Yet to be Confirmed</h1>
+                                        </div>
+                                        @elseif($order->order_status == 1)
+                                            @if(session('status'))
+                                                <div class="alert alert-success" role="alert">
+                                                    {{ session('status') }}
+                                                    <a class="close">&times;</a>
+                                                </div>
+                                            @elseif(session('warning'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ session('warning') }}
+                                                    <a class="close">&times;</a>
+                                                </div>
+                                            @endif
+
+                                            <div class="col-lg-12 text-center">
+                                                <h2 class="text-light">Online Status</h2>
                                             </div>
-                                        @elseif(session('warning'))
-                                            <div class="alert alert-danger" role="alert">
-                                                {{ session('warning') }}
-                                                <a class="close">&times;</a>
+                                            <div class="profile-card col-lg-12">
+                                                @if(Auth::user()->online_status == 1)
+
+                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                    <button type="button" class="btn btn-outline-offline btn-sm">
+                                                        <a href="{{url('user-status/offline/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="Make Offline">
+                                                            Offline
+                                                        </a>
+                                                    </button>
+                                                    <button type="button" class="btn btn-online btn-sm" disabled>
+                                                        <a href="{{url('user-status/online/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="User Currently Online">
+                                                            Online
+                                                        </a>
+                                                    </button>
+                                                </div>
+                                                
+                                                @elseif(Auth::user()->online_status == 0)
+
+                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                    <button type="button" class="btn btn-offline btn-sm" disabled>
+                                                        <a href="{{url('user-status/offline/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="User Currently Offline">
+                                                            Offline
+                                                        </a>
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-online btn-sm">
+                                                        <a href="{{url('user-status/online/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="Make Online">
+                                                            Online
+                                                        </a>
+                                                    </button>
+                                                </div>
+
+                                                @endif
+                                                {{-- <a class="nav-link" href="#">
+                                                    <input type="checkbox" data-id="{{ Auth::user()->id }}" name="online_status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}  style="height: 50px">
+                                                </a> --}}
                                             </div>
                                         @endif
 
-                                        <div class="col-lg-12 text-center">
-                                            <h2 class="text-light">Online Status</h2>
-                                        </div>
-                                        <div class="profile-card col-lg-12">
-                                            @if(Auth::user()->online_status == 1)
-
-                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-outline-offline btn-sm">
-                                                    <a href="{{url('user-status/offline/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="Make Offline">
-                                                        Offline
-                                                    </a>
-                                                </button>
-                                                <button type="button" class="btn btn-online btn-sm" disabled>
-                                                    <a href="{{url('user-status/online/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="User Currently Online">
-                                                        Online
-                                                    </a>
-                                                </button>
-                                            </div>
-                                            
-                                            @elseif(Auth::user()->online_status == 0)
-
-                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-offline btn-sm" disabled>
-                                                    <a href="{{url('user-status/offline/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="User Currently Offline">
-                                                        Offline
-                                                    </a>
-                                                </button>
-                                                <button type="button" class="btn btn-outline-online btn-sm">
-                                                    <a href="{{url('user-status/online/'.Auth::user()->id)}}" class="" data-bs-toggle="tooltip" data-bs-placement="top" title="Make Online">
-                                                        Online
-                                                    </a>
-                                                </button>
-                                            </div>
-
-                                            @endif
-                                            {{-- <a class="nav-link" href="#">
-                                                <input type="checkbox" data-id="{{ Auth::user()->id }}" name="online_status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}  style="height: 50px">
-                                            </a> --}}
-                                        </div>
+                                    @else
+                                    <div class="col-lg-12 text-center">
+                                        <h1 class="text-light">This service is currently unavailable for you. To use this function please place an order</h1>
+                                    </div>
                                     @endif
+                                    
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -22,6 +24,7 @@ class FrontendController extends Controller
     public function service($id)
     {
         $service = Service::find($id);
-        return view('frontend.service', compact('service'));
+        $hasOrder = DB::table('orders')->where('customer_id', Auth::user()->id)->where('order_status', '<', '12')->exists();
+        return view('frontend.service', compact('service', 'hasOrder'));
     }
 }

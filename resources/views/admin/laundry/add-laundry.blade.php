@@ -45,6 +45,7 @@
                                 <thead class="text-center">
                                     <tr>
                                         <th><label class=""><b>Customer <span class="text-danger">*</span></b></label></th>
+                                        <th><label class=""><b>Order No <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Cloth Set <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Washing Program <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Cloth Group <span class="text-danger">*</span></b></label></th>
@@ -58,11 +59,15 @@
                                 <tbody id="data_row">
                                     <tr id="locker_row0">
                                         <td>
-                                            <select class="form-select shadow-none p-0 border-0" name="client_id[]" id="client_id" required>
+                                            <select class="form-select shadow-none p-0 border-0" name="customer_id[]" id="customer_id" required>
                                                 <option>SET Customer</option>
                                                 @forEach($users as $user)
                                                 <option value="{{$user->id}}">{{$user->name}}</option>
                                                 @endforEach
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-select shadow-none p-0 border-0" name="order_id[]" id="order_id" required>
                                             </select>
                                         </td>
                                         <td>

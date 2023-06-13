@@ -16,132 +16,141 @@ Order | SET - A Premium Laundry Service
                             <div id="order-form">
                                 @csrf
                                 <div class="row">
-                                    <div id="info text-center">
-                                        <p></p>
-                                    </div>
-
-                                    @if (session('status'))
+                                    @if($hasOrder == true)
+                                        @if (session('status'))
                                         <div class="alert alert-success" role="alert">
                                             {{ session('status') }}
                                             <a class="close">&times;</a>
                                         </div>
-                                    @elseif (session('warning'))
+                                        @elseif (session('warning'))
                                         <div class="alert alert-danger" role="alert">
                                             {{ session('warning') }}
                                             <a class="close">&times;</a>
-                                        </div>    
-                                    @endif
-                                    
-                                    <div class="col-lg-12 text-center">
-                                        <h2>Order Details</h2>
-                                    </div>
-                                    <div class="col-lg-12">
-                                    <table id="table" class="display table table-stripped table-bordered" style="width:100%">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th>#</th>
-                                                <th>Customer</th>
-                                                <th>Sport</th>
-                                                <th>Price</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                          @foreach($orders as $order)
-                                            <tr>
-                                                <td>{{$loop->iteration}}</td>
-                                                <td>{{$order->u_name}}</td>
-                                                <td>{{$order->sport_name}}</td>
-                                                <td class="text-right">{{$order->s_price}}€</td>
-                                                <td>
-                                                    @if($order->order_status == 1)
-                                                        <span class="text-success">
-                                                             <b>Active</b> 
-                                                        </span>
-                                                    @elseif($order->order_status == 2)
-                                                        <span class="text-warning"> <b>On Closing</b> </span>
-                                                    @elseif($order->order_status == 3)
-                                                        <span class="text-danger"> <b>Closed</b> </span>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="btn-group" role="group" aria-label="Buttons">
-                                                        @if($order->order_status == 1)
-                                                            <a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="{{url('/request-closing/'.$order->id)}}" class="btn btn-danger btn-sm onClosing" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
-                                                                <i class="fa fa-times" aria-hidden="true"></i>
-                                                            </a>
-                                                        @else
-                                                            <a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        </div>
+                                        @endif
 
-                                            
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="detailsModalLabel">Order Details</h5>
-                                                    <a href="#" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <h6 class="text-center text-secondary">Service Details</h6>
-                                                                <p>
+                                        <div class="col-lg-12 text-center">
+                                            <h1>Order Info</h1>
+                                            <hr>
+                                            @foreach($orders as $order)
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5>Order Details</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p><b>Name:</b> {{$order->u_name}}</p>
+                                                    <p><b>DOB:</b> {{$order->dob}}</p>
+                                                    <p><b>Gender:</b> {{$order->gender}}</p>
+                                                    <p><b>Sport:</b> {{$order->sport_name}}</p>
+                                                    <p><b>Service Price:</b> {{$order->s_price}}€</p>
+
+                                                    <table class="table text-center table-bordered table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="border-top-0">Service Details</th>
+                                                                <th class="border-top-0">Locker Details</th>
+                                                                <th class="border-top-0">Shipping Details</th>
+                                                                <th class="border-top-0">Billing Details</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
                                                                     <b>Service:</b> {{$order->s_name}} <br>
                                                                     <b>Place Service:</b> {{$order->ps_name}} <br>
                                                                     <b>Service Code:</b> {{$order->ps_code}}
-                                                                </p>
-                                                                <br>
-                                                                <h6 class="text-center text-secondary">Locker Details</h6>
-                                                                <p>
+                                                                </td>
+                                                                <td>
                                                                     <b>Locker:</b> {{$order->l_name}} <br>
                                                                     <b>Place Locker:</b> {{$order->pl_name}} <br>
                                                                     <b>Locker Code:</b> {{$order->pl_code}}
-                                                                </p>
-                                                                <br>
-                                                                <h6 class="text-center text-secondary">Shipping Details</h6>
-                                                                <p>
+                                                                </td>
+                                                                <td>
                                                                     <b>Name:</b> {{$order->shipping_name}} <br>
                                                                     <b>Email:</b> {{$order->shipping_email}} <br>
                                                                     <b>Phone:</b> {{$order->shipping_phone}} <br>
                                                                     <b>Address:</b> {{$order->shipping_address}}
-                                                                </p>
-                                                                <br>
-                                                                <h6 class="text-center text-secondary">Billing Details</h6>
-                                                                <p>
+                                                                </td>
+                                                                <td>
                                                                     <b>Name:</b> {{$order->billing_name}} <br>
                                                                     <b>Email:</b> {{$order->billing_email}} <br>
                                                                     <b>Phone:</b> {{$order->billing_phone}} <br>
                                                                     <b>Address:</b> {{$order->billing_address}}
-                                                                </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                                            <p>
+                                                                <b>Order Status:</b>
+                                                                {{$order->order_status_name}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                                            <b>Action:</b>
+                                                            <div class="btn-group" role="group" aria-label="Buttons">
+                                                                @if($order->order_status < 9)
+                                                                <a href="{{url('/request-closing/'.$order->id)}}"
+                                                                    class="btn btn-danger btn-sm onClosing"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Close The Order">
+                                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                                </a>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="modal-footer">
-                                                    <a href="#" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</a>
-                                                    <a href="#" class="btn btn-primary btn-sm">Save changes</a>
-                                                    </div> --}}
-                                                </div>
+
                                                 </div>
                                             </div>
-                                            
+                                            @endforeach
+                                        </div>
 
-
-                                          @endforeach
-
-                                        </tbody>
-                                    </table>
+                                        <div class="col-lg-12 pt-5">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5 class="text-center">Clothing SET Staus</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <table class="table text-center table-bordered table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="border-top-0">#</th>
+                                                                <th class="border-top-0">RFID Code</th>
+                                                                <th class="border-top-0">Clothing Set</th>
+                                                                <th class="border-top-0">Service Cycle Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach($cloths as $cloth)
+                                                            <tr>
+                                                                <td>{{$loop->iteration}}</td>
+                                                                <td>{{$cloth->hexa_code}}</td>
+                                                                <td>
+                                                                    {{$cloth->set_id}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    @if($cloth->wash_program_number == '0')
+                                                                    New Entry
+                                                                    @else
+                                                                    {{$cloth->service_cycle_location_inf->location}}
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                    <div class="col-lg-12 text-center">
+                                        <h1 class="text-dark">This service is currently unavailable for you. To use this function please place an order</h1>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -149,11 +158,6 @@ Order | SET - A Premium Laundry Service
                 </div>
             </div>
         </div>
-        {{-- <div class="col-lg-12">
-              <div class="main-button-red">
-                <a href="meetings.html">Back To Meetings List</a>
-              </div>
-            </div> --}}
     </div>
     <br>
     <br>
@@ -171,11 +175,11 @@ Order | SET - A Premium Laundry Service
         border-color: #1B2325;
     }
 
-    .dataTables_length label{
+    .dataTables_length label {
         padding-bottom: 10px;
         text-align: center;
     }
-    
+
     .dataTables_wrapper .dataTables_length select {
         border: 1px solid #aaa;
         border-radius: 20px;
@@ -183,6 +187,7 @@ Order | SET - A Premium Laundry Service
         background-color: transparent;
         padding: 4px;
     }
+
     .order-form #order-form select {
         width: 40%;
         height: 30px;
@@ -198,10 +203,11 @@ Order | SET - A Premium Laundry Service
         margin-bottom: 0px;
     }
 
-    .dataTables_filter label{
+    .dataTables_filter label {
         text-align: center;
     }
-    .order-form #order-form input{
+
+    .order-form #order-form input {
         width: 80%;
         height: 30px;
         border-radius: 20px;
@@ -214,35 +220,36 @@ Order | SET - A Premium Laundry Service
         color: #252525;
         padding: 0px 15px;
         margin-bottom: 10px;
-        
+
     }
+
 </style>
 
 <script>
     $(document).ready(function () {
-  
-      $('.onClosing').on('click', function (event) {
-                  event.preventDefault();
-                  const url = $(this).attr('href');
-                  swal({
-                      title: 'Are you sure?',
-                      text: "7 days prior notification is must to completely close the order.",
-                      icon: "warning",
-                      // buttons: ["Cancel", "Yes!"],
-                      buttons: true,
-                      dangerMode: true,
-                  }).then(function(value) {
-                      if (value) {
-                          swal("Order has been set for closing.", {
-                              icon: "success",
-                          });
-                          window.location.href = url;
-                      }
-                  });
-              });
-    
+
+        $('.onClosing').on('click', function (event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            swal({
+                title: 'Are you sure?',
+                text: "7 days prior notification is must to completely close the order.",
+                icon: "warning",
+                // buttons: ["Cancel", "Yes!"],
+                buttons: true,
+                dangerMode: true,
+            }).then(function (value) {
+                if (value) {
+                    swal("Order has been set for closing.", {
+                        icon: "success",
+                    });
+                    window.location.href = url;
+                }
+            });
+        });
+
     });
-    
-  </script>
+
+</script>
 
 @endsection

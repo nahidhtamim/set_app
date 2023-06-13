@@ -168,40 +168,21 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    @if($order->order_status == 0)
-                                                        <span class="text-warning"> <b>On Hold</b> </span>
-                                                        <div class="btn-group" role="group" aria-label="Buttons">
-                                                            <a href="{{url('order-active/'.$order->id)}}" class="btn btn-success btn-sm activeOrder" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate The Order">
-                                                                <i class="fa fa-check" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="{{url('closing-request/'.$order->id)}}" class="btn btn-warning btn-sm onClosing" data-bs-toggle="tooltip" data-bs-placement="top" title="Stop The Order">
-                                                                <i class="fa fa-stop" aria-hidden="true"></i>
-                                                            </a>
+                                                <td class="text-center">
+                                                    {{$order->order_status_name}}
+                                                    <form method="POST" action="{{url('order-status-change/'.$order->id)}}">
+                                                        @csrf
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-select" name="order_status" id="inputGroupSelect02">
+                                                              <option selected>Update Status</option>
+                                                                @foreach($order_statuses as $order_status)
+                                                                <option value="{{$order_status->id}}">{{$order_status->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            <button class="btn btn-outline-success" type="submit">Update</button>
                                                         </div>
-                                                    @elseif($order->order_status == 1)
-                                                        <span class="text-success"> <b>Active</b> </span>
-                                                        <div class="btn-group" role="group" aria-label="Buttons">
-                                                            <a href="{{url('closing-request/'.$order->id)}}" class="btn btn-warning btn-sm onClosing" data-bs-toggle="tooltip" data-bs-placement="top" title="Stop The Order">
-                                                                <i class="fa fa-stop" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="{{url('order-close/'.$order->id)}}" class="btn btn-danger btn-sm closeOrder" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel The Order">
-                                                                <i class="fa fa-times" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    @elseif($order->order_status == 2)
-                                                        <span class="text-warning"> <b>On Closing</b> </span>
-                                                        <div class="btn-group" role="group" aria-label="Buttons">
-                                                            <a href="{{url('order-active/'.$order->id)}}" class="btn btn-success btn-sm activeOrder" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Order">
-                                                                <i class="fa fa-check" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="{{url('order-close/'.$order->id)}}" class="btn btn-danger btn-sm closeOrder" data-bs-toggle="tooltip" data-bs-placement="top" title="Close The Order">
-                                                                <i class="fa fa-times" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    @elseif($order->order_status == 3)
-                                                        <span class="text-danger"> <b>Closed</b> </span>
-                                                    @endif
+                                                    </form>
+                                                    
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="#"

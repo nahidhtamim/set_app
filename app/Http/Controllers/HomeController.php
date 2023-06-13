@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cloth;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Place;
@@ -35,8 +36,9 @@ class HomeController extends Controller
 
     public function status()
     {
+        $hasOrder = DB::table('orders')->where('customer_id', Auth::user()->id)->where('order_status', '<', '12')->exists();
         $order = Order::where('customer_id', Auth::user()->id)->first();
-        return view('frontend.status', compact('order'));
+        return view('frontend.status', compact('order', 'hasOrder'));
     }
 
     public function userOnline($id)
@@ -47,7 +49,39 @@ class HomeController extends Controller
         ->where('created_at', '>=', $date)
         ->count();
 
-        if($count < 3){
+        $basic = DB::table('orders')->where('customer_id', Auth::user()->id)->where('order_status', '<', '12')->where('service_id', '1')->exists();
+        $pro = DB::table('orders')->where('customer_id', Auth::user()->id)->where('order_status', '<', '12')->where('service_id', '2')->exists();
+        $ambition = DB::table('orders')->where('customer_id', Auth::user()->id)->where('order_status', '<', '12')->where('service_id', '3')->exists();
+
+        if($basic == true && $count < 3){
+
+            $user = User::findOrFail($id);
+            $user->online_status = '1';
+            $user->update();
+
+            $os = new OnlineStatus();
+            $os->online_status = '1';
+            $os->customer_id = $id;
+            $os->read_at = '0';
+            $os->save();
+    
+            return redirect()->back()->with('status', 'User Online');
+        }
+        elseif($pro == true && $count < 5){
+
+            $user = User::findOrFail($id);
+            $user->online_status = '1';
+            $user->update();
+
+            $os = new OnlineStatus();
+            $os->online_status = '1';
+            $os->customer_id = $id;
+            $os->read_at = '0';
+            $os->save();
+    
+            return redirect()->back()->with('status', 'User Online');
+        }
+        elseif($ambition == true && $count < 7){
 
             $user = User::findOrFail($id);
             $user->online_status = '1';
@@ -62,7 +96,7 @@ class HomeController extends Controller
             return redirect()->back()->with('status', 'User Online');
         }
         else{
-            return redirect()->back()->with('warning', 'You can only use this service 3 times in a Week');
+            return redirect()->back()->with('warning', 'You have already used this service maximum time this week');
         }
 
         
@@ -138,15 +172,37 @@ class HomeController extends Controller
 
     public function myOrders()
     {
-        // $orders = Order::where('customer_id', Auth::user()->id)->get();
         $orders = DB::table('orders AS o')
         ->where('customer_id', Auth::user()->id)
-        ->join('users AS u', 'o.customer_id', '=', 'u.id')
-        ->join('sports AS sp', 'o.sport_id', '=', 'sp.id')
-        ->join('place_services AS ps', 'o.service_id', '=', 'ps.id')
-        ->join('services AS s', 'ps.service_id', '=', 's.id')
-        ->join('place_lockers AS pl', 'o.locker_id', '=', 'pl.id')
-        ->join('lockers AS l', 'pl.locker_id', '=', 'l.id')
+        ->where('order_status', '<=', 11)
+        ->leftJoin('users as u', function($join)
+        {
+            $join->on('o.customer_id', '=', 'u.id');
+        })
+        ->leftJoin('sports AS sp', function($join)
+        {
+            $join->on('o.sport_id', '=', 'sp.id');
+        })
+        ->leftJoin('place_services AS ps', function($join)
+        {
+            $join->on('o.service_id', '=', 'ps.id');
+        })
+        ->leftJoin('services AS s', function($join)
+        {
+            $join->on('ps.service_id', '=', 's.id');
+        })
+        ->leftJoin('place_lockers AS pl', function($join)
+        {
+            $join->on('o.locker_id', '=', 'pl.id');
+        })
+        ->leftJoin('lockers AS l', function($join)
+        {
+            $join->on('pl.locker_id', '=', 'l.id');
+        })
+        ->leftJoin('order_statuses AS os', function($join)
+        {
+            $join->on('o.order_status', '=', 'os.id');
+        })
         ->get([
             'o.*',
             'u.name As u_name',
@@ -158,8 +214,32 @@ class HomeController extends Controller
             'l.locker_name As l_name',
             'pl.name As pl_name',
             'pl.code As pl_code',
+            'os.name As order_status_name',
         ]);
-        return view('frontend.order', compact('orders'));
+        // $orders = DB::table('orders AS o')
+        // ->where('customer_id', Auth::user()->id)
+        // ->where('order_status', '<=', 11)
+        // ->join('users AS u', 'o.customer_id', '=', 'u.id')
+        // ->join('sports AS sp', 'o.sport_id', '=', 'sp.id')
+        // ->join('place_services AS ps', 'o.service_id', '=', 'ps.id')
+        // ->join('services AS s', 'ps.service_id', '=', 's.id')
+        // ->join('place_lockers AS pl', 'o.locker_id', '=', 'pl.id')
+        // ->join('lockers AS l', 'pl.locker_id', '=', 'l.id')
+        // ->get([
+        //     'o.*',
+        //     'u.name As u_name',
+        //     'sp.*',
+        //     's.service_name As s_name',
+        //     's.service_price As s_price',
+        //     'ps.name As ps_name',
+        //     'ps.code As ps_code',
+        //     'l.locker_name As l_name',
+        //     'pl.name As pl_name',
+        //     'pl.code As pl_code',
+        // ]);
+        $hasOrder = DB::table('orders')->where('customer_id', Auth::user()->id)->where('order_status', '<', '12')->exists();
+        $cloths = Cloth::where('customer_id', Auth::user()->id)->get();
+        return view('frontend.order', compact('orders', 'cloths', 'hasOrder'));
     }
 
     public function saveOrder(Request $request)
@@ -210,7 +290,7 @@ class HomeController extends Controller
     public function requestClosing($id)
     {
         $order = Order::find($id);
-        $order->order_status = '2';
+        $order->order_status = '9';
         $order->update();
         return redirect()->back()->with('status', 'Request Has Been Sent For Clossing The Order');
     }

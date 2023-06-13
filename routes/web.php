@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    Route::post('/update-service-location-status/{id}', [ClothesController::class, 'updateSetServiceLocationStatus']);
    // Route::get('/service-active/{id}', [ServicesController::class, 'active']);
    // Route::get('/service-deactive/{id}', [ServicesController::class, 'deactive']);
+   Route::get('/load-laundries/{set_id}/{order_id}/{customer_id}', [ClothesController::class, 'getLaundryItems']);
 
    // Places Routes
    Route::get('/places', [PlacesController::class, 'index']);
@@ -159,6 +160,7 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    Route::get('/order-active/{id}', [OrderController::class, 'orderActive']);
    Route::get('/order-close/{id}', [OrderController::class, 'orderClose']);
    Route::get('/delete-order/{id}', [OrderController::class, 'deleteOrder']);
+   Route::post('order-status-change/{id}', [OrderController::class, 'orderStatusChange']);
 
    // Laundry Routes
    Route::get('/laundries', [LaundryController::class, 'index']);
