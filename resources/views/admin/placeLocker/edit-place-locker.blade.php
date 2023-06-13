@@ -87,6 +87,13 @@
                                             class="form-control p-0 border-0" name="code" required> 
                                         </div>
                                 </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0"><b>Storage Name <span class="text-danger">*</span></b></label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" value="{{$placeLocker->storage_name}}"
+                                            class="form-control p-0 border-0" name="storage_name" required> 
+                                        </div>
+                                </div>
                                 {{-- <div class="form-group mb-4">
                                     <label class="col-sm-12"><b>Status <span class="text-danger">*</span></b></label>
 

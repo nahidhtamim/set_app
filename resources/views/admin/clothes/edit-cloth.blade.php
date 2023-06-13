@@ -38,7 +38,7 @@
                             <form class="form-horizontal form-material" method="POST" action="{{url('/update-cloth/'.$cloth->id)}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group mb-4">
-                                    <label class="col-md-12 p-0"><b>Hexa Code <span class="text-danger">*</span></b></label>
+                                    <label class="col-md-12 p-0"><b>RFID Code <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="text" value="{{$cloth->hexa_code}}"
                                             class="form-control p-0 border-0" name="hexa_code" required> 
@@ -82,7 +82,7 @@
                                             class="form-control p-0 border-0" name="set_id" required> 
                                         </div>
                                 </div>
-                                <div class="form-group mb-4">
+                                {{-- <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Cloth Type/Name<span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="text" value="{{$cloth->cloth_type}}"
@@ -100,7 +100,7 @@
                                 <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Color <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
-                                        <input type="text" value="{{$cloth->color}}"
+                                        <input type="color" value="{{$cloth->color}}"
                                             class="form-control p-0 border-0" name="color" required> 
                                         </div>
                                 </div>
@@ -132,7 +132,7 @@
                                         <br>
                                         <img src="/uploads/clothes/{{$cloth->image}}" alt="" width="100px">
                                     </div>
-                                </div>    
+                                </div>     --}}
                                 <div class="form-group mb-4">
                                     <div class="col-sm-12">
                                         <button class="btn btn-success">Update</button>

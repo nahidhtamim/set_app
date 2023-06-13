@@ -39,9 +39,9 @@
                             <form class="form-horizontal form-material" method="POST" action="{{url('/save-cloth')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group mb-4">
-                                    <label class="col-md-12 p-0"><b>Hexa Code <span class="text-danger">*</span></b></label>
+                                    <label class="col-md-12 p-0"><b>RFID Code <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
-                                        <input type="text" placeholder="SET Hexa Code"
+                                        <input type="text" placeholder="SET RFID Code"
                                             class="form-control p-0 border-0" name="hexa_code" required> 
                                         </div>
                                 </div>
@@ -78,7 +78,7 @@
                                             class="form-control p-0 border-0" name="set_id" required> 
                                         </div>
                                 </div>
-                                <div class="form-group mb-4">
+                                {{-- <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Cloth Type/Name<span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="text" placeholder="SET Cloth Type/Name"
@@ -95,7 +95,7 @@
                                 <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Color <span class="text-danger">*</span></b></label>
                                     <div class="col-md-12 border-bottom p-0">
-                                        <input type="text" placeholder="SET Color"
+                                        <input type="color" placeholder="SET Color"
                                             class="form-control p-0 border-0" name="color" required> 
                                         </div>
                                 </div>
@@ -125,9 +125,9 @@
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="file" class="form-control p-0 border-0" name="image">
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="form-group mb-4">
+                                {{-- <div class="form-group mb-4">
                                     <label class="col-md-12 p-0"><b>Wash Program Status</b></label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="checkbox" name="wash_program_number" class="">
@@ -139,7 +139,7 @@
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="checkbox" name="dryer_program_number" class="">
                                     </div>
-                                </div>        
+                                </div>         --}}
                                 <div class="form-group mb-4">
                                     <div class="col-sm-12">
                                         <button class="btn btn-success">Save</button>

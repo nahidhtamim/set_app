@@ -48,6 +48,7 @@
                                         <th><label class=""><b>Locker <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Name <span class="text-danger">*</span></b></label></th>
                                         <th><label class=""><b>Code <span class="text-danger">*</span></b></label></th>
+                                        <th><label class=""><b>Storage Name <span class="text-danger">*</span></b></label></th>
                                         {{-- <th><label class=""><b>Status <span class="text-danger">*</span></b></label></th> --}}
                                     </tr>
                                 </thead>
@@ -84,6 +85,10 @@
                                         <td>
                                             <input type="text" placeholder="SET Code"
                                             class="form-control p-0 border-0" name="code[]" required> 
+                                        </td>
+                                        <td>
+                                            <input type="text" placeholder="SET Storage Name"
+                                            class="form-control p-0 border-0" name="storage_name[]" required> 
                                         </td>
                                         <td>
                                             <select id="inputState" class="form-select shadow-none p-0 border-0" name="status[]" required>

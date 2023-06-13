@@ -79,10 +79,32 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/laundries')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Clothes">
+                        <i class="fa fa-user-secret" aria-hidden="true"></i>
+                        <span class="hide-menu">Laundries</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/users')}}"
                         aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Users">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <span class="hide-menu">Users</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/vehicles')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Vehicles">
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                        <span class="hide-menu">Vehicles</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/vehicle-assignments')}}"
+                        aria-expanded="false" data-toggle="tooltip" data-placement="right" title="Vehicle Assignments">
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        <span class="hide-menu">Assignments</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

@@ -18,7 +18,7 @@
                                 <li><a href="{{url('/place-lockers')}}" class="fw-normal">Place Lockers</a></li>
                             </ol>
                             <a href="{{url('/add-place-locker')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place Locker
+                                class="btn btn-success pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place Locker
                                 </a>
                         </div>
                     </div>
@@ -60,6 +60,7 @@
                                             <th class="border-top-0">Locker</th>
                                             <th class="border-top-0">Name</th>
                                             <th class="border-top-0">Code</th>
+                                            <th class="border-top-0">Storage Name</th>
                                             <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
@@ -73,6 +74,7 @@
                                             <td>{{$placeLocker->locker_info->locker_name}}</td>
                                             <td>{{$placeLocker->name}}</td>
                                             <td>{{$placeLocker->code}}</td>
+                                            <td>{{$placeLocker->storage_name}}</td>
                                             <td>
                                                 @if($placeLocker->status == 1)
                                                 Active

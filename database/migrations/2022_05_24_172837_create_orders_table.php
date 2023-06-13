@@ -20,6 +20,8 @@ return new class extends Migration
             $table->tinyInteger('place_id');
             $table->tinyInteger('service_id');
             $table->tinyInteger('locker_id');
+            $table->date('dob')->nullable();
+            $table->string('gender');
             $table->string('shipping_name');
             $table->string('shipping_address');
             $table->string('shipping_phone');

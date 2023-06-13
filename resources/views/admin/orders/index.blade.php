@@ -169,7 +169,17 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    @if($order->order_status == 1)
+                                                    @if($order->order_status == 0)
+                                                        <span class="text-warning"> <b>On Hold</b> </span>
+                                                        <div class="btn-group" role="group" aria-label="Buttons">
+                                                            <a href="{{url('order-active/'.$order->id)}}" class="btn btn-success btn-sm activeOrder" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate The Order">
+                                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                                            </a>
+                                                            <a href="{{url('closing-request/'.$order->id)}}" class="btn btn-warning btn-sm onClosing" data-bs-toggle="tooltip" data-bs-placement="top" title="Stop The Order">
+                                                                <i class="fa fa-stop" aria-hidden="true"></i>
+                                                            </a>
+                                                        </div>
+                                                    @elseif($order->order_status == 1)
                                                         <span class="text-success"> <b>Active</b> </span>
                                                         <div class="btn-group" role="group" aria-label="Buttons">
                                                             <a href="{{url('closing-request/'.$order->id)}}" class="btn btn-warning btn-sm onClosing" data-bs-toggle="tooltip" data-bs-placement="top" title="Stop The Order">

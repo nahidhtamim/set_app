@@ -8,28 +8,6 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
           
           @if(isset(Auth::user()->name)) 
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="#">
-              <input type="checkbox" data-id="{{ Auth::user()->id }}" name="online_status" class="js-switch" {{ Auth::user()->online_status == 1 ? 'checked' : '' }}>
-            </a>
-          </li> --}}
-          {{-- @if(isset($online_status == '1')) 
-          <li class="nav-item">
-            <form action="{{url('/deactive-user')}}" method="POST">
-              <input type="hidden" value="{{ Auth::user()->id }}" name="customer_id">
-              <input type="hidden" value="0" name="online_status">
-              <a type="submit" class=""><i class="fa fa-toggle-on text-success"></i></a>
-            </form>
-          </li>
-          @elseif(isset($online_status == '0')) 
-          <li class="nav-item">
-            <form action="{{url('/deactive-user')}}" method="POST">
-              <input type="hidden" value="{{ Auth::user()->id }}" name="customer_id">
-              <input type="hidden" value="0" name="online_status">
-              <a type="submit" class=""><i class="fa fa-toggle-on text-success"></i></a>
-            </form>
-          </li>
-          @endif --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-user"></i> Hello, {{Auth::user()->name}}
@@ -38,7 +16,6 @@
               <li><a class="dropdown-item" href="{{url('/status')}}">Status</a></li>
               <li><a class="dropdown-item" href="{{url('/my-profile')}}">{{__('messages.profile')}}</a></li>
               <li><a class="dropdown-item" href="{{url('/my-orders')}}">{{__('messages.order')}}</a></li>
-              <li><hr class="dropdown-divider"></li>
               <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
@@ -53,9 +30,6 @@
             </ul>
           </li>
           @else
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Login/Register</a>
-          </li> --}}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{url('/')}}">{{__('messages.home')}}</a>
           </li>

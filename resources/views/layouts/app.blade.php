@@ -33,7 +33,7 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #17a2b8;
+            background-color: #8e9091;
             height: 100vh;
         }
 
@@ -132,9 +132,11 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-3">
             @yield('content')
         </main>
+
+        
     </div>
 
 

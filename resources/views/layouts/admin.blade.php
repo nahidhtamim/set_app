@@ -108,7 +108,10 @@
         CKEDITOR.replace( 'long_desc_ger' );
         CKEDITOR.replace( 'place_description' );
         CKEDITOR.replace( 'locker_description' );
+        CKEDITOR.replace( 'laundry_description[]' );
         CKEDITOR.replace( 'sport_description' );
+        CKEDITOR.replace( 'vehicle_description' );
+        CKEDITOR.replace( 'assignment_details' );
     </script>
 
     <script src="{{asset('admin/js/app-style-switcher.js')}}"></script>

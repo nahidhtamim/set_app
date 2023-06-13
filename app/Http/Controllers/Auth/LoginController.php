@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -37,7 +38,12 @@ class LoginController extends Controller
         }
         elseif(Auth::user()->role_as == '0') // Normal or Default User Login
         {
-            return redirect('/status')->with('status','Logged in successfully');
+            if (DB::table('orders')->where('customer_id', Auth::user()->id)->exists()) {
+                return redirect('/status')->with('status','Logged in successfully');
+            }else{
+                return redirect('/')->with('status','Logged in successfully');
+            }
+            
         }
     }
 

@@ -17,7 +17,7 @@
                             <ol class="breadcrumb ms-auto">
                                 <li><a href="{{url('/places')}}" class="fw-normal">Places</a></li>
                             </ol>
-                            <a href="{{url('/add-place')}}"class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place</a>
+                            <a href="{{url('/add-place')}}"class="btn btn-success pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place</a>
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,7 @@
                                 <li><a href="{{url('/sports')}}" class="fw-normal">Sports</a></li>
                             </ol>
                             <a href="{{url('/add-sport')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Sport
+                                class="btn btn-success pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Sport
                                 </a>
                         </div>
                     </div>

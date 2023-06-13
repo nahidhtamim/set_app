@@ -17,6 +17,8 @@ class Order extends Model
         'place_id',
         'service_id',
         'locker_id',
+        'dob',
+        'gender',
         'shipping_name',
         'shipping_address',
         'shipping_phone',
@@ -55,4 +57,6 @@ class Order extends Model
     {
         return $this->belongsTo(PlaceLocker::class,'locker_id','id');
     }
+
+    
 }

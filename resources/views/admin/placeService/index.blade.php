@@ -18,7 +18,7 @@
                                 <li><a href="{{url('/place-services')}}" class="fw-normal">Place Services</a></li>
                             </ol>
                             <a href="{{url('/add-place-service')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place Service
+                                class="btn btn-success pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Place Service
                                 </a>
                         </div>
                     </div>

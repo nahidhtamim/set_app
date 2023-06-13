@@ -36,6 +36,7 @@ class PlaceLockersController extends Controller
         $locker_id = $request->locker_id;
         $name = $request->name;
         $code = $request->code;
+        $storage_name = $request->storage_name;
         $status = $request->status;
         // $selection_id = $$selection->id;
         for($i = 0; $i < count($name); $i++){
@@ -45,6 +46,7 @@ class PlaceLockersController extends Controller
                 'locker_id' => $locker_id[$i],
                 'name' => $name[$i],
                 'code' => $code[$i],
+                'storage_name' => $storage_name[$i],
                 'status' => $status[$i],
             ];
             DB::table('place_lockers')->insert($datasave);
@@ -70,6 +72,7 @@ class PlaceLockersController extends Controller
         $placeLocker->locker_id = $request->input('locker_id');
         $placeLocker->name = $request->input('name');
         $placeLocker->code = $request->input('code');
+        $placeLocker->storage_name = $request->input('storage_name');
         $placeLocker->update();
         return redirect('/place-lockers')->with('status', 'Place Locker Updated Successfully');
     }

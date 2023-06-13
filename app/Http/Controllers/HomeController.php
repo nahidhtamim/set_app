@@ -35,7 +35,8 @@ class HomeController extends Controller
 
     public function status()
     {
-        return view('frontend.status');
+        $order = Order::where('customer_id', Auth::user()->id)->first();
+        return view('frontend.status', compact('order'));
     }
 
     public function userOnline($id)
@@ -137,7 +138,7 @@ class HomeController extends Controller
 
     public function myOrders()
     {
-        // $orders = Order::get()->where('customer_id', Auth::user()->id);
+        // $orders = Order::where('customer_id', Auth::user()->id)->get();
         $orders = DB::table('orders AS o')
         ->where('customer_id', Auth::user()->id)
         ->join('users AS u', 'o.customer_id', '=', 'u.id')
@@ -163,22 +164,44 @@ class HomeController extends Controller
 
     public function saveOrder(Request $request)
     {
+        $this->validate($request, array(
+            'sport_id' => 'required|numeric',
+            'place_id' => 'required|numeric',
+            'service_id' => 'required|numeric',
+            'locker_id' => 'required|numeric',
+            'gender' => 'required',
+            'dob' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'shipping_address' => 'required',
+            'shipping_email' => 'required',
+            'shipping_phone' => 'required',
+            'billing_first_name' => 'required',
+            'billing_last_name' => 'required',
+            'billing_address' => 'required',
+            'billing_phone' => 'required',
+            'billing_email' => 'required',
+        ));
+
+
         $order = new Order();
         $order->customer_id = Auth::user()->id;
         $order->sport_id = $request->input('sport_id');
         $order->place_id = $request->input('place_id');
         $order->service_id = $request->input('service_id');
         $order->locker_id = $request->input('locker_id');
-        $order->shipping_name = $request->input('shipping_name');
+        $order->gender = $request->input('gender');
+        $order->dob = $request->input('dob');
+        $order->shipping_name = $request->input('first_name')." ".$request->input('last_name');
         $order->shipping_address = $request->input('shipping_address');
         $order->shipping_phone = $request->input('shipping_phone');
         $order->shipping_email = $request->input('shipping_email');
-        $order->billing_name = $request->input('billing_name');
+        $order->billing_name = $request->input('billing_first_name')." ".$request->input('billing_last_name');
         $order->billing_address = $request->input('billing_address');
         $order->billing_phone = $request->input('billing_phone');
         $order->billing_email = $request->input('billing_email');
         $order->message = $request->input('message');
-        $order->order_status = '1';
+        $order->order_status = '0';
         $order->save();
         return redirect()->back()->with('status', 'Order Has Been Saved Successfully');
     }

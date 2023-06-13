@@ -1,103 +1,9 @@
 <section class="contact-us" id="contact">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 align-self-center">
+            <div class="col-lg-8 align-self-center">
                 <div class="row">
                     <div class="col-lg-12">
-
-                        {{-- <form id="contact" action="{{ route('send.email') }}" method="POST">
-                        @if (Session::has('message_sent'))
-                        <div class="bg-green-100 text-center rounded-lg px-6 text-base text-green-700 py-2"
-                            role="alert">
-                            {{Session::get('message_sent')}}
-                            <a href="" class="alert-del">&times;</a>
-                        </div>
-                        @endif
-
-                        @csrf
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h2>{{__('messages.touch')}}</h2>
-                            </div>
-                            <div class="col-lg-4">
-                                <fieldset>
-                                    <input class="@error('name') is-invalid @enderror" name="name" type="text" id="name"
-                                        placeholder="{{__('messages.your_name')}}...*" required="">
-                                    <span class="text-danger">
-                                        @error('name')
-                                        <p class="text-danger">{{$message}}</p>
-                                        @enderror
-                                    </span>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-4">
-                                <fieldset>
-                                    <input class="@error('email') is-invalid @enderror" name="email" type="text"
-                                        id="email" pattern="[^ @]*@[^ @]*"
-                                        placeholder="{{__('messages.your_email')}}..." required="">
-                                    <span class="text-danger">
-                                        @error('email')
-                                        <p class="text-danger">{{$message}}</p>
-                                        @enderror
-                                    </span>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-4">
-                                <fieldset>
-                                    <input class="@error('subject') is-invalid @enderror" name="subject" type="text"
-                                        id="subject" placeholder="{{__('messages.subject')}}...*" required="">
-                                    <span class="text-danger">
-                                        @error('subject')
-                                        <p class="text-danger">{{$message}}</p>
-                                        @enderror
-                                    </span>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-12">
-                                <fieldset>
-                                    <textarea name="content" type="text"
-                                        class="form-control @error('content') is-invalid @enderror" id="message"
-                                        placeholder="{{__('messages.your_message')}}..." required=""></textarea>
-                                    <span class="text-danger">
-                                        @error('content')
-                                        <p class="text-danger">{{$message}}</p>
-                                        @enderror
-                                    </span>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-4">
-                                <fieldset>
-                                    <input class="@error('captcha') is-invalid @enderror" id="captcha" type="text"
-                                        placeholder="Type What You See" name="captcha" required="" />
-                                    @if ($errors->has('captcha'))
-                                    <span class="text-danger">
-                                        @error('message')
-                                        <p class="text-danger">{{$message}} {{$errors->first('captcha')}}</p>
-                                        @enderror
-                                    </span>
-                                    @endif
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-4">
-                                <fieldset>
-                                    <div class="single-input-field{{$errors->has('captcha') ? 'has-error' : ''}}">
-                                        <div class="captcha">
-                                            <span>{!! captcha_img('flat') !!}</span>
-                                            <button type="button" class=" btn-refresh"
-                                                style="border-radius: none !important;">
-                                                <i class="fa fa-refresh"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-4">
-                                <fieldset>
-                                    <button type="submit" id="form-submit" class="button form-control">SEND</button>
-                                </fieldset>
-                            </div>
-                        </div>
-                        </form> --}}
 
                         @if (Session::has('message_sent'))
                         <div class="alert alert-success" role="alert">
@@ -208,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <div class="right-info">
                     <ul>
                         <li>
@@ -235,6 +141,12 @@
     </div>
     <div class="footer">
         <p class="text-light">Copyright © 2022 DE-SET.com. All Rights Reserved</p>
+        <br>
+        <ul>
+            <li> <a href="">FAQ</a> </li>
+            <li> <p>|</p> </li>
+            <li> <a href="">Terms</a> </li>
+        </ul>
     </div>
 </section>
 

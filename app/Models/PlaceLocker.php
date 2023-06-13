@@ -20,6 +20,7 @@ class PlaceLocker extends Model
         'locker_id',
         'name',
         'code',
+        'storage_name',
         'status',
     ];
 

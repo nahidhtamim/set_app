@@ -10,7 +10,7 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Services</h4>
+                        <h4 class="page-title">Services </h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
@@ -18,13 +18,14 @@
                                 <li><a href="{{url('/services')}}" class="fw-normal">Services</a></li>
                             </ol>
                             <a href="{{url('/add-service')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Service
+                                class="btn btn-success pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Service
                                 </a>
                         </div>
                     </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+  
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -117,6 +118,9 @@
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
             
+
+            
+
 @endsection
         
         

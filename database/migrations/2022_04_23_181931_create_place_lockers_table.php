@@ -20,6 +20,7 @@ return new class extends Migration
             $table->tinyInteger('locker_id');
             $table->string('name');
             $table->string('code')->unique();
+            $table->string('storage_name');
             $table->tinyInteger('status');
             $table->timestamps();
         });

@@ -15,9 +15,12 @@ use App\Http\Controllers\Admin\LockersController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LaundryController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PlaceLockersController;
 use App\Http\Controllers\Admin\PlaceServicesController;
+use App\Http\Controllers\Admin\VehicleAssignmentController;
+use App\Http\Controllers\Admin\VehicleController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -93,6 +96,7 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    Route::get('/delete-cloth/{id}', [ClothesController::class, 'deleteCloth']);
    Route::post('getCustomerOrders',[ClothesController::class,'getCustomerOrders'])->name('getCustomerOrders');
    Route::post('getOrderServiceID',[ClothesController::class,'getOrderServiceID'])->name('getOrderServiceID');
+   Route::post('/update-service-location-status/{id}', [ClothesController::class, 'updateSetServiceLocationStatus']);
    // Route::get('/service-active/{id}', [ServicesController::class, 'active']);
    // Route::get('/service-deactive/{id}', [ServicesController::class, 'deactive']);
 
@@ -156,6 +160,17 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    Route::get('/order-close/{id}', [OrderController::class, 'orderClose']);
    Route::get('/delete-order/{id}', [OrderController::class, 'deleteOrder']);
 
+   // Laundry Routes
+   Route::get('/laundries', [LaundryController::class, 'index']);
+   Route::get('/add-laundry', [LaundryController::class, 'addLaundry']);
+   Route::post('/save-laundry', [LaundryController::class, 'saveLaundry']);
+   Route::get('/edit-laundry/{id}', [LaundryController::class, 'editLaundry']);
+   Route::post('/update-laundry/{id}', [LaundryController::class, 'updateLaundry']);
+   Route::get('/delete-laundry/{id}', [LaundryController::class, 'deleteLaundry']);
+   Route::get('/laundry-active/{id}', [LaundryController::class, 'activeLaundry']);
+   Route::get('/laundry-deactive/{id}', [LaundryController::class, 'deactiveLaundry']);
+
+
    // Users Routes
    Route::get('/users', [UserController::class, 'index']);
    Route::get('/edit-user/{id}', [UserController::class, 'editUser']);
@@ -171,6 +186,26 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    Route::get('/edit-payment/{id}', [PaymentController::class, 'editPayment']);
    Route::post('/update-payment/{id}', [PaymentController::class, 'updatePayment']);
    Route::get('/delete-payment/{id}', [PaymentController::class, 'deletePayment']);
+
+   // Vehicles Routes
+   Route::get('/vehicles', [VehicleController::class, 'index']);
+   Route::get('/add-vehicle', [VehicleController::class, 'addVehicle']);
+   Route::post('/save-vehicle', [VehicleController::class, 'saveVehicle']);
+   Route::get('/edit-vehicle/{id}', [VehicleController::class, 'editVehicle']);
+   Route::post('/update-vehicle/{id}', [VehicleController::class, 'updateVehicle']);
+   Route::get('/delete-vehicle/{id}', [VehicleController::class, 'deleteVehicle']);
+   Route::get('/vehicle-active/{id}', [VehicleController::class, 'activeVehicle']);
+   Route::get('/vehicle-deactive/{id}', [VehicleController::class, 'deactiveVehicle']);
+
+   // Vehicle Assignment Routes
+   Route::get('/vehicle-assignments', [VehicleAssignmentController::class, 'index']);
+   Route::get('/add-vehicle-assignment', [VehicleAssignmentController::class, 'addVehicleAssignment']);
+   Route::post('/save-vehicle-assignment', [VehicleAssignmentController::class, 'saveVehicleAssignment']);
+   Route::get('/edit-vehicle-assignment/{id}', [VehicleAssignmentController::class, 'editVehicleAssignment']);
+   Route::post('/update-vehicle-assignment/{id}', [VehicleAssignmentController::class, 'updateVehicleAssignment']);
+   Route::get('/delete-vehicle-assignment/{id}', [VehicleAssignmentController::class, 'deleteVehicleAssignment']);
+   Route::get('/vehicle-assignement-running/{id}', [VehicleAssignmentController::class, 'runningVehicleAssignment']);
+   Route::get('/vehicle-assignement-complete/{id}', [VehicleAssignmentController::class, 'completeVehicleAssignment']);
 
    // Users Routes
    Route::get('/notifications', [NotificationController::class, 'index']); 
