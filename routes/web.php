@@ -55,8 +55,8 @@ Route::group(['middleware' => ['auth','verified']], function () {
    Route::get('/status', [HomeController::class, 'status'])->name('status');
    Route::get('/status/update', [HomeController::class, 'updateStatus'])->name('users.update.status');
    //Route::get('/status/update', [HomeController::class, 'updateStatus'])->name('users.update.status');
-   Route::get('/user-status/online/{id}', [HomeController::class, 'userOnline']);
-   Route::get('/user-status/offline/{id}', [HomeController::class, 'userOffline']);
+   Route::get('/user-status/online/{id}/{cloth_id}', [HomeController::class, 'userOnline']);
+   Route::get('/user-status/offline/{id}/{cloth_id}', [HomeController::class, 'userOffline']);
 
    Route::get('/my-profile', [HomeController::class, 'myProfile'])->name('my-profile');
    Route::post('/update-details', [HomeController::class, 'updateDetails']);

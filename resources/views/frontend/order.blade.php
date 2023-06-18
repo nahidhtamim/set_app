@@ -32,7 +32,7 @@ Order | SET - A Premium Laundry Service
                                         <div class="col-lg-12 text-center">
                                             <h1>Order Info</h1>
                                             <hr>
-                                            @foreach($orders as $order)
+                                            {{-- @foreach($orders as $order) --}}
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h5>Order Details</h5>
@@ -94,7 +94,7 @@ Order | SET - A Premium Laundry Service
                                                             <div class="btn-group" role="group" aria-label="Buttons">
                                                                 @if($order->order_status < 9)
                                                                 <a href="{{url('/request-closing/'.$order->id)}}"
-                                                                    class="btn btn-danger btn-sm onClosing"
+                                                                    class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to cancel the service?')"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title="Close The Order">
                                                                     <i class="fa fa-times" aria-hidden="true"></i>
@@ -106,43 +106,62 @@ Order | SET - A Premium Laundry Service
 
                                                 </div>
                                             </div>
-                                            @endforeach
+                                            {{-- @endforeach --}}
                                         </div>
 
                                         <div class="col-lg-12 pt-5">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h5 class="text-center">Clothing SET Staus</h5>
+                                                    <h5 class="text-center">Clothing SET Details</h5>
                                                 </div>
-                                                <div class="card-body">
-                                                    <table class="table text-center table-bordered table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="border-top-0">#</th>
-                                                                <th class="border-top-0">RFID Code</th>
-                                                                <th class="border-top-0">Clothing Set</th>
-                                                                <th class="border-top-0">Service Cycle Status</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach($cloths as $cloth)
-                                                            <tr>
-                                                                <td>{{$loop->iteration}}</td>
-                                                                <td>{{$cloth->hexa_code}}</td>
-                                                                <td>
-                                                                    {{$cloth->set_id}}
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    @if($cloth->wash_program_number == '0')
-                                                                    New Entry
-                                                                    @else
-                                                                    {{$cloth->service_cycle_location_inf->location}}
+                                                <div class="card-body text-center">
+                                                    @foreach($cloths as $cloth)
+                                                    <p>
+                                                        <button class="btn btn-primary w-50 my-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$cloth->hexa_code}}" aria-expanded="false" aria-controls="collapse{{$cloth->hexa_code}}">
+                                                            Set: {{$cloth->set_id}} <> 
+                                                            Status: @if($cloth->wash_program_number == '0')
+                                                            New Entry
+                                                            @else
+                                                            {{$cloth->service_cycle_location_inf->location}}
+                                                            @endif
+                                                        </button>
+                                                    </p>
+                                                    <div class="collapse" id="collapse{{$cloth->hexa_code}}">
+                                                        <div class="card card-body">
+                                                            
+                                                            <table class="table text-nowrap table-bordered table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="border-top-0">#</th>
+                                                                        <th class="border-top-0">Washing Program</th>
+                                                                        <th class="border-top-0">Color Group</th>
+                                                                        <th class="border-top-0">Cloth Type</th>
+                                                                        <th class="border-top-0">Fabric</th>
+                                                                        <th class="border-top-0">Sportswear Type</th>
+                                                                        <th class="border-top-0">Description</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach($clothing_items as $laundry)
+                                                                    @if($laundry->set_id == $cloth->set_id)
+                                                                    <tr>
+                                                                        <td>{{$loop->iteration}}</td>
+                                                                        <td>{{$laundry->washing_program_inf->name}}</td>
+                                                                        <td>{{$laundry->cloth_group_inf->name}}</td>
+                                                                        <td>{{$laundry->cloth_type_inf->name}}</td>
+                                                                        <td>{{$laundry->fabric_inf->name}}</td>
+                                                                        <td>{{$laundry->sportswear_inf->name}}</td>
+                                                                        <td>{!!$laundry->laundry_description!!}</td>
+                                                                    </tr>
                                                                     @endif
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                    
                                                 </div>
                                             </div>
                                         </div>

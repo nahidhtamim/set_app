@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2023 at 08:07 PM
+-- Generation Time: Jun 19, 2023 at 12:32 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -41,7 +41,7 @@ CREATE TABLE `cloths` (
   `weight` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `brand` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `wash_program_number` tinyint(4) NOT NULL DEFAULT 0,
+  `wash_program_number` int(11) NOT NULL DEFAULT 0,
   `dryer_program_number` tinyint(4) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -52,11 +52,87 @@ CREATE TABLE `cloths` (
 --
 
 INSERT INTO `cloths` (`id`, `hexa_code`, `customer_id`, `order_id`, `service_id`, `set_id`, `cloth_type`, `size`, `color`, `fabric`, `weight`, `brand`, `image`, `wash_program_number`, `dryer_program_number`, `created_at`, `updated_at`) VALUES
-(1, 'AE555', 2, 1, 1, 1, 'Jeans', 'XL', 'Red', 'Normal', '2lbs', 'Zara', NULL, 0, 0, '2023-01-25 17:42:08', '2023-01-25 17:43:47'),
-(2, 'BE555', 2, 1, 1, 1, 'Shirt', 'XL', 'Blue', 'General', '5lbs', 'H&M', NULL, 1, 0, '2023-01-25 17:51:27', '2023-01-25 17:53:21'),
-(3, 'CE555', 2, 1, 1, 1, 'Pants', 'L', 'Black', 'Jeans', '2lbs', 'Mango', '1674868295.png', 1, 1, '2023-01-27 19:11:35', '2023-01-27 19:17:15'),
-(4, 'DE005', 2, 1, 1, 1, 'Undies', 'XL', 'White', 'general', '5lbs', 'H&M', NULL, 1, 0, '2023-02-08 08:29:21', '2023-02-08 08:29:21'),
-(5, 'EE005', 2, 1, 1, 1, 'Socks', 'XL', 'White', 'general', '5lbs', 'H&M', NULL, 1, 0, '2023-02-08 13:20:35', '2023-02-08 13:20:35');
+(1, 'AE555', 2, 1, 1, 1, 'Jeans', 'XL', '#ff0000', 'Normal', '2lbs', 'Zara', NULL, 3, 0, '2023-01-25 17:42:08', '2023-06-18 15:52:18'),
+(2, 'BE555', 2, 1, 1, 2, 'Shirt', 'XL', '#000000', 'General', '5lbs', 'H&M', NULL, 1, 0, '2023-01-25 17:51:27', '2023-06-18 15:53:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cloth_groups`
+--
+
+CREATE TABLE `cloth_groups` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cloth_groups`
+--
+
+INSERT INTO `cloth_groups` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Bright', 'white, lightgrey, etc.', NULL, NULL),
+(2, 'Colour Bright', 'yellow, orange etc.', NULL, NULL),
+(3, 'Colour Dark', 'blue, green, etc.', NULL, NULL),
+(4, 'Dark', 'black, brown, darkblue etc.', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cloth_types`
+--
+
+CREATE TABLE `cloth_types` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cloth_types`
+--
+
+INSERT INTO `cloth_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Leggins', NULL, NULL),
+(2, 'Others', NULL, NULL),
+(3, 'Pants', NULL, NULL),
+(4, 'Polo', NULL, NULL),
+(5, 'Shorts', NULL, NULL),
+(6, 'Skirt', NULL, NULL),
+(7, 'Socks', NULL, NULL),
+(8, 'Sweatshirt', NULL, NULL),
+(9, 'Thermoshirt', NULL, NULL),
+(10, 'Thights', NULL, NULL),
+(11, 'Top', NULL, NULL),
+(12, 'Tshirt', NULL, NULL),
+(13, 'Towel', NULL, NULL),
+(14, 'Underware', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fabrics`
+--
+
+CREATE TABLE `fabrics` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fabrics`
+--
+
+INSERT INTO `fabrics` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Fabric 1', NULL, NULL),
+(2, 'Fabric 2', NULL, NULL),
+(3, 'Fabric 3', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -73,6 +149,37 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laundries`
+--
+
+CREATE TABLE `laundries` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `set_id` int(11) NOT NULL,
+  `washing_program` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cloth_group` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cloth_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fabric` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sportswear_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `laundry_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `laundries`
+--
+
+INSERT INTO `laundries` (`id`, `customer_id`, `order_id`, `set_id`, `washing_program`, `cloth_group`, `cloth_type`, `fabric`, `sportswear_type`, `laundry_description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, '1', '1', '1', '1', '1', '<p>SET Laundry Description</p>', 1, NULL, NULL),
+(2, 2, 1, 1, '1', '2', '3', '2', '2', '<p>SET Laundry Description</p>', 1, NULL, NULL),
+(4, 2, 1, 2, '1', '3', '11', '2', '8', 'SET Laundry Description', 1, NULL, '2023-06-12 18:23:00');
 
 -- --------------------------------------------------------
 
@@ -130,7 +237,17 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2022_06_08_110632_create_notifications_table', 10),
 (17, '2022_06_08_112419_create_order_payments_table', 10),
 (18, '2022_06_15_184732_create_online_statuses_table', 11),
-(19, '2023_01_25_231355_create_cloths_table', 12);
+(19, '2023_01_25_231355_create_cloths_table', 12),
+(20, '2023_05_24_190159_create_vehicles_table', 13),
+(21, '2023_05_24_190420_create_vehicle_assignments_table', 13),
+(22, '2023_05_29_191452_create_service_cycle_locations_table', 14),
+(23, '2023_06_12_210909_create_laundries_table', 15),
+(24, '2023_06_12_221010_create_cloth_groups_table', 16),
+(25, '2023_06_12_221031_create_cloth_types_table', 16),
+(26, '2023_06_12_221047_create_fabrics_table', 16),
+(27, '2023_06_12_221106_create_sportswears_table', 16),
+(28, '2023_06_12_221839_create_washing_programs_table', 17),
+(29, '2023_06_13_193134_create_order_statuses_table', 18);
 
 -- --------------------------------------------------------
 
@@ -164,25 +281,10 @@ CREATE TABLE `online_statuses` (
 --
 
 INSERT INTO `online_statuses` (`id`, `online_status`, `customer_id`, `read_at`, `created_at`, `updated_at`) VALUES
-(33, 1, 2, 0, '2023-03-01 17:31:17', '2023-04-03 17:31:17'),
-(34, 0, 2, 0, '2023-03-01 17:31:20', '2023-04-03 17:31:20'),
-(35, 1, 2, 0, '2023-03-01 17:31:25', '2023-04-03 17:31:23'),
-(36, 0, 2, 0, '2023-03-01 17:31:30', '2023-04-03 17:31:26'),
-(37, 1, 2, 0, '2023-04-03 17:32:33', '2023-04-03 17:32:33'),
-(38, 0, 2, 0, '2023-04-03 17:32:37', '2023-04-03 17:32:37'),
-(39, 1, 2, 0, '2023-04-03 17:32:39', '2023-04-03 17:32:39'),
-(40, 0, 2, 0, '2023-04-03 17:32:43', '2023-04-03 17:32:43'),
-(41, 0, 1, 0, '2023-04-04 14:09:43', '2023-04-04 14:09:43'),
-(42, 0, 1, 0, '2023-04-04 14:28:11', '2023-04-04 14:28:11'),
-(43, 0, 1, 0, '2023-04-04 14:30:22', '2023-04-04 14:30:22'),
-(44, 1, 4, 0, '2023-04-04 14:33:19', '2023-04-04 14:33:19'),
-(45, 0, 4, 0, '2023-04-04 14:34:35', '2023-04-04 14:34:35'),
-(46, 1, 4, 0, '2023-04-04 14:34:43', '2023-04-04 14:34:43'),
-(47, 0, 4, 0, '2023-04-04 14:39:24', '2023-04-04 14:39:24'),
-(48, 1, 5, 0, '2023-04-04 14:39:29', '2023-04-04 14:39:29'),
-(49, 0, 5, 0, '2023-04-04 14:42:20', '2023-04-04 14:42:20'),
-(50, 1, 5, 0, '2023-04-04 14:42:25', '2023-04-04 14:42:25'),
-(51, 0, 5, 0, '2023-04-04 14:42:30', '2023-04-04 14:42:30');
+(69, 1, 2, 0, '2023-06-18 15:51:48', '2023-06-18 15:51:48'),
+(70, 0, 2, 0, '2023-06-18 15:52:18', '2023-06-18 15:52:18'),
+(71, 1, 2, 0, '2023-06-18 15:53:05', '2023-06-18 15:53:05'),
+(72, 0, 2, 0, '2023-06-18 15:53:15', '2023-06-18 15:53:15');
 
 -- --------------------------------------------------------
 
@@ -197,6 +299,8 @@ CREATE TABLE `orders` (
   `place_id` tinyint(4) NOT NULL,
   `service_id` tinyint(4) NOT NULL,
   `locker_id` tinyint(4) NOT NULL,
+  `dob` date DEFAULT NULL,
+  `gender` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `shipping_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `shipping_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `shipping_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -215,8 +319,8 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `customer_id`, `sport_id`, `place_id`, `service_id`, `locker_id`, `shipping_name`, `shipping_address`, `shipping_phone`, `shipping_email`, `billing_name`, `billing_address`, `billing_phone`, `billing_email`, `message`, `order_status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 1, 1, 11, 'Demo Customer', 'Demo Address', '123456789123', 'demo@gmail.com', 'Demo Customer', 'Demo Address', '123456789123', 'pohuistmc@gmailpro.cf', 'ADsadas', 1, '2022-05-31 10:30:47', '2022-06-06 13:01:35');
+INSERT INTO `orders` (`id`, `customer_id`, `sport_id`, `place_id`, `service_id`, `locker_id`, `dob`, `gender`, `shipping_name`, `shipping_address`, `shipping_phone`, `shipping_email`, `billing_name`, `billing_address`, `billing_phone`, `billing_email`, `message`, `order_status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, 1, 11, NULL, '', 'Demo Customer', 'Demo Address', '123456789123', 'demo@gmail.com', 'Demo Customer', 'Demo Address', '123456789123', 'pohuistmc@gmailpro.cf', 'ADsadas', 1, '2022-05-31 10:30:47', '2023-06-14 12:33:39');
 
 -- --------------------------------------------------------
 
@@ -246,6 +350,37 @@ INSERT INTO `order_payments` (`id`, `customer_id`, `order_id`, `month`, `year`, 
 (13, 2, 1, '10', '2022', '2022-06-08 14:56:10', '2022-06-08 14:56:10'),
 (14, 2, 1, '12', '2022', '2022-06-08 14:58:25', '2022-06-08 14:58:25'),
 (15, 2, 1, '6', '2022', '2022-06-08 14:58:49', '2022-06-08 14:58:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_statuses`
+--
+
+CREATE TABLE `order_statuses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_statuses`
+--
+
+INSERT INTO `order_statuses` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Registered', NULL, NULL),
+(2, 'Booking Request', NULL, NULL),
+(3, 'Booking Accepted', NULL, NULL),
+(4, 'Clothes Ready For Customer', NULL, NULL),
+(5, 'Clothes Ready For Employee Pickup', NULL, NULL),
+(6, 'Service Cycle', NULL, NULL),
+(7, 'Pause Requested', NULL, NULL),
+(8, 'Paused', NULL, NULL),
+(9, 'Quit Requested', NULL, NULL),
+(10, 'Quit Accepted', NULL, NULL),
+(11, 'Quit Customer Sportswear Removed', NULL, NULL),
+(12, 'Quit Customer Sportswear Sent', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -327,6 +462,7 @@ CREATE TABLE `place_lockers` (
   `locker_id` tinyint(4) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `storage_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -336,11 +472,11 @@ CREATE TABLE `place_lockers` (
 -- Dumping data for table `place_lockers`
 --
 
-INSERT INTO `place_lockers` (`id`, `place_id`, `service_id`, `locker_id`, `name`, `code`, `status`, `created_at`, `updated_at`) VALUES
-(11, 1, 1, 2, 'SBBasic1', 'SBB1', 1, NULL, NULL),
-(12, 1, 1, 2, 'SBBasic2', 'SBB2', 1, NULL, NULL),
-(13, 1, 2, 1, 'SBPro1', 'SBP1', 1, NULL, NULL),
-(14, 1, 2, 1, 'SBPro2', 'SBP2', 0, NULL, NULL);
+INSERT INTO `place_lockers` (`id`, `place_id`, `service_id`, `locker_id`, `name`, `code`, `storage_name`, `status`, `created_at`, `updated_at`) VALUES
+(11, 1, 1, 2, 'SBBasic1', 'SBB1', 'StorageBasic1', 1, NULL, '2023-06-12 12:53:59'),
+(12, 1, 1, 2, 'SBBasic2', 'SBB2', 'StorageBasic2', 1, NULL, '2023-06-12 12:54:26'),
+(13, 1, 2, 1, 'SBPro1', 'SBP1', 'StoragePro1', 1, NULL, '2023-06-12 12:54:41'),
+(14, 1, 2, 1, 'SBPro2', 'SBP2', 'StoragePro2', 0, NULL, '2023-06-12 12:55:02');
 
 -- --------------------------------------------------------
 
@@ -395,8 +531,39 @@ CREATE TABLE `services` (
 
 INSERT INTO `services` (`id`, `service_name`, `service_name_ger`, `service_price`, `service_image`, `short_desc`, `short_desc_ger`, `long_desc`, `long_desc_ger`, `service_status`, `created_at`, `updated_at`) VALUES
 (1, 'SET Basic', 'SET Basic', 13.00, '1663787800.jpg', 'IT is a basic level service', 'IT ist ein Basisdienst', '<p>- For the health-conscious recreational athlete</p>\r\n\r\n<p>- Personal locker</p>\r\n\r\n<p>- Includes regular cleaning</p>\r\n\r\n<p>- 2x tops</p>\r\n\r\n<p>- 2x shorts / sports pants</p>\r\n\r\n<p>- 4x towels</p>\r\n\r\n<p>- up to 2 pickups per week</p>\r\n\r\n<p>- 12.99&euro; / month</p>', '<p>- F&uuml;r den gesundheitsbewussten Freizeitsportler</p>\r\n\r\n<p>- Pers&ouml;nliches Schlie&szlig;fach</p>\r\n\r\n<p><strong>- </strong>Regelm&auml;&szlig;ige reinigung beinhaltet</p>\r\n\r\n<p>- 2x Oberteile</p>\r\n\r\n<p>- 2x Shorts / Sporthosen</p>\r\n\r\n<p>- 4x Handt&uuml;cher</p>\r\n\r\n<p>- bis zu 2 Abholungen pro Woche</p>\r\n\r\n<p>- 12,99&euro; / Monat</p>\r\n\r\n<p>&nbsp;</p>', 1, '2022-04-08 13:46:26', '2022-09-21 13:16:40'),
-(2, 'Demo', NULL, 50.00, '1650130390.jpg', 'IT is a demo level service', NULL, '<p><em>Demo</em><strong> Description</strong></p>', NULL, 1, '2022-04-08 14:05:45', '2022-04-16 11:33:10'),
-(3, 'Dummy', NULL, 50.00, '1650130411.jpg', 'IT is a Dummy level service', NULL, '<p><strong>SET Service Description</strong></p>', NULL, 1, '2022-04-11 12:45:51', '2022-04-16 11:33:31');
+(2, 'SET Pro', 'SET Pro', 50.00, '1650130390.jpg', 'IT is a demo level service', NULL, '<p><em>Demo</em><strong> Description</strong></p>', NULL, 1, '2022-04-08 14:05:45', '2022-04-16 11:33:10'),
+(3, 'SET Ambition', 'SET Ambition', 50.00, '1650130411.jpg', 'IT is a Dummy level service', NULL, '<p><strong>SET Service Description</strong></p>', NULL, 1, '2022-04-11 12:45:51', '2022-04-16 11:33:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_cycle_locations`
+--
+
+CREATE TABLE `service_cycle_locations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `service_cycle_locations`
+--
+
+INSERT INTO `service_cycle_locations` (`id`, `location`, `created_at`, `updated_at`) VALUES
+(1, 'Stock', NULL, NULL),
+(2, 'Truck Deliver', NULL, NULL),
+(3, 'Locker Prepared', NULL, NULL),
+(4, 'Set in Use', NULL, NULL),
+(5, 'Set Ready to Pickup', NULL, NULL),
+(6, 'Truck Pickup', NULL, NULL),
+(7, 'Laundry Basket', NULL, NULL),
+(8, 'Washing Machine', NULL, NULL),
+(9, 'In Dryer', NULL, NULL),
+(10, 'Sorting Station', NULL, NULL),
+(11, 'Broken', NULL, NULL),
+(12, 'Piece Lost', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -420,6 +587,35 @@ CREATE TABLE `sports` (
 INSERT INTO `sports` (`id`, `sport_name`, `sport_description`, `sport_status`, `created_at`, `updated_at`) VALUES
 (1, 'Football', '<p><strong>Football</strong></p>', 1, '2022-04-18 12:16:34', '2022-04-18 12:16:34'),
 (2, 'Boxing', '<p><strong>Boxing</strong></p>', 1, '2022-04-18 12:16:52', '2022-04-18 12:16:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sportswears`
+--
+
+CREATE TABLE `sportswears` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sportswears`
+--
+
+INSERT INTO `sportswears` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Underware', NULL, NULL),
+(2, 'Socks', NULL, NULL),
+(3, 'Thights', NULL, NULL),
+(4, 'Shorts', NULL, NULL),
+(5, 'Pants', NULL, NULL),
+(6, 'Thermo_shirt', NULL, NULL),
+(7, 'Tshirt', NULL, NULL),
+(8, 'Sweatshirt', NULL, NULL),
+(9, 'Towel', NULL, NULL),
+(10, 'Others', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -449,12 +645,81 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `role_as`, `image`, `address`, `phone`, `status`, `online_status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '2022-06-01 17:59:51', '$2y$10$.E4aCVu3xipgZHEGMx.FiuBKUUG9xy1dwe8tuLaq6laNgIULuS/rW', 'uHC0nU4efX12xc7MP3p03tbhxWpvIqqVttqlJdvAR2m29fFDuaAqrfuDZkUd', 1, 'avatar.png', '', '0', 1, 0, '2022-04-05 12:00:43', '2023-04-03 17:20:32'),
-(2, 'customer', 'customer@gmail.com', '2022-06-16 18:03:40', '$2y$10$rwwJGlj985yT6peq1vVQr.WuzyKAQ02yMyKnSwZWdnCOPyoOQ0joe', '9XlszM9bMlJmwR9EkTITkeyTb04Sjtaq4JQOua3fcrAajlNMY70EcOjkBVnH', 0, '1654372135.jpg', 'Germany', '123456789', 1, 0, '2022-04-05 12:10:20', '2023-04-03 17:32:43'),
+(1, 'admin', 'admin@gmail.com', '2022-06-01 17:59:51', '$2y$10$.E4aCVu3xipgZHEGMx.FiuBKUUG9xy1dwe8tuLaq6laNgIULuS/rW', 'rMfHM8x2BKpnm6Qopfs3kA7hlUmgAmJcVzObB0qJcjHMKpnVedIWHSsPl4DC', 1, 'avatar.png', '', '0', 1, 0, '2022-04-05 12:00:43', '2023-04-03 17:20:32'),
+(2, 'customer', 'customer@gmail.com', '2022-06-16 18:03:40', '$2y$10$rwwJGlj985yT6peq1vVQr.WuzyKAQ02yMyKnSwZWdnCOPyoOQ0joe', 'c9rX4imiUlEOzucQlfeCQqmQEAeRwtN7LrFIgoroTIQAhoU0wA28yPc4QVtn', 0, '1654372135.jpg', 'Germany', '123456789', 1, 0, '2022-04-05 12:10:20', '2023-06-18 15:53:15'),
 (3, 'nhtamim', 'nahidhtamim@gmail.com', '2022-06-17 12:02:24', '$2y$10$NK5iVXQzYbE2pA06EeFSwuj.F32v/bcXTA48lk3Tgxp7GTynBSUS2', NULL, 0, 'avatar.png', 'Dhaka, Bangladesh', '12345678', 1, 0, '2022-06-17 12:01:44', '2022-06-17 12:02:24'),
 (4, 'tamim', 'tamim@gmail.com', '2023-03-31 20:33:04', '$2y$10$BF0GiTimcHDCxGzaFzUke.l1ZC4q2Jy.mA.9QiYkVvVMrk6Cas.i.', 'oCfJlBxdDySjXNGuXkPcMgM2XkrGdB74ShcW62To0xpHerYT9letAGBp2FbC', 1, 'avatar.png', 'Dhaka, Bangladesh', '1234567890', 1, 0, '2023-01-23 07:16:20', '2023-04-04 14:39:24'),
 (5, 'test', 'testuser@gmail.com', NULL, '$2y$10$A2sBd9Z8Y9wCFTuGP5J76ecU07AalWsMgt6SxD1Gtmidyn9KtI.w6', NULL, 0, 'avatar.png', 'Dhaka', '+551501234567', 1, 0, '2023-01-27 17:51:33', '2023-04-04 14:42:30'),
-(6, 'hm', 'hm@gmail.com', NULL, '$2y$10$LYJTCrBtFnAs/Kiysj0etugZ.bagT7q0RZ9o7fWi1fPFdvxTQaryC', NULL, 0, 'avatar.png', 'Dhaka, Bangladesh', '1234567890', 1, 0, '2023-03-05 05:49:07', '2023-03-05 05:49:07');
+(6, 'hm', 'hm@gmail.com', NULL, '$2y$10$LYJTCrBtFnAs/Kiysj0etugZ.bagT7q0RZ9o7fWi1fPFdvxTQaryC', NULL, 0, 'avatar.png', 'Dhaka, Bangladesh', '1234567890', 1, 0, '2023-03-05 05:49:07', '2023-03-05 05:49:07'),
+(7, 'nahid hasan', 'nahidhtamim@yahoo.com', '2023-05-23 17:23:11', '$2y$10$pttbuW9zWf5Y4qevtRjA4O/qPAIqaL6ZWsVjN9jhpcz2aY9Q/AAP2', 'BaG3E8OulaYDxv28Yv8izvwaCZja1kKL1riZkDCfWNjc8ip1vfDJKj8x7mY5', 0, 'avatar.png', 'Dhaka', '+8801687390766', 1, 0, '2023-05-23 11:18:04', '2023-05-23 11:18:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicles`
+--
+
+CREATE TABLE `vehicles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `vehicle_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vehicle_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vehicle_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vehicle_status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `vehicles`
+--
+
+INSERT INTO `vehicles` (`id`, `vehicle_number`, `vehicle_name`, `vehicle_description`, `vehicle_status`, `created_at`, `updated_at`) VALUES
+(1, 'GER001', 'GER001', '<p>GER001</p>', 1, '2023-05-24 13:29:19', '2023-05-24 13:29:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_assignments`
+--
+
+CREATE TABLE `vehicle_assignments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `vehicle_id` int(11) NOT NULL,
+  `place_id` int(11) DEFAULT NULL,
+  `assignment_details` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `assignment_status` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `vehicle_assignments`
+--
+
+INSERT INTO `vehicle_assignments` (`id`, `vehicle_id`, `place_id`, `assignment_details`, `assignment_status`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, '<p>Pickup cloths</p>', 2, '2023-05-24 13:58:22', '2023-05-24 14:02:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `washing_programs`
+--
+
+CREATE TABLE `washing_programs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `symbol` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `washing_programs`
+--
+
+INSERT INTO `washing_programs` (`id`, `name`, `description`, `symbol`, `created_at`, `updated_at`) VALUES
+(1, 'Type 1', 'Type 1', 'Type 1', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -467,11 +732,35 @@ ALTER TABLE `cloths`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cloth_groups`
+--
+ALTER TABLE `cloth_groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cloth_types`
+--
+ALTER TABLE `cloth_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fabrics`
+--
+ALTER TABLE `fabrics`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `laundries`
+--
+ALTER TABLE `laundries`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lockers`
@@ -507,6 +796,12 @@ ALTER TABLE `orders`
 -- Indexes for table `order_payments`
 --
 ALTER TABLE `order_payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_statuses`
+--
+ALTER TABLE `order_statuses`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -549,9 +844,21 @@ ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `service_cycle_locations`
+--
+ALTER TABLE `service_cycle_locations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sports`
 --
 ALTER TABLE `sports`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sportswears`
+--
+ALTER TABLE `sportswears`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -560,6 +867,24 @@ ALTER TABLE `sports`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indexes for table `vehicles`
+--
+ALTER TABLE `vehicles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vehicle_assignments`
+--
+ALTER TABLE `vehicle_assignments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `washing_programs`
+--
+ALTER TABLE `washing_programs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -572,10 +897,34 @@ ALTER TABLE `cloths`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `cloth_groups`
+--
+ALTER TABLE `cloth_groups`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `cloth_types`
+--
+ALTER TABLE `cloth_types`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `fabrics`
+--
+ALTER TABLE `fabrics`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `laundries`
+--
+ALTER TABLE `laundries`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `lockers`
@@ -587,7 +936,7 @@ ALTER TABLE `lockers`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -599,7 +948,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `online_statuses`
 --
 ALTER TABLE `online_statuses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -612,6 +961,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_payments`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `order_statuses`
+--
+ALTER TABLE `order_statuses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -644,16 +999,46 @@ ALTER TABLE `services`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `service_cycle_locations`
+--
+ALTER TABLE `service_cycle_locations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `sports`
 --
 ALTER TABLE `sports`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `sportswears`
+--
+ALTER TABLE `sportswears`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `vehicles`
+--
+ALTER TABLE `vehicles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `vehicle_assignments`
+--
+ALTER TABLE `vehicle_assignments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `washing_programs`
+--
+ALTER TABLE `washing_programs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

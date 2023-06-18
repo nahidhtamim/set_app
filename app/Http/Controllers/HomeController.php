@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cloth;
+use App\Models\laundry;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Place;
@@ -37,11 +38,13 @@ class HomeController extends Controller
     public function status()
     {
         $hasOrder = DB::table('orders')->where('customer_id', Auth::user()->id)->where('order_status', '<', '12')->exists();
-        $order = Order::where('customer_id', Auth::user()->id)->first();
-        return view('frontend.status', compact('order', 'hasOrder'));
+        $order = Order::where('customer_id', Auth::user()->id)->latest()->first();
+        $cloth_set_one = Cloth::where('customer_id', Auth::user()->id)->where('order_id', $order->id)->where('set_id', '1')->first();
+        $cloth_set_two = Cloth::where('customer_id', Auth::user()->id)->where('order_id', $order->id)->where('set_id', '2')->first();
+        return view('frontend.status', compact('order', 'hasOrder', 'cloth_set_one', 'cloth_set_two'));
     }
 
-    public function userOnline($id)
+    public function userOnline($id, $cloth_id)
     {
         $date = Carbon::today()->subDays(7);
 
@@ -64,6 +67,10 @@ class HomeController extends Controller
             $os->customer_id = $id;
             $os->read_at = '0';
             $os->save();
+
+            $cloth = Cloth::findOrFail($cloth_id);
+            $cloth->wash_program_number = '4';
+            $cloth->update();
     
             return redirect()->back()->with('status', 'User Online');
         }
@@ -78,6 +85,10 @@ class HomeController extends Controller
             $os->customer_id = $id;
             $os->read_at = '0';
             $os->save();
+
+            $cloth = Cloth::findOrFail($cloth_id);
+            $cloth->wash_program_number = '4';
+            $cloth->update();
     
             return redirect()->back()->with('status', 'User Online');
         }
@@ -92,6 +103,10 @@ class HomeController extends Controller
             $os->customer_id = $id;
             $os->read_at = '0';
             $os->save();
+
+            $cloth = Cloth::findOrFail($cloth_id);
+            $cloth->wash_program_number = '4';
+            $cloth->update();
     
             return redirect()->back()->with('status', 'User Online');
         }
@@ -102,7 +117,7 @@ class HomeController extends Controller
         
     }
 
-    public function userOffline($id)
+    public function userOffline($id, $cloth_id)
     {
         $user = User::findOrFail($id);
         $user->online_status = '0';
@@ -113,6 +128,10 @@ class HomeController extends Controller
         $os->customer_id = $id;
         $os->read_at = '0';
         $os->save();
+
+        $cloth = Cloth::findOrFail($cloth_id);
+        $cloth->wash_program_number = '5';
+        $cloth->update();
 
         return redirect()->back()->with('warning', 'User Offline');
     }
@@ -172,7 +191,7 @@ class HomeController extends Controller
 
     public function myOrders()
     {
-        $orders = DB::table('orders AS o')
+        $order = DB::table('orders AS o')
         ->where('customer_id', Auth::user()->id)
         ->where('order_status', '<=', 11)
         ->leftJoin('users as u', function($join)
@@ -203,7 +222,8 @@ class HomeController extends Controller
         {
             $join->on('o.order_status', '=', 'os.id');
         })
-        ->get([
+        ->orderBy('o.id', 'DESC')
+        ->first([
             'o.*',
             'u.name As u_name',
             'sp.*',
@@ -216,30 +236,10 @@ class HomeController extends Controller
             'pl.code As pl_code',
             'os.name As order_status_name',
         ]);
-        // $orders = DB::table('orders AS o')
-        // ->where('customer_id', Auth::user()->id)
-        // ->where('order_status', '<=', 11)
-        // ->join('users AS u', 'o.customer_id', '=', 'u.id')
-        // ->join('sports AS sp', 'o.sport_id', '=', 'sp.id')
-        // ->join('place_services AS ps', 'o.service_id', '=', 'ps.id')
-        // ->join('services AS s', 'ps.service_id', '=', 's.id')
-        // ->join('place_lockers AS pl', 'o.locker_id', '=', 'pl.id')
-        // ->join('lockers AS l', 'pl.locker_id', '=', 'l.id')
-        // ->get([
-        //     'o.*',
-        //     'u.name As u_name',
-        //     'sp.*',
-        //     's.service_name As s_name',
-        //     's.service_price As s_price',
-        //     'ps.name As ps_name',
-        //     'ps.code As ps_code',
-        //     'l.locker_name As l_name',
-        //     'pl.name As pl_name',
-        //     'pl.code As pl_code',
-        // ]);
         $hasOrder = DB::table('orders')->where('customer_id', Auth::user()->id)->where('order_status', '<', '12')->exists();
-        $cloths = Cloth::where('customer_id', Auth::user()->id)->get();
-        return view('frontend.order', compact('orders', 'cloths', 'hasOrder'));
+        $cloths = Cloth::where('customer_id', Auth::user()->id)->where('order_id', $order->id)->get();
+        $clothing_items = laundry::where('customer_id', Auth::user()->id)->where('order_id', $order->id)->get();
+        return view('frontend.order', compact('order', 'cloths', 'hasOrder', 'clothing_items'));
     }
 
     public function saveOrder(Request $request)
