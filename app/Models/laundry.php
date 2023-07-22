@@ -48,4 +48,9 @@ class laundry extends Model
     {
         return $this->belongsTo(sportswear::class,'sportswear_type','id');
     }
+
+    public function service_cycle_location_inf()
+    {
+        return $this->belongsTo(service_cycle_location::class,'status','id');
+    }
 }

@@ -101,6 +101,17 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    // Route::get('/service-deactive/{id}', [ServicesController::class, 'deactive']);
    Route::get('/load-laundries/{set_id}/{order_id}/{customer_id}', [ClothesController::class, 'getLaundryItems']);
 
+   // Laundry Routes
+   Route::get('/laundries', [LaundryController::class, 'index']);
+   Route::get('/add-laundry', [LaundryController::class, 'addLaundry']);
+   Route::post('/save-laundry', [LaundryController::class, 'saveLaundry']);
+   Route::get('/edit-laundry/{id}', [LaundryController::class, 'editLaundry']);
+   Route::post('/update-laundry/{id}', [LaundryController::class, 'updateLaundry']);
+   Route::get('/delete-laundry/{id}', [LaundryController::class, 'deleteLaundry']);
+   Route::get('/laundry-active/{id}', [LaundryController::class, 'activeLaundry']);
+   Route::get('/laundry-deactive/{id}', [LaundryController::class, 'deactiveLaundry']);
+   Route::post('/update-laundry-cycle-status/{id}', [LaundryController::class, 'updateSetLaundryLocationStatus']);
+
    // Places Routes
    Route::get('/places', [PlacesController::class, 'index']);
    Route::get('/add-place', [PlacesController::class, 'addPlace']);
@@ -161,17 +172,6 @@ Route::group(['middleware' => ['auth','isAdmin','verified']], function () {
    Route::get('/order-close/{id}', [OrderController::class, 'orderClose']);
    Route::get('/delete-order/{id}', [OrderController::class, 'deleteOrder']);
    Route::post('order-status-change/{id}', [OrderController::class, 'orderStatusChange']);
-
-   // Laundry Routes
-   Route::get('/laundries', [LaundryController::class, 'index']);
-   Route::get('/add-laundry', [LaundryController::class, 'addLaundry']);
-   Route::post('/save-laundry', [LaundryController::class, 'saveLaundry']);
-   Route::get('/edit-laundry/{id}', [LaundryController::class, 'editLaundry']);
-   Route::post('/update-laundry/{id}', [LaundryController::class, 'updateLaundry']);
-   Route::get('/delete-laundry/{id}', [LaundryController::class, 'deleteLaundry']);
-   Route::get('/laundry-active/{id}', [LaundryController::class, 'activeLaundry']);
-   Route::get('/laundry-deactive/{id}', [LaundryController::class, 'deactiveLaundry']);
-
 
    // Users Routes
    Route::get('/users', [UserController::class, 'index']);

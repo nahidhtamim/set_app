@@ -44,42 +44,38 @@ Order | SET - A Premium Laundry Service
                                                     <p><b>Sport:</b> {{$order->sport_name}}</p>
                                                     <p><b>Service Price:</b> {{$order->s_price}}€</p>
 
-                                                    <table class="table text-center table-bordered table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="border-top-0">Service Details</th>
-                                                                <th class="border-top-0">Locker Details</th>
-                                                                <th class="border-top-0">Shipping Details</th>
-                                                                <th class="border-top-0">Billing Details</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <b>Service:</b> {{$order->s_name}} <br>
-                                                                    <b>Place Service:</b> {{$order->ps_name}} <br>
-                                                                    <b>Service Code:</b> {{$order->ps_code}}
-                                                                </td>
-                                                                <td>
-                                                                    <b>Locker:</b> {{$order->l_name}} <br>
-                                                                    <b>Place Locker:</b> {{$order->pl_name}} <br>
-                                                                    <b>Locker Code:</b> {{$order->pl_code}}
-                                                                </td>
-                                                                <td>
-                                                                    <b>Name:</b> {{$order->shipping_name}} <br>
-                                                                    <b>Email:</b> {{$order->shipping_email}} <br>
-                                                                    <b>Phone:</b> {{$order->shipping_phone}} <br>
-                                                                    <b>Address:</b> {{$order->shipping_address}}
-                                                                </td>
-                                                                <td>
-                                                                    <b>Name:</b> {{$order->billing_name}} <br>
-                                                                    <b>Email:</b> {{$order->billing_email}} <br>
-                                                                    <b>Phone:</b> {{$order->billing_phone}} <br>
-                                                                    <b>Address:</b> {{$order->billing_address}}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                    <div class="row pt-5">
+                                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                                            <h5>Service Details</h5> 
+                                                            <hr>
+                                                            <p><b>Service:</b> {{$order->s_name}}</p>
+                                                            <p><b>Place Service:</b> {{$order->ps_name}}</p>
+                                                            <p><b>Service Code:</b> {{$order->ps_code}}</p>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                                            <h5>Locker Details</h5> 
+                                                            <hr>
+                                                            <p><b>Locker:</b> {{$order->l_name}}</p>
+                                                            <p><b>Place Locker:</b> {{$order->pl_name}}}</p>
+                                                            <p><b>Locker Code:</b> {{$order->pl_code}}</p>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                                            <h5>Shipping Details</h5> 
+                                                            <hr>
+                                                            <p><b>Name:</b> {{$order->shipping_name}} </p>
+                                                            <p><b>Email:</b> {{$order->shipping_email}}</p>
+                                                            <p><b>Phone:</b> {{$order->shipping_phone}}</p>
+                                                            <p><b>Address:</b> {{$order->shipping_address}}</p>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                                            <h5>Billing Details</h5> 
+                                                            <hr>
+                                                            <p><b>Name:</b> {{$order->billing_name}} </p>
+                                                            <p><b>Email:</b> {{$order->billing_email}}</p>
+                                                            <p><b>Phone:</b> {{$order->billing_phone}}</p>
+                                                            <p><b>Address:</b> {{$order->billing_address}}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="row">
@@ -128,35 +124,39 @@ Order | SET - A Premium Laundry Service
                                                     </p>
                                                     <div class="collapse" id="collapse{{$cloth->hexa_code}}">
                                                         <div class="card card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="table text-nowrap table-bordered table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            {{-- <th class="border-top-0">#</th> --}}
+                                                                            <th class="border-top-0">Washing Program</th>
+                                                                            <th class="border-top-0">Color Group</th>
+                                                                            <th class="border-top-0">Cloth Type</th>
+                                                                            <th class="border-top-0">Fabric</th>
+                                                                            <th class="border-top-0">Sportswear Type</th>
+                                                                            <th class="border-top-0">Description</th>
+                                                                            <th class="border-top-0">Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach($clothing_items as $laundry)
+                                                                        @if($laundry->set_id == $cloth->set_id)
+                                                                        <tr>
+                                                                            {{-- <td>{{$loop->iteration}}</td> --}}
+                                                                            <td>{{$laundry->washing_program_inf->name}}</td>
+                                                                            <td>{{$laundry->cloth_group_inf->name}}</td>
+                                                                            <td>{{$laundry->cloth_type_inf->name}}</td>
+                                                                            <td>{{$laundry->fabric_inf->name}}</td>
+                                                                            <td>{{$laundry->sportswear_inf->name}}</td>
+                                                                            <td>{!!$laundry->laundry_description!!}</td>
+                                                                            <td>{{$laundry->service_cycle_location_inf->location}}</td>
+                                                                        </tr>
+                                                                        @endif
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                             
-                                                            <table class="table text-nowrap table-bordered table-striped">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th class="border-top-0">#</th>
-                                                                        <th class="border-top-0">Washing Program</th>
-                                                                        <th class="border-top-0">Color Group</th>
-                                                                        <th class="border-top-0">Cloth Type</th>
-                                                                        <th class="border-top-0">Fabric</th>
-                                                                        <th class="border-top-0">Sportswear Type</th>
-                                                                        <th class="border-top-0">Description</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    @foreach($clothing_items as $laundry)
-                                                                    @if($laundry->set_id == $cloth->set_id)
-                                                                    <tr>
-                                                                        <td>{{$loop->iteration}}</td>
-                                                                        <td>{{$laundry->washing_program_inf->name}}</td>
-                                                                        <td>{{$laundry->cloth_group_inf->name}}</td>
-                                                                        <td>{{$laundry->cloth_type_inf->name}}</td>
-                                                                        <td>{{$laundry->fabric_inf->name}}</td>
-                                                                        <td>{{$laundry->sportswear_inf->name}}</td>
-                                                                        <td>{!!$laundry->laundry_description!!}</td>
-                                                                    </tr>
-                                                                    @endif
-                                                                    @endforeach
-                                                                </tbody>
-                                                            </table>
                                                            
                                                         </div>
                                                     </div>

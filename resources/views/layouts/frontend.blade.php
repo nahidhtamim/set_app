@@ -340,6 +340,13 @@
         });
       } );
     </script>
+    <script>
+      $(document).ready( function () {
+        $('.set-table').DataTable({
+            scrollX: true,
+        });
+      } );
+    </script>
 
     <script>
       let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));

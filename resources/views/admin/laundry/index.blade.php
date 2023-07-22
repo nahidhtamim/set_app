@@ -88,18 +88,22 @@
                                             <td>{{$laundry->fabric_inf->name}}</td>
                                             <td>{{$laundry->sportswear_inf->name}}</td>
                                             <td>{!!$laundry->laundry_description!!}</td>
-                                            <td>
-                                                @if($laundry->status == 1)
-                                                Active
-                                                <a href="{{url('laundry-deactive/'.$laundry->id)}}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactive The Laundry">
-                                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                                </a>
-                                                @elseif($laundry->status == 0)
-                                                Deactive
-                                                <a href="{{url('laundry-active/'.$laundry->id)}}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Active The Laundry">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                </a>
-                                                @endif
+                                            <td class="text-center">
+                                                {{$laundry->service_cycle_location_inf->location}}
+                                                <br>
+                                                <form method="POST" action="{{url('update-laundry-cycle-status/'.$laundry->id)}}">
+                                                    @csrf
+                                                    <div class="input-group mb-3">
+                                                        <select class="form-select" name="status" id="inputGroupSelect02">
+                                                          <option selected>Update Status</option>
+                                                            @foreach($locations as $location)
+                                                            <option value="{{$location->id}}">{{$location->location}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <button class="btn btn-outline-success" type="submit">Update</button>
+                                                    </div>
+                                                </form>
+                                                
                                             </td>
                                             <td>
                                                 <a href="{{url('/edit-laundry/'.$laundry->id)}}"

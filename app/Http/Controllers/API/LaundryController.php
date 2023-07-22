@@ -3,23 +3,22 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cloth;
+use App\Models\laundry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ClothesController extends Controller
+class LaundryController extends Controller
 {
-
     public function index()
     {
-        $clothes = DB::table('cloths AS c')
+        $laundries = DB::table('laundries AS l')
         ->leftJoin('users as u', function($join)
         {
-            $join->on('c.customer_id', '=', 'u.id');
+            $join->on('l.customer_id', '=', 'u.id');
         })
         ->leftJoin('orders as o', function($join)
         {
-            $join->on('c.order_id', '=', 'o.id');
+            $join->on('l.order_id', '=', 'o.id');
         })
         ->leftJoin('sports as sp', function($join)
         {
@@ -33,18 +32,35 @@ class ClothesController extends Controller
         {
             $join->on('o.locker_id', '=', 'lock.id');
         })
-        ->leftJoin('services as s', function($join)
+        ->leftJoin('washing_programs as wu', function($join)
         {
-            $join->on('c.service_id', '=', 's.id');
+            $join->on('l.washing_program', '=', 'wu.id');
+        })
+        ->leftJoin('cloth_groups as cg', function($join)
+        {
+            $join->on('l.cloth_group', '=', 'cg.id');
+        })
+        ->leftJoin('cloth_types as ct', function($join)
+        {
+            $join->on('l.cloth_type', '=', 'ct.id');
+        })
+        ->leftJoin('fabrics as f', function($join)
+        {
+            $join->on('l.fabric', '=', 'f.id');
+        })
+        ->leftJoin('sportswears as sw', function($join)
+        {
+            $join->on('l.sportswear_type', '=', 'sw.id');
         })
         ->leftJoin('service_cycle_locations as scl', function($join)
         {
-            $join->on('c.wash_program_number', '=', 'scl.id');
+            $join->on('l.status', '=', 'scl.id');
         })
+
         ->get([
-            'c.id as id',
-            'c.hexa_code as code', 
-            'c.set_id as set_id',
+            'l.id as id',
+            'l.laundry_description as laundry_description', 
+            'l.set_id as set_id',
             'u.name as username',
             'u.email as email',
             'u.name as username',
@@ -64,21 +80,15 @@ class ClothesController extends Controller
             'o.billing_address as billing_address',
             'o.billing_email as billing_email',
             'o.message as message',
-            's.service_name as service_name',
-            's.service_name_ger as service_name_ger',
-            's.service_price as service_price',
-            's.service_image as service_image',
-            's.short_desc as short_desc',
-            's.short_desc_ger as short_desc_ger',
-            's.long_desc as long_desc',
-            's.long_desc_ger as long_desc_ger',
+            'cg.name as cloth_group',
+            'ct.name as cloth_type',
+            'f.name as fabric',
+            'sw.name as sportswear_type',
             'scl.location as status',
-            
         ]);
-
         return response()->json([
             'status' => 200,
-            'cloth' => $clothes
+            'laundries' => $laundries
         ], 200);
     }
 
@@ -87,18 +97,25 @@ class ClothesController extends Controller
         $request->validate([
             'customer_id' => 'required',
             'order_id' => 'required',
-            'hexa_code' => 'required',
-            'service_id' => 'required',
             'set_id' => 'required',
+            'washing_program' => 'required',
+            'cloth_group' => 'required',
+            'cloth_type' => 'required',
+            'fabric' => 'required',
+            'sportswear_type' => 'required',
         ]);
 
-        $cloth = new cloth();
-        $cloth->hexa_code = $request->input('hexa_code');
-        $cloth->customer_id = $request->input('customer_id');
-        $cloth->order_id = $request->input('order_id');
-        $cloth->service_id = $request->input('service_id');
-        $cloth->set_id = $request->input('set_id');
-        $data = $cloth->save();
+        $laundry = new laundry();
+        $laundry->customer_id = $request->input('customer_id');
+        $laundry->order_id = $request->input('order_id');
+        $laundry->set_id = $request->input('set_id');
+        $laundry->washing_program = $request->input('washing_program');
+        $laundry->cloth_group = $request->input('cloth_group');
+        $laundry->cloth_type = $request->input('cloth_type');
+        $laundry->fabric = $request->input('fabric');
+        $laundry->sportswear_type = $request->input('sportswear_type');
+        $laundry->laundry_description = $request->input('laundry_description');
+        $data = $laundry->save();
         
         if(!$data){
             return response()->json([
@@ -108,7 +125,7 @@ class ClothesController extends Controller
         }else{
             return response()->json([
                 'status' => 200,
-                'success' => 'Data Stored Successfully'
+                'message' => 'Data Stored Successfully'
             ], 200);
         }
     }
@@ -118,18 +135,25 @@ class ClothesController extends Controller
         $request->validate([
             'customer_id' => 'required',
             'order_id' => 'required',
-            'hexa_code' => 'required',
-            'service_id' => 'required',
             'set_id' => 'required',
+            'washing_program' => 'required',
+            'cloth_group' => 'required',
+            'cloth_type' => 'required',
+            'fabric' => 'required',
+            'sportswear_type' => 'required',
         ]);
 
-        $cloth = cloth::find($id);
-        $cloth->hexa_code = $request->input('hexa_code');
-        $cloth->customer_id = $request->input('customer_id');
-        $cloth->order_id = $request->input('order_id');
-        $cloth->service_id = $request->input('service_id');
-        $cloth->set_id = $request->input('set_id');
-        $data = $cloth->update();
+        $laundry = laundry::find($id);
+        $laundry->customer_id = $request->input('customer_id');
+        $laundry->order_id = $request->input('order_id');
+        $laundry->set_id = $request->input('set_id');
+        $laundry->washing_program = $request->input('washing_program');
+        $laundry->cloth_group = $request->input('cloth_group');
+        $laundry->cloth_type = $request->input('cloth_type');
+        $laundry->fabric = $request->input('fabric');
+        $laundry->sportswear_type = $request->input('sportswear_type');
+        $laundry->laundry_description = $request->input('laundry_description');
+        $data = $laundry->update();
 
         if(!$data){
             return response()->json([
@@ -139,20 +163,20 @@ class ClothesController extends Controller
         }else{
             return response()->json([
                 'status' => 200,
-                'success' => 'Data Updated Successfully'
+                'error' => 'Data Updated Successfully'
             ], 200);
         }
     }
 
-    public function updateServiceCycleStatus(Request $request, $id)
+    public function updateLaundryServiceCycleStatus(Request $request, $id)
     {
         $request->validate([
-            'wash_program_number' => 'required',
+            'status' => 'required',
         ]);
 
-        $cloth = cloth::find($id);
-        $cloth->wash_program_number = $request->input('wash_program_number');
-        $data = $cloth->update();
+        $laundry = laundry::find($id);
+        $laundry->status = $request->input('status');
+        $data = $laundry->update();
 
         if(!$data){
             return response()->json([
@@ -169,8 +193,8 @@ class ClothesController extends Controller
 
     public function delete($id)
     {
-        $cloth = cloth::find($id);
-        $data = $cloth->delete();
+        $laundry = laundry::find($id);
+        $data = $laundry->delete();
         
         if(!$data){
             return response()->json([
@@ -188,15 +212,14 @@ class ClothesController extends Controller
 
     public function search($id)
     {
-
-        $cloth = DB::table('cloths AS c')
+        $laundry = DB::table('laundries AS l')
         ->leftJoin('users as u', function($join)
         {
-            $join->on('c.customer_id', '=', 'u.id');
+            $join->on('l.customer_id', '=', 'u.id');
         })
         ->leftJoin('orders as o', function($join)
         {
-            $join->on('c.order_id', '=', 'o.id');
+            $join->on('l.order_id', '=', 'o.id');
         })
         ->leftJoin('sports as sp', function($join)
         {
@@ -210,19 +233,36 @@ class ClothesController extends Controller
         {
             $join->on('o.locker_id', '=', 'lock.id');
         })
-        ->leftJoin('services as s', function($join)
+        ->leftJoin('washing_programs as wu', function($join)
         {
-            $join->on('c.service_id', '=', 's.id');
+            $join->on('l.washing_program', '=', 'wu.id');
+        })
+        ->leftJoin('cloth_groups as cg', function($join)
+        {
+            $join->on('l.cloth_group', '=', 'cg.id');
+        })
+        ->leftJoin('cloth_types as ct', function($join)
+        {
+            $join->on('l.cloth_type', '=', 'ct.id');
+        })
+        ->leftJoin('fabrics as f', function($join)
+        {
+            $join->on('l.fabric', '=', 'f.id');
+        })
+        ->leftJoin('sportswears as sw', function($join)
+        {
+            $join->on('l.sportswear_type', '=', 'sw.id');
         })
         ->leftJoin('service_cycle_locations as scl', function($join)
         {
-            $join->on('c.wash_program_number', '=', 'scl.id');
+            $join->on('l.status', '=', 'scl.id');
         })
-        ->where('c.id', '=', $id)
+
+        ->where('l.id', '=', $id)
         ->get([
-            'c.id as id',
-            'c.hexa_code as code', 
-            'c.set_id as set_id',
+            'l.id as id',
+            'l.laundry_description as laundry_description', 
+            'l.set_id as set_id',
             'u.name as username',
             'u.email as email',
             'u.name as username',
@@ -242,20 +282,17 @@ class ClothesController extends Controller
             'o.billing_address as billing_address',
             'o.billing_email as billing_email',
             'o.message as message',
-            's.service_name as service_name',
-            's.service_name_ger as service_name_ger',
-            's.service_price as service_price',
-            's.service_image as service_image',
-            's.short_desc as short_desc',
-            's.short_desc_ger as short_desc_ger',
-            's.long_desc as long_desc',
-            's.long_desc_ger as long_desc_ger',
+            'cg.name as cloth_group',
+            'ct.name as cloth_type',
+            'f.name as fabric',
+            'sw.name as sportswear_type',
             'scl.location as status',
         ]);
-        if(count($cloth) > 0){
+
+        if(count($laundry) > 0){
             return response()->json([
                 'status' => 200,
-                'cloth' => $cloth
+                'laundry' => $laundry
             ], 200);
         }else{
             return response()->json([

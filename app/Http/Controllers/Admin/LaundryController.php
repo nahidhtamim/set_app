@@ -8,6 +8,7 @@ use App\Models\cloth_group;
 use App\Models\cloth_type;
 use App\Models\fabric;
 use App\Models\laundry;
+use App\Models\service_cycle_location;
 use App\Models\Sport;
 use App\Models\sportswear;
 use App\Models\User;
@@ -24,7 +25,8 @@ class LaundryController extends Controller
         $fabrics = fabric::all();
         $sportswears = sportswear::all();
         $washing_programs = washing_program::all();
-        return view('admin.laundry.index', compact('laundries', 'cloth_groups', 'cloth_types', 'fabrics', 'sportswears', 'washing_programs'));
+        $locations = service_cycle_location::all();
+        return view('admin.laundry.index', compact('laundries', 'cloth_groups', 'cloth_types', 'fabrics', 'sportswears', 'washing_programs', 'locations'));
     }
 
     public function addLaundry(){
@@ -34,7 +36,8 @@ class LaundryController extends Controller
         $fabrics = fabric::all();
         $sportswears = sportswear::all();
         $washing_programs = washing_program::all();
-        return view('admin.laundry.add-laundry', compact('cloth_groups', 'cloth_types', 'fabrics', 'sportswears', 'washing_programs', 'users'));
+        $locations = service_cycle_location::all();
+        return view('admin.laundry.add-laundry', compact('cloth_groups', 'cloth_types', 'fabrics', 'sportswears', 'washing_programs', 'users', 'locations'));
     }
 
     public function saveLaundry(Request $request){
@@ -72,7 +75,8 @@ class LaundryController extends Controller
         $fabrics = fabric::all();
         $sportswears = sportswear::all();
         $washing_programs = washing_program::all();
-        return view('admin.laundry.edit-laundry', compact('laundry', 'cloth_groups', 'cloth_types', 'fabrics', 'sportswears', 'washing_programs'));
+        $locations = service_cycle_location::all();
+        return view('admin.laundry.edit-laundry', compact('laundry', 'cloth_groups', 'cloth_types', 'fabrics', 'sportswears', 'washing_programs', 'locations'));
     }
 
     public function updateLaundry($id, Request $request){
@@ -93,20 +97,12 @@ class LaundryController extends Controller
         return redirect('/laundries')->with('warning', 'Laundry Deleted Successfully');
     }
 
-    public function activeLaundry($id)
+    public function updateSetLaundryLocationStatus($id, Request $request)
     {
         $laundry = laundry::find($id);
-        $laundry->status = '1';
+        $laundry->status = $request->input('status');
         $laundry->update();
-        return redirect()->back()->with('status', 'Item Activated');
-    }
-
-    public function deactiveLaundry($id)
-    {
-        $laundry = laundry::find($id);
-        $laundry->status = '0';
-        $laundry->update();
-        return redirect()->back()->with('warning', 'Item De-activated');
+        return redirect()->back()->with('status', 'Service Location Status Updated');
     }
 
 }

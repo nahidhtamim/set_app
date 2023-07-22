@@ -39,8 +39,9 @@ class ClothesController extends Controller
 
     public function getLaundryItems($set_id, $order_id, $customer_id)
     {
+        $locations = service_cycle_location::all();
         $laundries = laundry::where('set_id', $set_id)->where('order_id', $order_id)->where('customer_id', $customer_id)->get(); 
-        return view('admin.clothes.laundryItems', compact('laundries'));
+        return view('admin.clothes.laundryItems', compact('laundries', 'locations'));
     }
 
 
